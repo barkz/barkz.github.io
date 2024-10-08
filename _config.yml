@@ -20,11 +20,12 @@ author: rob.barker / barkz
 ###############################################
 
 navbar-links:
-  About Me: "aboutme"
   Resources:
     - Glean for Developers: "https://developers.glean.com/"
     - Glean Videos: "https://www.glean.com/resources/product-videos"
-  Author's home: "https://gleaningideas.ai"
+  #Author's home: "https://gleaningideas.ai"
+  About Me: "aboutme"
+  
 
 ################
 # --- Logo --- #
@@ -32,7 +33,7 @@ navbar-links:
 
 # Image to show in the navigation bar - works best with a square image
 # Remove this parameter if you don't want an image in the navbar
-avatar: "/assets/img/avatar-icon.png"
+avatar: "/assets/img/rob-barker-glean.png"
 
 # By default, the image is cut into a circle. You can disable this behaviour by setting 'round-avatar: false'
 round-avatar: true
@@ -118,7 +119,7 @@ feed_show_tags: true
 post_search: true
 
 # Add a button in the footer to edit the current page. Only works if your website is hosted on GitHub
-edit_page_button: true
+#edit_page_button: true
 
 # Allow sub-menu items (second-level navigation menu items) to be longer than the top-level menu
 # If this setting is off, then long sub-menu words might get cut off
