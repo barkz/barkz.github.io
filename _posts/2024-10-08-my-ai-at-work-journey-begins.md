@@ -2,11 +2,10 @@
 layout: post
 title: My AI journey @work begins...
 subtitle: 
-cover-img: /assets/img/path.jpg
+cover-img: /assets/img/glean-header.jpg
 #thumbnail-img: /assets/img/
-share-img: /assets/img/path.jpg
+share-img: /assets/img/glean-header.jpg
 tags: [AI, Glean, API]
 author: barkz
 ---
 
-The wheels are turning...more to come.
