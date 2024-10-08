@@ -10,10 +10,10 @@
 ############################
 
 # Name of website
-title: My website
+title: Gleaning Ideas
 
 # Your name to show in the footer
-author: Some Person
+author: rob.barker / barkz
 
 ###############################################
 # --- List of links in the navigation bar --- #
@@ -22,9 +22,9 @@ author: Some Person
 navbar-links:
   About Me: "aboutme"
   Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
+    - Glean API: "https://beautifuljekyll.com"
     - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "https://deanattali.com"
+  Author's home: "https://gleaningideas.ai"
 
 ################
 # --- Logo --- #
