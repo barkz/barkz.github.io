@@ -1,5 +1,8 @@
 # Define standard eol format
 
+# Personal files
+*.rob
+
 # Web Files
 *.html text eol=lf
 *.md text eol=lf
