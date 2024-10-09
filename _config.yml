@@ -20,10 +20,9 @@ author: rob.barker / barkz
 ###############################################
 
 navbar-links:
-  Resources:
+  Glean Resources:
     - Glean for Developers: "https://developers.glean.com/"
     - Glean Videos: "https://www.glean.com/resources/product-videos"
-  #Author's home: "https://gleaningideas.ai"
   About Me: "aboutme"
   
 
@@ -86,7 +85,7 @@ social-network-links:
 
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
-rss-description: Gleaning ideas using AI @work and play
+rss-description: Experiencing AI @work with Glean
 
 ###########################
 # --- General options --- #
@@ -138,7 +137,8 @@ navbar-var-length: true
 page-col: "#FFFFFF"
 text-col: "#404040"
 link-col: "#008AFF"
-hover-col: "#0085A1"
+#hover-col: "#0085A1"
+hover-col: "#FFFFFF"
 #navbar-col: "#EAEAEA"
 navbar-col: "#3D3CED"
 #navbar-text-col: "#404040"
