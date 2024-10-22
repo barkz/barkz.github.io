@@ -268,15 +268,15 @@ img {
 @media (min-width: 1200px) {
   .navbar-custom .nav-item.dropdown:hover {
     /* MODIFIED */
-  /*background: rgba(0, 0, 0, 0.1);*/
-  background: rgba(0, 0, 0, 0);
+  background: rgba(0, 0, 0, 0.1);
+  /*background: rgba(0, 0, 0, 0);*/
   }
 }
 
 .navbar-custom .nav-item.dropdown.show {
   /* MODIFIED */
-  /*background: rgba(0, 0, 0, 0.2);*/
-  background: rgba(255, 0, 0, 0);
+  background: rgba(0, 0, 0, 0.2);
+  /*background: rgba(255, 0, 0, 0);*/
 }
 
 .navbar-custom .nav-item.dropdown .dropdown-menu {
@@ -336,8 +336,8 @@ img {
 
   .navbar-custom .nav-item.dropdown.show {
     /* MODIFIED */
-    /*background: rgba(0, 0, 0, 0.2);*/
-    background: rgba(0, 0, 0, 0);
+    background: rgba(0, 0, 0, 0.2);
+    /*background: rgba(0, 0, 0, 0);*/
   }
 
   .navbar-custom .nav-item.dropdown .dropdown-menu .dropdown-item {
