@@ -150,7 +150,7 @@ navbar-col: "#EAEAEA"
 #navbar-col: "#3D3CED"
 # MODIFIED
 navbar-text-col: "#404040"
-navbar-text-col: "#FFFFFF"
+#navbar-text-col: "#FFFFFF"
 navbar-border-col: "#DDDDDD"
 footer-col: "#EAEAEA"
 footer-text-col: "#777777"
