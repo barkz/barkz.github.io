@@ -23,12 +23,12 @@ navbar-links:
   Glean Resources:
     - Glean for Developers: "https://developers.glean.com/"
     - Glean Videos: "https://www.glean.com/resources/product-videos"
-  AI Resources:
-    - OpenAI Models: "https://platform.openai.com/docs/models"
-    - Hugging Face: "https://huggingface.co/models"
-    - Anthrop\c: "https://docs.anthropic.com/en/docs/about-claude/models"
-  Blogs: ""
-  Podcasts: ""
+  #AI Resources:
+  #  - OpenAI Models: "https://platform.openai.com/docs/models"
+  #  - Hugging Face: "https://huggingface.co/models"
+  #  - Anthrop\c: "https://docs.anthropic.com/en/docs/about-claude/models"
+  #Blogs: ""
+  #Podcasts: ""
   About Me: "aboutme"  
 
 ################
