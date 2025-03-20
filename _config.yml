@@ -175,8 +175,6 @@ navbar-img: "/assets/img/glean-green.png"
 # If you have common JavaScript files that should be included in every page, list them here
 #site-js:
 #  - "/assets/js/custom-script.js"
-site-js:
-  - "https://app.glean.com/embedded-search-latest.min.js"
 
 #################################
 # --- Web Analytics Section --- #
