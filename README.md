@@ -6,7 +6,7 @@ Personal Input/Output
 This is a personal blog built with simple HTML and CSS, featuring:
 
 - Clean, responsive design
-- Right-hand sidebar navigation
+- Left-hand sidebar with widgets
 - Three widgets: About, Useful Links, and Tags
 - Full-width header and footer
 - Markdown template for creating blog posts
@@ -27,8 +27,8 @@ barkz.github.io/
 
 ### Layout
 - **Header**: Full-width header with site title and subtitle
-- **Main Content**: Left-aligned blog posts area
-- **Sidebar**: Right-aligned navigation with three widgets
+- **Sidebar**: Left-aligned navigation with three widgets
+- **Main Content**: Right-aligned blog posts area
 - **Footer**: Full-width footer with copyright information
 
 ### Widgets
