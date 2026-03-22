@@ -6,11 +6,7 @@
     <title>WUBU</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             min-height: 100vh;
@@ -18,7 +14,7 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
-            background-color: #f5f5f5;
+            background: #0a0a0a;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
@@ -29,77 +25,200 @@
             margin-top: 250px;
         }
 
+        /* === TETRIS SCENE === */
+        .scene {
+            position: relative;
+            width: 640px;
+            height: 520px;
+        }
+
+        .cell {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid rgba(255,255,255,0.08);
+            border-top-color: rgba(255,255,255,0.22);
+            border-left-color: rgba(255,255,255,0.16);
+            border-bottom-color: rgba(0,0,0,0.4);
+            border-right-color: rgba(0,0,0,0.35);
+        }
+
+        .letter-block {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: #5B2D8E;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 3px solid rgba(255,255,255,0.15);
+            border-top-color: rgba(255,255,255,0.3);
+            border-left-color: rgba(255,255,255,0.25);
+            border-bottom-color: rgba(0,0,0,0.4);
+            border-right-color: rgba(0,0,0,0.4);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+            z-index: 2;
+        }
+
+        .letter-block span {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 58px;
+            color: #fff;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.5);
+        }
+
+        .block-w { left: 70px; top: 200px; }
+        .block-u1 { left: 198px; top: 200px; }
+        .block-b { left: 326px; top: 200px; }
+        .block-u2 { left: 454px; top: 200px; }
+
+        .c1 { background: #7B3FBF; }
+        .c2 { background: #9668C2; }
+        .c3 { background: #C49EEF; }
+        .c4 { background: #4A1F7A; }
+
+        /* Bridge between W and U1 */
+        .bw1 { left: 160px; top: 200px; } .bw2 { left: 160px; top: 230px; }
+        .bw3 { left: 190px; top: 200px; } .bw4 { left: 190px; top: 230px; }
+
+        /* Bridge between U1 and B */
+        .bb1 { left: 288px; top: 260px; } .bb2 { left: 288px; top: 290px; }
+        .bb3 { left: 318px; top: 260px; } .bb4 { left: 318px; top: 290px; }
+
+        /* Bridge between B and U2 */
+        .bc1 { left: 416px; top: 200px; } .bc2 { left: 416px; top: 230px; }
+        .bc3 { left: 446px; top: 200px; } .bc4 { left: 446px; top: 230px; }
+
+        /* T-piece on W */
+        .tw1 { left: 70px; top: 170px; } .tw2 { left: 100px; top: 170px; }
+        .tw3 { left: 130px; top: 170px; } .tw4 { left: 100px; top: 140px; }
+
+        /* L-piece on U1 */
+        .tu1 { left: 198px; top: 170px; } .tu2 { left: 228px; top: 170px; }
+        .tu3 { left: 228px; top: 140px; } .tu4 { left: 228px; top: 110px; }
+
+        /* S-piece on B */
+        .tb1 { left: 356px; top: 140px; } .tb2 { left: 386px; top: 140px; }
+        .tb3 { left: 326px; top: 170px; } .tb4 { left: 356px; top: 170px; }
+
+        /* I-piece on U2 */
+        .tu21 { left: 484px; top: 50px; } .tu22 { left: 484px; top: 80px; }
+        .tu23 { left: 484px; top: 110px; } .tu24 { left: 484px; top: 140px; }
+
+        /* O-piece high above */
+        .to1 { left: 280px; top: 50px; } .to2 { left: 310px; top: 50px; }
+        .to3 { left: 280px; top: 80px; } .to4 { left: 310px; top: 80px; }
+
+        /* J-piece under W */
+        .dw1 { left: 100px; top: 320px; } .dw2 { left: 100px; top: 350px; }
+        .dw3 { left: 70px; top: 350px; } .dw4 { left: 130px; top: 320px; }
+
+        /* Z-piece under U1 */
+        .du1 { left: 198px; top: 320px; } .du2 { left: 228px; top: 320px; }
+        .du3 { left: 228px; top: 350px; } .du4 { left: 258px; top: 350px; }
+
+        /* T-piece under B */
+        .db1 { left: 326px; top: 320px; } .db2 { left: 356px; top: 320px; }
+        .db3 { left: 386px; top: 320px; } .db4 { left: 356px; top: 350px; }
+
+        /* L-piece under U2 */
+        .du21 { left: 484px; top: 320px; } .du22 { left: 484px; top: 350px; }
+        .du23 { left: 484px; top: 380px; } .du24 { left: 514px; top: 380px; }
+
+        /* Bottom connectors */
+        .dc1 { left: 160px; top: 350px; } .dc2 { left: 160px; top: 380px; }
+        .dc3 { left: 290px; top: 380px; } .dc4 { left: 320px; top: 380px; }
+        .dc5 { left: 416px; top: 350px; } .dc6 { left: 446px; top: 350px; }
+
+        /* Side wings - left */
+        .sl1 { left: 10px; top: 200px; } .sl2 { left: 40px; top: 200px; }
+        .sl3 { left: 10px; top: 230px; } .sl4 { left: 40px; top: 230px; }
+        .sl5 { left: 10px; top: 260px; } .sl6 { left: 40px; top: 260px; }
+        .sl7 { left: 40px; top: 290px; }
+
+        /* Side wings - right */
+        .sr1 { left: 574px; top: 200px; } .sr2 { left: 604px; top: 200px; }
+        .sr3 { left: 574px; top: 230px; } .sr4 { left: 604px; top: 230px; }
+        .sr5 { left: 574px; top: 260px; } .sr6 { left: 604px; top: 260px; }
+        .sr7 { left: 574px; top: 290px; }
+
+        .ai-badge {
+            position: absolute;
+            left: 518px;
+            top: 288px;
+            width: 56px;
+            height: 56px;
+            background: #000;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-top-color: rgba(255,255,255,0.35);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 16px;
+            color: #fff;
+            z-index: 3;
+        }
+
+        /* === TAGLINE & FOOTER === */
+        .tagline {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #888;
+            letter-spacing: 1px;
+        }
+
         footer {
             margin-top: auto;
             padding: 20px;
             font-size: 14px;
-            color: #666;
+            color: #555;
             text-align: center;
-        }
-
-        .logo {
-            display: flex;
-            gap: 8px;
-        }
-
-        .block {
-            width: 120px;
-            height: 120px;
-            background-color: #9668C2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 8px;
-        }
-
-        .block span {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 58px;
-            font-weight: 700;
-            color: #ffffff;
-            user-select: none;
-        }
-
-        .tagline {
-            text-align: center;
-            margin-top: 50px;
-            font-size: 16px;
-            color: #666;
-            letter-spacing: 1px;
-        }
-
-        .last-block {
-            position: relative;
-        }
-
-        .ai-badge {
-            position: absolute;
-            bottom: -28px;
-            right: -28px;
-            width: 56px;
-            height: 56px;
-            background-color: #000000;
-            color: #ffffff;
-            font-size: 22px;
-            font-weight: 700;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 4px;
-            user-select: none;
         }
     </style>
 </head>
 <body>
     <div class="logo-container">
-        <div class="logo">
-            <div class="block"><span>W</span></div>
-            <div class="block"><span>U</span></div>
-            <div class="block"><span>B</span></div>
-            <div class="block last-block">
-                <span>U</span>
-                <div class="ai-badge">.ai</div>
-            </div>
+        <div class="scene">
+            <!-- Top pieces -->
+            <div class="cell c2 tw1"></div><div class="cell c2 tw2"></div><div class="cell c2 tw3"></div><div class="cell c2 tw4"></div>
+            <div class="cell c1 tu1"></div><div class="cell c1 tu2"></div><div class="cell c1 tu3"></div><div class="cell c1 tu4"></div>
+            <div class="cell c3 tb1"></div><div class="cell c3 tb2"></div><div class="cell c3 tb3"></div><div class="cell c3 tb4"></div>
+            <div class="cell c2 tu21"></div><div class="cell c2 tu22"></div><div class="cell c2 tu23"></div><div class="cell c2 tu24"></div>
+            <div class="cell c4 to1"></div><div class="cell c4 to2"></div><div class="cell c4 to3"></div><div class="cell c4 to4"></div>
+
+            <!-- Bridge pieces -->
+            <div class="cell c4 bw1"></div><div class="cell c4 bw2"></div><div class="cell c4 bw3"></div><div class="cell c4 bw4"></div>
+            <div class="cell c1 bb1"></div><div class="cell c1 bb2"></div><div class="cell c1 bb3"></div><div class="cell c1 bb4"></div>
+            <div class="cell c4 bc1"></div><div class="cell c4 bc2"></div><div class="cell c4 bc3"></div><div class="cell c4 bc4"></div>
+
+            <!-- Side wings left -->
+            <div class="cell c1 sl1"></div><div class="cell c1 sl2"></div><div class="cell c4 sl3"></div><div class="cell c4 sl4"></div>
+            <div class="cell c1 sl5"></div><div class="cell c1 sl6"></div><div class="cell c4 sl7"></div>
+
+            <!-- Side wings right -->
+            <div class="cell c1 sr1"></div><div class="cell c1 sr2"></div><div class="cell c4 sr3"></div><div class="cell c4 sr4"></div>
+            <div class="cell c1 sr5"></div><div class="cell c1 sr6"></div><div class="cell c4 sr7"></div>
+
+            <!-- Main letter blocks -->
+            <div class="letter-block block-w"><span>W</span></div>
+            <div class="letter-block block-u1"><span>U</span></div>
+            <div class="letter-block block-b"><span>B</span></div>
+            <div class="letter-block block-u2"><span>U</span></div>
+
+            <!-- Bottom pieces -->
+            <div class="cell c3 dw1"></div><div class="cell c3 dw2"></div><div class="cell c3 dw3"></div><div class="cell c3 dw4"></div>
+            <div class="cell c4 du1"></div><div class="cell c4 du2"></div><div class="cell c4 du3"></div><div class="cell c4 du4"></div>
+            <div class="cell c2 db1"></div><div class="cell c2 db2"></div><div class="cell c2 db3"></div><div class="cell c2 db4"></div>
+            <div class="cell c1 du21"></div><div class="cell c1 du22"></div><div class="cell c1 du23"></div><div class="cell c1 du24"></div>
+
+            <!-- Bottom connectors -->
+            <div class="cell c2 dc1"></div><div class="cell c2 dc2"></div>
+            <div class="cell c3 dc3"></div><div class="cell c3 dc4"></div>
+            <div class="cell c2 dc5"></div><div class="cell c2 dc6"></div>
+
+            <div class="ai-badge">.ai</div>
         </div>
     </div>
     <p class="tagline">building macOS utilities that I've always wanted</p>
