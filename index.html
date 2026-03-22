@@ -14,21 +14,37 @@
         body {
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: flex-start;
             align-items: center;
             background-color: #f5f5f5;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 250px;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+
         .logo {
             display: flex;
-            gap: 20px;
+            gap: 8px;
         }
 
         .block {
             width: 120px;
             height: 120px;
-            background-color: #C8A2E8;
+            background-color: #9668C2;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -36,19 +52,46 @@
         }
 
         .block span {
-            font-size: 48px;
+            font-size: 72px;
             font-weight: 700;
             color: #ffffff;
+            user-select: none;
+        }
+
+        .last-block {
+            position: relative;
+        }
+
+        .ai-badge {
+            position: absolute;
+            bottom: -28px;
+            right: -28px;
+            width: 56px;
+            height: 56px;
+            background-color: #000000;
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
             user-select: none;
         }
     </style>
 </head>
 <body>
-    <div class="logo">
-        <div class="block"><span>W</span></div>
-        <div class="block"><span>U</span></div>
-        <div class="block"><span>B</span></div>
-        <div class="block"><span>U</span></div>
+    <div class="logo-container">
+        <div class="logo">
+            <div class="block"><span>W</span></div>
+            <div class="block"><span>U</span></div>
+            <div class="block"><span>B</span></div>
+            <div class="block last-block">
+                <span>U</span>
+                <div class="ai-badge">.ai</div>
+            </div>
+        </div>
     </div>
+    <footer>&copy; 2026 WuBu, LLC. All rights reserved.</footer>
 </body>
 </html>
