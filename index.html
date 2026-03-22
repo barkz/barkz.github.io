@@ -180,6 +180,52 @@
             color: #555;
             text-align: center;
         }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .logo-container {
+                margin-top: 20px;
+            }
+            .scene {
+                transform: scale(0.55);
+                transform-origin: top center;
+                height: calc(520px * 0.55);
+            }
+            .tagline {
+                font-size: 13px;
+            }
+            footer {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-container {
+                margin-top: 10px;
+            }
+            .scene {
+                transform: scale(0.4);
+                transform-origin: top center;
+                height: calc(520px * 0.4);
+            }
+            .tagline {
+                font-size: 11px;
+            }
+            footer {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .scene {
+                transform: scale(0.32);
+                transform-origin: top center;
+                height: calc(520px * 0.32);
+            }
+            .tagline {
+                font-size: 10px;
+            }
+        }
     </style>
 </head>
 <body>
