@@ -1,0 +1,310 @@
+// Custom styles for the retro-modern blog
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  // Retro-modern color scheme
+  --primary-bg: #0a0a0a;
+  --secondary-bg: #1a1a1a;
+  --accent-bg: #111111;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted: #999999;
+  --accent-green: #00ff88;
+  --accent-cyan: #00ffff;
+  --accent-pink: #ff00ff;
+  --accent-yellow: #ffff00;
+  --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --shadow-glow: 0 0 20px rgba(0, 255, 136, 0.3);
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+// Base styles
+body {
+  background: var(--primary-bg);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+// Background animation
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255, 0, 255, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(45deg, var(--accent-green), var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h2 {
+  font-size: 2rem;
+  color: var(--accent-green);
+  position: relative;
+  
+  &::before {
+    content: '//';
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: var(--accent-cyan);
+}
+
+// Code styling
+code {
+  background: var(--secondary-bg);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+  color: var(--accent-green);
+  border: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+pre {
+  background: var(--secondary-bg) !important;
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  overflow-x: auto;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan), var(--accent-pink));
+  }
+  
+  code {
+    background: none;
+    padding: 0;
+    border: none;
+    color: var(--text-primary);
+  }
+}
+
+// Links
+a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: var(--accent-green);
+    text-shadow: 0 0 10px currentColor;
+  }
+}
+
+// Site header
+.site-header {
+  background: var(--secondary-bg);
+  border-bottom: 3px solid var(--accent-green);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.site-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.8rem;
+  font-weight: 700;
+  
+  &::before {
+    content: '> ';
+    color: var(--accent-green);
+  }
+  
+  &::after {
+    content: '_';
+    animation: blink 1s infinite;
+    color: var(--accent-cyan);
+  }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+// Navigation
+.site-nav {
+  .page-link {
+    color: var(--text-secondary);
+    margin-left: 2rem;
+    font-weight: 500;
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-green);
+      transition: width 0.3s ease;
+    }
+    
+    &:hover::before {
+      width: 100%;
+    }
+  }
+}
+
+// Main content
+.page-content {
+  padding: 2rem 0;
+}
+
+// Posts
+.post-list {
+  list-style: none;
+  margin-left: 0;
+}
+
+.post-item {
+  background: var(--secondary-bg);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+    transition: left 0.6s ease;
+  }
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-glow);
+    border-color: var(--accent-green);
+    
+    &::before {
+      left: 100%;
+    }
+  }
+}
+
+.post-meta {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  
+  &::before {
+    content: '[';
+    color: var(--accent-green);
+  }
+  
+  &::after {
+    content: ']';
+    color: var(--accent-green);
+  }
+}
+
+.post-title {
+  margin-bottom: 1rem;
+  
+  a {
+    color: var(--text-primary);
+    
+    &:hover {
+      color: var(--accent-green);
+    }
+  }
+}
+
+// Tags
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tag {
+  background: rgba(0, 255, 136, 0.1);
+  color: var(--accent-green);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: var(--accent-green);
+    color: var(--primary-bg);
+    transform: scale(1.05);
+  }
+}
+
+// Footer
+.site-footer {
+  background: var(--secondary-bg);
+  border-top: 3px solid var(--accent-cyan);
+  padding: 2rem 0;
+  margin-top: 4rem;
+  text-align: center;
+  
+  .footer-col {
+    color: var(--text-secondary);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .site-title {
+    font-size: 1.5rem;
+  }
+  
+  .post-item {
+    padding: 1.5rem;
+  }
+}
