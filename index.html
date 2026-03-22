@@ -16,6 +16,7 @@
             align-items: center;
             background: #0a0a0a;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
         }
 
         .logo-container {
@@ -184,15 +185,16 @@
         /* === RESPONSIVE === */
         @media (max-width: 768px) {
             .logo-container {
-                margin-top: 20px;
+                margin-top: 40px;
             }
             .scene {
-                transform: scale(0.55);
+                transform: scale(0.6);
                 transform-origin: top center;
-                height: calc(520px * 0.55);
+                height: calc(520px * 0.6);
             }
             .tagline {
                 font-size: 13px;
+                bottom: 50px;
             }
             footer {
                 font-size: 12px;
@@ -201,15 +203,18 @@
 
         @media (max-width: 480px) {
             .logo-container {
-                margin-top: 10px;
+                margin-top: 60px;
             }
             .scene {
-                transform: scale(0.4);
+                transform: scale(0.52);
                 transform-origin: top center;
-                height: calc(520px * 0.4);
+                height: calc(520px * 0.52);
             }
             .tagline {
-                font-size: 11px;
+                font-size: 12px;
+                bottom: 40px;
+                white-space: normal;
+                width: 580px;
             }
             footer {
                 font-size: 11px;
@@ -217,13 +222,17 @@
         }
 
         @media (max-width: 375px) {
+            .logo-container {
+                margin-top: 50px;
+            }
             .scene {
-                transform: scale(0.32);
+                transform: scale(0.48);
                 transform-origin: top center;
-                height: calc(520px * 0.32);
+                height: calc(520px * 0.48);
             }
             .tagline {
-                font-size: 10px;
+                font-size: 11px;
+                bottom: 30px;
             }
         }
     </style>
