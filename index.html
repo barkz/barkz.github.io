@@ -22,7 +22,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 250px;
+            margin-top: -50px;
         }
 
         /* === TETRIS SCENE === */
@@ -162,8 +162,12 @@
 
         /* === TAGLINE & FOOTER === */
         .tagline {
+            position: absolute;
+            bottom: 75px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
             text-align: center;
-            margin-top: 20px;
             font-size: 16px;
             color: #888;
             letter-spacing: 1px;
@@ -219,9 +223,9 @@
             <div class="cell c2 dc5"></div><div class="cell c2 dc6"></div>
 
             <div class="ai-badge">.ai</div>
+            <p class="tagline">building macOS utilities that I've always wanted</p>
         </div>
     </div>
-    <p class="tagline">building macOS utilities that I've always wanted</p>
     <footer>&copy; 2026 WuBu, LLC. All rights reserved.</footer>
 </body>
 </html>
