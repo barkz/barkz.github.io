@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WuBu, LLC -- creating macOS utilities & iPhone games</title>
+    <title>WuBu, LLC -- macOS utilities & iPhone games</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,6 +31,8 @@
             position: relative;
             width: 640px;
             height: 520px;
+            transform: scale(0.5625);
+            transform-origin: top center;
         }
 
         .cell {
@@ -161,11 +163,20 @@
             z-index: 3;
         }
 
+        .divider {
+            width: 80%;
+            max-width: 880px;
+            height: 2px;
+            margin: -270px auto 0;
+            background: linear-gradient(90deg, transparent, rgba(123, 63, 191, 0.5), transparent);
+            border: none;
+        }
+
         /* === CAROUSEL === */
         .carousel {
             width: 100%;
-            max-width: 720px;
-            margin: 20px auto 40px;
+            max-width: 880px;
+            margin: 10px auto 40px;
             padding: 0 20px;
             flex: 1;
             display: flex;
@@ -176,14 +187,9 @@
         .carousel-track {
             position: relative;
             width: 100%;
-            aspect-ratio: 16 / 9;
+            min-height: 500px;
             overflow: hidden;
-            background: #1a0a1f;
-            border: 2px solid rgba(150, 104, 194, 0.25);
-            border-top-color: rgba(255, 255, 255, 0.15);
-            border-left-color: rgba(255, 255, 255, 0.12);
-            border-bottom-color: rgba(0, 0, 0, 0.5);
-            border-right-color: rgba(0, 0, 0, 0.5);
+            background: transparent;
         }
 
         .carousel-slide {
@@ -197,6 +203,7 @@
             align-items: center;
             padding: 24px;
             pointer-events: none;
+            gap: 18px;
         }
 
         .carousel-slide.active {
@@ -204,23 +211,44 @@
             pointer-events: auto;
         }
 
-        .carousel-slide img,
         .slide-image {
+            width: 220px;
+            height: 220px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide-image svg {
             width: 100%;
-            max-width: 340px;
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, #4A1F7A, #7B3FBF);
+            height: 100%;
+            display: block;
+        }
+
+        .slide-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 18px;
+            color: #C49EEF;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0 rgba(91, 45, 142, 0.8);
+            margin: 0;
+        }
+
+        .slide-release {
+            font-weight: bold;
+            font-size: 14px;
+            color: #9668C2;
+            letter-spacing: 1px;
+            margin: -6px 0 0;
         }
 
         .slide-text {
             color: #c4c4c4;
-            font-size: 14px;
+            font-size: 15px;
             text-align: center;
             letter-spacing: 1px;
-            max-width: 480px;
-            line-height: 1.5;
+            max-width: 640px;
+            line-height: 1.7;
         }
 
         .carousel-dots {
@@ -325,6 +353,9 @@
             .carousel {
                 margin: 0 auto 30px;
             }
+            .carousel-track { min-height: 520px; }
+            .slide-image { width: 180px; height: 180px; }
+            .slide-title { font-size: 15px; }
             .slide-text {
                 font-size: 13px;
             }
@@ -408,29 +439,92 @@
             <div class="cell c2 dc5"></div><div class="cell c2 dc6"></div>
 
             <div class="ai-badge">.ai</div>
-            <p class="tagline">building macOS utilities that I've always wanted</p>
         </div>
     </div>
+
+    <hr class="divider">
 
     <div class="carousel">
         <div class="carousel-track">
             <div class="carousel-slide active">
-                <div class="slide-image"></div>
-                <p class="slide-text">Slide one &mdash; add a photo and a short description here.</p>
+                <div class="slide-image">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="Clocktastic">
+                        <rect x="10" y="10" width="180" height="180" fill="#4A1F7A" stroke="rgba(255,255,255,0.25)" stroke-width="3"/>
+                        <rect x="25" y="25" width="150" height="150" fill="#2a0f4a"/>
+                        <rect x="96" y="34" width="8" height="16" fill="#C49EEF"/>
+                        <rect x="150" y="96" width="16" height="8" fill="#C49EEF"/>
+                        <rect x="96" y="150" width="8" height="16" fill="#C49EEF"/>
+                        <rect x="34" y="96" width="16" height="8" fill="#C49EEF"/>
+                        <rect x="55" y="55" width="8" height="8" fill="#7B3FBF"/>
+                        <rect x="137" y="55" width="8" height="8" fill="#7B3FBF"/>
+                        <rect x="137" y="137" width="8" height="8" fill="#7B3FBF"/>
+                        <rect x="55" y="137" width="8" height="8" fill="#7B3FBF"/>
+                        <rect x="96" y="60" width="8" height="44" fill="#9668C2"/>
+                        <rect x="100" y="96" width="50" height="8" fill="#C49EEF"/>
+                        <rect x="92" y="92" width="16" height="16" fill="#fff"/>
+                    </svg>
+                </div>
+                <h3 class="slide-title">CLOCKTASTIC</h3>
+                <p class="slide-release">Releasing on June 20</p>
+                <p class="slide-text">Clocktastic brings the charm of a retro bedside clock straight to your Mac menu bar. Choose from a library of pixel-perfect clock faces, each one hand-crafted with nostalgic flair. Multiple time zones, alarms, and focus timers are always a single click away. Because checking the time should feel good.</p>
             </div>
             <div class="carousel-slide">
-                <div class="slide-image" style="background: linear-gradient(135deg, #5B2D8E, #9668C2);"></div>
-                <p class="slide-text">Slide two &mdash; another project, another short line of text.</p>
+                <div class="slide-image">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="LightsOut">
+                        <rect x="10" y="10" width="40" height="40" fill="#C49EEF"/>
+                        <rect x="54" y="10" width="40" height="40" fill="#4A1F7A"/>
+                        <rect x="98" y="10" width="40" height="40" fill="#C49EEF"/>
+                        <rect x="142" y="10" width="40" height="40" fill="#4A1F7A"/>
+                        <rect x="10" y="54" width="40" height="40" fill="#4A1F7A"/>
+                        <rect x="54" y="54" width="40" height="40" fill="#9668C2"/>
+                        <rect x="98" y="54" width="40" height="40" fill="#4A1F7A"/>
+                        <rect x="142" y="54" width="40" height="40" fill="#C49EEF"/>
+                        <rect x="10" y="98" width="40" height="40" fill="#C49EEF"/>
+                        <rect x="54" y="98" width="40" height="40" fill="#4A1F7A"/>
+                        <rect x="98" y="98" width="40" height="40" fill="#9668C2"/>
+                        <rect x="142" y="98" width="40" height="40" fill="#4A1F7A"/>
+                        <rect x="10" y="142" width="40" height="40" fill="#4A1F7A"/>
+                        <rect x="54" y="142" width="40" height="40" fill="#C49EEF"/>
+                        <rect x="98" y="142" width="40" height="40" fill="#4A1F7A"/>
+                        <rect x="142" y="142" width="40" height="40" fill="#C49EEF"/>
+                    </svg>
+                </div>
+                <h3 class="slide-title">LIGHTSOUT</h3>
+                <p class="slide-release">Releasing July 8</p>
+                <p class="slide-text">LightsOut is a minimalist puzzle game built around a single rule: tap a tile and its neighbors flip. Start with a lit grid and work your way to darkness, one clever move at a time. Hundreds of handcrafted puzzles, offline play, and zero ads getting in your way. Quick to learn, tough to master.</p>
             </div>
             <div class="carousel-slide">
-                <div class="slide-image" style="background: linear-gradient(135deg, #7B3FBF, #C49EEF);"></div>
-                <p class="slide-text">Slide three &mdash; keep things brief and on brand.</p>
+                <div class="slide-image">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="Shared Stickies">
+                        <g transform="rotate(-8 100 100)">
+                            <rect x="38" y="40" width="100" height="100" fill="#7B3FBF" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
+                            <rect x="52" y="60" width="72" height="4" fill="rgba(255,255,255,0.3)"/>
+                            <rect x="52" y="78" width="60" height="4" fill="rgba(255,255,255,0.3)"/>
+                            <rect x="52" y="96" width="68" height="4" fill="rgba(255,255,255,0.3)"/>
+                        </g>
+                        <g transform="rotate(6 100 100)">
+                            <rect x="56" y="52" width="100" height="100" fill="#9668C2" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                            <rect x="70" y="72" width="72" height="4" fill="rgba(255,255,255,0.35)"/>
+                            <rect x="70" y="90" width="56" height="4" fill="rgba(255,255,255,0.35)"/>
+                            <rect x="70" y="108" width="68" height="4" fill="rgba(255,255,255,0.35)"/>
+                        </g>
+                        <g transform="rotate(-2 100 100)">
+                            <rect x="46" y="64" width="100" height="100" fill="#C49EEF" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+                            <rect x="60" y="84" width="72" height="4" fill="rgba(74,31,122,0.55)"/>
+                            <rect x="60" y="102" width="56" height="4" fill="rgba(74,31,122,0.55)"/>
+                            <rect x="60" y="120" width="68" height="4" fill="rgba(74,31,122,0.55)"/>
+                        </g>
+                    </svg>
+                </div>
+                <h3 class="slide-title">SHARED STICKIES</h3>
+                <p class="slide-release">Releasing July 24</p>
+                <p class="slide-text">Shared Stickies is a collaborative take on the humble desktop sticky note. Drop a note on your Mac and it shows up instantly on everyone you've shared it with. Rich text, color tags, and simple permissions keep teams aligned without yet another chat tool. The easiest way to leave a note for someone across the room or across the world.</p>
             </div>
         </div>
         <div class="carousel-dots">
-            <button class="carousel-dot active" type="button" aria-label="Slide 1"></button>
-            <button class="carousel-dot" type="button" aria-label="Slide 2"></button>
-            <button class="carousel-dot" type="button" aria-label="Slide 3"></button>
+            <button class="carousel-dot active" type="button" aria-label="Clocktastic"></button>
+            <button class="carousel-dot" type="button" aria-label="LightsOut"></button>
+            <button class="carousel-dot" type="button" aria-label="Shared Stickies"></button>
         </div>
     </div>
 
