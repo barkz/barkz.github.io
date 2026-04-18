@@ -167,13 +167,14 @@
             width: 80%;
             max-width: 880px;
             height: 2px;
-            margin: -270px auto 0;
+            margin: 12px auto 0;
             background: linear-gradient(90deg, transparent, rgba(123, 63, 191, 0.5), transparent);
             border: none;
         }
 
         /* === CAROUSEL === */
         .carousel {
+            position: relative;
             width: 100%;
             max-width: 880px;
             margin: 10px auto 40px;
@@ -251,6 +252,33 @@
             line-height: 1.7;
         }
 
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 10px 14px;
+            background: transparent;
+            color: #9668C2;
+            border: none;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 20px;
+            letter-spacing: -2px;
+            cursor: pointer;
+            text-shadow: 2px 2px 0 rgba(91, 45, 142, 0.8);
+            z-index: 5;
+            transition: color 0.2s, transform 0.15s;
+        }
+
+        .carousel-nav:hover {
+            color: #C49EEF;
+        }
+
+        .carousel-nav.prev { left: 4px; }
+        .carousel-nav.next { right: 4px; }
+
+        .carousel-nav.prev:hover { transform: translateY(-50%) translateX(-3px); }
+        .carousel-nav.next:hover { transform: translateY(-50%) translateX(3px); }
+
         .carousel-dots {
             display: flex;
             justify-content: center;
@@ -278,6 +306,42 @@
             transform: scale(1.2);
         }
 
+        /* === ICON NAV === */
+        .icon-nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: -270px auto 0;
+            position: relative;
+            z-index: 4;
+        }
+
+        .icon-btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(74, 31, 122, 0.35);
+            border: 2px solid rgba(150, 104, 194, 0.5);
+            color: #9668C2;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s, transform 0.15s;
+        }
+
+        .icon-btn:hover {
+            background: #5B2D8E;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .icon-btn svg {
+            width: 14px;
+            height: 14px;
+            display: block;
+        }
+
         /* === TAGLINE & FOOTER === */
         .tagline {
             position: absolute;
@@ -295,7 +359,7 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 24px;
+            gap: 40px;
             padding: 18px 20px;
             border-top: 2px solid rgba(123, 63, 191, 0.2);
         }
@@ -307,9 +371,23 @@
             letter-spacing: 1px;
         }
 
+        .site-nav a::before {
+            content: "[ ";
+            color: #7B3FBF;
+        }
+
+        .site-nav a::after {
+            content: " ]";
+            color: #7B3FBF;
+        }
+
         .site-nav a:hover {
             color: #C49EEF;
-            text-decoration: underline;
+        }
+
+        .site-nav a:hover::before,
+        .site-nav a:hover::after {
+            color: #C49EEF;
         }
 
         .site-nav a.current {
@@ -359,7 +437,7 @@
             .slide-text {
                 font-size: 13px;
             }
-            .site-nav { gap: 16px; font-size: 12px; }
+            .site-nav { gap: 24px; font-size: 12px; }
             footer {
                 font-size: 12px;
                 padding: 10px;
@@ -442,6 +520,18 @@
         </div>
     </div>
 
+    <div class="icon-nav">
+        <a href="support.html" class="icon-btn" aria-label="Support">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="22"/><line x1="2" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="22" y2="12"/></svg>
+        </a>
+        <a href="who.html" class="icon-btn" aria-label="Who is WuBu">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        </a>
+        <a href="privacy.html" class="icon-btn" aria-label="Privacy">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 10V7a4 4 0 0 1 8 0v3h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1h1zm2 0h4V7a2 2 0 1 0-4 0v3z"/><circle cx="12" cy="15" r="1.5" fill="#0a0a0a"/><rect x="11.25" y="15" width="1.5" height="3.5" fill="#0a0a0a"/></svg>
+        </a>
+    </div>
+
     <hr class="divider">
 
     <div class="carousel">
@@ -471,22 +561,91 @@
             <div class="carousel-slide">
                 <div class="slide-image">
                     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="LightsOut">
-                        <rect x="10" y="10" width="40" height="40" fill="#C49EEF"/>
-                        <rect x="54" y="10" width="40" height="40" fill="#4A1F7A"/>
-                        <rect x="98" y="10" width="40" height="40" fill="#C49EEF"/>
-                        <rect x="142" y="10" width="40" height="40" fill="#4A1F7A"/>
-                        <rect x="10" y="54" width="40" height="40" fill="#4A1F7A"/>
-                        <rect x="54" y="54" width="40" height="40" fill="#9668C2"/>
-                        <rect x="98" y="54" width="40" height="40" fill="#4A1F7A"/>
-                        <rect x="142" y="54" width="40" height="40" fill="#C49EEF"/>
-                        <rect x="10" y="98" width="40" height="40" fill="#C49EEF"/>
-                        <rect x="54" y="98" width="40" height="40" fill="#4A1F7A"/>
-                        <rect x="98" y="98" width="40" height="40" fill="#9668C2"/>
-                        <rect x="142" y="98" width="40" height="40" fill="#4A1F7A"/>
-                        <rect x="10" y="142" width="40" height="40" fill="#4A1F7A"/>
-                        <rect x="54" y="142" width="40" height="40" fill="#C49EEF"/>
-                        <rect x="98" y="142" width="40" height="40" fill="#4A1F7A"/>
-                        <rect x="142" y="142" width="40" height="40" fill="#C49EEF"/>
+                        <g fill="#C49EEF">
+                            <rect x="6" y="18" width="3" height="3"/>
+                            <rect x="188" y="24" width="3" height="3"/>
+                            <rect x="16" y="8" width="2" height="2"/>
+                            <rect x="178" y="10" width="2" height="2"/>
+                            <rect x="4" y="160" width="2" height="2"/>
+                            <rect x="192" y="164" width="2" height="2"/>
+                        </g>
+                        <rect x="24" y="148" width="6" height="26" fill="#4A1F7A"/>
+                        <rect x="170" y="148" width="6" height="26" fill="#4A1F7A"/>
+                        <rect x="10" y="40" width="180" height="110" fill="#2a0f4a" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                        <rect x="18" y="48" width="164" height="94" fill="#0a0a0a"/>
+                        <rect x="18" y="48" width="164" height="10" fill="rgba(255,255,255,0.06)"/>
+                        <g>
+                            <circle cx="36" cy="75" r="16" fill="#FF2020" opacity="0.35">
+                                <animate attributeName="opacity" values="0.2;0.5;0.2" dur="1.4s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="68" cy="75" r="16" fill="#FF2020" opacity="0.35">
+                                <animate attributeName="opacity" values="0.2;0.5;0.2" dur="1.4s" begin="0.2s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="100" cy="75" r="16" fill="#FF2020" opacity="0.35">
+                                <animate attributeName="opacity" values="0.2;0.5;0.2" dur="1.4s" begin="0.4s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="36" cy="115" r="16" fill="#FF2020" opacity="0.35">
+                                <animate attributeName="opacity" values="0.2;0.5;0.2" dur="1.4s" begin="0.1s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="68" cy="115" r="16" fill="#FF2020" opacity="0.35">
+                                <animate attributeName="opacity" values="0.2;0.5;0.2" dur="1.4s" begin="0.3s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="100" cy="115" r="16" fill="#FF2020" opacity="0.35">
+                                <animate attributeName="opacity" values="0.2;0.5;0.2" dur="1.4s" begin="0.5s" repeatCount="indefinite"/>
+                            </circle>
+                        </g>
+                        <g fill="#2a0000">
+                            <circle cx="36" cy="75" r="12"/>
+                            <circle cx="68" cy="75" r="12"/>
+                            <circle cx="100" cy="75" r="12"/>
+                            <circle cx="132" cy="75" r="12"/>
+                            <circle cx="164" cy="75" r="12"/>
+                            <circle cx="36" cy="115" r="12"/>
+                            <circle cx="68" cy="115" r="12"/>
+                            <circle cx="100" cy="115" r="12"/>
+                            <circle cx="132" cy="115" r="12"/>
+                            <circle cx="164" cy="115" r="12"/>
+                        </g>
+                        <g fill="#FF2020">
+                            <circle cx="36" cy="75" r="10"/>
+                            <circle cx="68" cy="75" r="10"/>
+                            <circle cx="100" cy="75" r="10"/>
+                            <circle cx="36" cy="115" r="10"/>
+                            <circle cx="68" cy="115" r="10"/>
+                            <circle cx="100" cy="115" r="10"/>
+                        </g>
+                        <g fill="#3a0c0c">
+                            <circle cx="132" cy="75" r="10"/>
+                            <circle cx="164" cy="75" r="10"/>
+                            <circle cx="132" cy="115" r="10"/>
+                            <circle cx="164" cy="115" r="10"/>
+                        </g>
+                        <g fill="rgba(255,220,220,0.85)">
+                            <circle cx="33" cy="72" r="3"/>
+                            <circle cx="65" cy="72" r="3"/>
+                            <circle cx="97" cy="72" r="3"/>
+                            <circle cx="33" cy="112" r="3"/>
+                            <circle cx="65" cy="112" r="3"/>
+                            <circle cx="97" cy="112" r="3"/>
+                        </g>
+                        <rect x="0" y="178" width="200" height="16" fill="#fff"/>
+                        <g fill="#0a0a0a">
+                            <rect x="0" y="178" width="14" height="8"/>
+                            <rect x="28" y="178" width="14" height="8"/>
+                            <rect x="56" y="178" width="14" height="8"/>
+                            <rect x="84" y="178" width="14" height="8"/>
+                            <rect x="112" y="178" width="14" height="8"/>
+                            <rect x="140" y="178" width="14" height="8"/>
+                            <rect x="168" y="178" width="14" height="8"/>
+                            <rect x="196" y="178" width="4" height="8"/>
+                            <rect x="14" y="186" width="14" height="8"/>
+                            <rect x="42" y="186" width="14" height="8"/>
+                            <rect x="70" y="186" width="14" height="8"/>
+                            <rect x="98" y="186" width="14" height="8"/>
+                            <rect x="126" y="186" width="14" height="8"/>
+                            <rect x="154" y="186" width="14" height="8"/>
+                            <rect x="182" y="186" width="14" height="8"/>
+                        </g>
                     </svg>
                 </div>
                 <h3 class="slide-title">LIGHTSOUT</h3>
@@ -514,6 +673,13 @@
                             <rect x="60" y="102" width="56" height="4" fill="rgba(74,31,122,0.55)"/>
                             <rect x="60" y="120" width="68" height="4" fill="rgba(74,31,122,0.55)"/>
                         </g>
+                        <g>
+                            <line x1="154" y1="48" x2="170" y2="26" stroke="#fff" stroke-width="3"/>
+                            <line x1="154" y1="48" x2="170" y2="70" stroke="#fff" stroke-width="3"/>
+                            <circle cx="172" cy="24" r="9" fill="#7B3FBF" stroke="#fff" stroke-width="2.5"/>
+                            <circle cx="152" cy="48" r="9" fill="#7B3FBF" stroke="#fff" stroke-width="2.5"/>
+                            <circle cx="172" cy="72" r="9" fill="#7B3FBF" stroke="#fff" stroke-width="2.5"/>
+                        </g>
                     </svg>
                 </div>
                 <h3 class="slide-title">SHARED STICKIES</h3>
@@ -521,6 +687,8 @@
                 <p class="slide-text">Shared Stickies is a collaborative take on the humble desktop sticky note. Drop a note on your Mac and it shows up instantly on everyone you've shared it with. Rich text, color tags, and simple permissions keep teams aligned without yet another chat tool. The easiest way to leave a note for someone across the room or across the world.</p>
             </div>
         </div>
+        <button class="carousel-nav prev" type="button" aria-label="Previous slide">&lt;&lt;</button>
+        <button class="carousel-nav next" type="button" aria-label="Next slide">&gt;&gt;</button>
         <div class="carousel-dots">
             <button class="carousel-dot active" type="button" aria-label="Clocktastic"></button>
             <button class="carousel-dot" type="button" aria-label="LightsOut"></button>
@@ -556,6 +724,18 @@
                     start();
                 });
             });
+
+            const prevBtn = document.querySelector('.carousel-nav.prev');
+            const nextBtn = document.querySelector('.carousel-nav.next');
+
+            function jump(delta) {
+                clearInterval(timer);
+                show((current + delta + slides.length) % slides.length);
+                start();
+            }
+
+            if (prevBtn) prevBtn.addEventListener('click', () => jump(-1));
+            if (nextBtn) nextBtn.addEventListener('click', () => jump(1));
 
             start();
         })();

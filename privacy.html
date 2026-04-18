@@ -39,18 +39,43 @@
             letter-spacing: 1px;
         }
 
-        .back-link {
-            display: inline-block;
+        .header-nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
             margin-top: 15px;
-            font-size: 13px;
-            color: #9668C2;
-            text-decoration: none;
-            letter-spacing: 1px;
         }
 
-        .back-link:hover {
+        .icon-btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(74, 31, 122, 0.3);
+            border: 2px solid rgba(150, 104, 194, 0.5);
+            color: #9668C2;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s, transform 0.15s;
+        }
+
+        .icon-btn:hover {
+            background: #5B2D8E;
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        .icon-btn.current {
+            background: #5B2D8E;
             color: #C49EEF;
-            text-decoration: underline;
+            border-color: rgba(196, 158, 239, 0.6);
+        }
+
+        .icon-btn svg {
+            width: 18px;
+            height: 18px;
+            display: block;
         }
 
         .content {
@@ -120,7 +145,7 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 24px;
+            gap: 40px;
             padding: 18px 20px;
             border-top: 2px solid rgba(123, 63, 191, 0.2);
         }
@@ -132,9 +157,23 @@
             letter-spacing: 1px;
         }
 
+        .site-nav a::before {
+            content: "[ ";
+            color: #7B3FBF;
+        }
+
+        .site-nav a::after {
+            content: " ]";
+            color: #7B3FBF;
+        }
+
         .site-nav a:hover {
             color: #C49EEF;
-            text-decoration: underline;
+        }
+
+        .site-nav a:hover::before,
+        .site-nav a:hover::after {
+            color: #C49EEF;
         }
 
         .site-nav a.current {
@@ -166,7 +205,7 @@
             .content { padding: 25px 20px; }
             .content h2 { font-size: 13px; }
             .content p, .content li { font-size: 14px; }
-            .site-nav { gap: 16px; font-size: 12px; }
+            .site-nav { gap: 24px; font-size: 12px; }
             footer { font-size: 12px; padding: 15px; }
         }
 
@@ -181,7 +220,20 @@
     <div class="header">
         <h1>PRIVACY POLICY</h1>
         <div class="subtitle">WuBu, LLC</div>
-        <a href="index.html" class="back-link">&larr; back to home</a>
+        <div class="header-nav">
+            <a href="index.html" class="icon-btn" aria-label="Home">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg>
+            </a>
+            <a href="support.html" class="icon-btn" aria-label="Support">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="22"/><line x1="2" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="22" y2="12"/></svg>
+            </a>
+            <a href="who.html" class="icon-btn" aria-label="Who is WuBu">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+            </a>
+            <a href="privacy.html" class="icon-btn current" aria-label="Privacy" aria-current="page">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 10V7a4 4 0 0 1 8 0v3h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1h1zm2 0h4V7a2 2 0 1 0-4 0v3z"/><circle cx="12" cy="15" r="1.5" fill="#0a0a0a"/><rect x="11.25" y="15" width="1.5" height="3.5" fill="#0a0a0a"/></svg>
+            </a>
+        </div>
     </div>
 
     <div class="content">
@@ -223,7 +275,7 @@
         <p>We may update this privacy policy from time to time. Updates will be posted on this page with a revised effective date. Continued use of our products after changes indicates acceptance of the updated policy.</p>
 
         <h2>Contact</h2>
-        <p>If you have questions about this privacy policy or our practices, please reach out to <a href="mailto:rob.barker@outlook.com">rob.barker@outlook.com</a>.</p>
+        <p>If you have questions about this privacy policy or our practices, please reach out to <a href="mailto:us@wubu.ai">us@wubu.ai</a>.</p>
     </div>
 
     <nav class="site-nav">
