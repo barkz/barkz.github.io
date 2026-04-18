@@ -8,6 +8,10 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        :root {
+            --scene-scale: 0.5625;
+        }
+
         body {
             min-height: 100vh;
             display: flex;
@@ -29,10 +33,10 @@
         /* === TETRIS SCENE === */
         .scene {
             position: relative;
-            width: 640px;
-            height: 520px;
-            transform: scale(0.5625);
-            transform-origin: top center;
+            width: calc(640px * var(--scene-scale));
+            height: calc(410px * var(--scene-scale));
+            transform: scale(var(--scene-scale));
+            transform-origin: top left;
         }
 
         .cell {
@@ -311,9 +315,7 @@
             display: flex;
             justify-content: center;
             gap: 12px;
-            margin: -270px auto 0;
-            position: relative;
-            z-index: 4;
+            margin: 18px auto 0;
         }
 
         .icon-btn {
@@ -416,63 +418,35 @@
 
         /* === RESPONSIVE === */
         @media (max-width: 768px) {
-            .logo-container {
-                margin-top: 0;
-            }
-            .scene {
-                transform: scale(0.6);
-                transform-origin: center center;
-                height: 520px;
-            }
-            .tagline {
-                font-size: 13px;
-                bottom: 50px;
-            }
-            .carousel {
-                margin: 0 auto 30px;
-            }
-            .carousel-track { min-height: 520px; }
+            :root { --scene-scale: 0.5; }
+            .logo-container { margin-top: 0; }
+            .carousel { margin: 0 auto 30px; }
+            .carousel-track { min-height: 460px; }
+            .carousel-nav { padding: 8px 10px; font-size: 18px; }
             .slide-image { width: 180px; height: 180px; }
             .slide-title { font-size: 15px; }
-            .slide-text {
-                font-size: 13px;
-            }
+            .slide-text { font-size: 13px; }
             .site-nav { gap: 24px; font-size: 12px; }
-            footer {
-                font-size: 12px;
-                padding: 10px;
-            }
+            footer { font-size: 12px; padding: 10px; }
         }
 
         @media (max-width: 480px) {
-            .logo-container {
-                margin-top: 0;
-            }
-            .scene {
-                transform: scale(0.55);
-                transform-origin: center center;
-            }
-            .tagline {
-                font-size: 12px;
-                bottom: 45px;
-                white-space: normal;
-                width: 580px;
-            }
-            footer {
-                font-size: 11px;
-                padding: 8px;
-            }
+            :root { --scene-scale: 0.45; }
+            .carousel-track { min-height: 440px; }
+            .slide-image { width: 150px; height: 150px; }
+            .slide-title { font-size: 13px; }
+            .slide-text { font-size: 12px; }
+            .carousel-nav { padding: 6px 8px; font-size: 16px; }
+            .site-nav { gap: 18px; font-size: 11px; }
+            footer { font-size: 11px; padding: 8px; }
         }
 
         @media (max-width: 375px) {
-            .scene {
-                transform: scale(0.5);
-                transform-origin: center center;
-            }
-            .tagline {
-                font-size: 11px;
-                bottom: 40px;
-            }
+            :root { --scene-scale: 0.4; }
+            .carousel-track { min-height: 420px; }
+            .slide-image { width: 130px; height: 130px; }
+            .icon-btn { width: 28px; height: 28px; }
+            .icon-btn svg { width: 12px; height: 12px; }
         }
     </style>
 </head>
