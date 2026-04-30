@@ -3,40 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WuBu, LLC -- macOS utilities & iPhone games</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>WuBu, LLC -- Indie Mac apps and iPhone games</title>
+    <meta name="description" content="A one-person Apple software studio. Three small apps coming to the App Store this summer.">
+    <meta name="theme-color" content="#0a0a0a">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
         :root {
-            --scene-scale: 0.5625;
+            --bg: #0a0a0a;
+            --bg-soft: #14091e;
+            --card: #16091f;
+            --border: rgba(150, 104, 194, 0.18);
+            --border-strong: rgba(196, 158, 239, 0.4);
+            --c1: #7B3FBF;
+            --c2: #9668C2;
+            --c3: #C49EEF;
+            --c4: #4A1F7A;
+            --c5: #5B2D8E;
+            --warm: #FFB870;
+            --warm-deep: #FF7E50;
+            --cream: #f4eede;
+            --wood: #3d2817;
+            --wood-light: #5d3e25;
+            --text: #e6def0;
+            --text-soft: #b8b8b8;
+            --text-muted: #888;
+            --pixel: 'Press Start 2P', cursive;
+            --serif: 'Fraunces', Georgia, serif;
+            --sans: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+            --scene-scale: 0.42;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            background: #0a0a0a;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            line-height: 1.6;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        .logo-container {
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(at 20% 0%, rgba(123, 63, 191, 0.18), transparent 50%),
+                radial-gradient(at 80% 100%, rgba(91, 45, 142, 0.12), transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 18px 56px;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            margin-top: -50px;
+        }
+        .nav-brand {
+            font-family: var(--pixel);
+            font-size: 12px;
+            color: var(--c3);
+            letter-spacing: 2px;
+            text-decoration: none;
+            text-shadow: 2px 2px 0 var(--c5);
+        }
+        .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+        .nav-links a {
+            color: var(--text-soft);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--c3); }
+
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 56px; position: relative; z-index: 1; }
+        .container-narrow { max-width: 780px; margin: 0 auto; padding: 0 56px; position: relative; z-index: 1; }
+
+        .hero {
+            padding: 70px 0 30px;
+            text-align: center;
         }
 
-        /* === TETRIS SCENE === */
+        .hero-logo {
+            width: 280px;
+            height: 180px;
+            margin: 0 auto 24px;
+            position: relative;
+        }
+
         .scene {
             position: relative;
-            width: calc(640px * var(--scene-scale));
-            height: calc(410px * var(--scene-scale));
+            width: 640px;
+            height: 410px;
             transform: scale(var(--scene-scale));
-            transform-origin: top left;
+            transform-origin: top center;
+            margin: 0 auto;
+            animation: float 6s ease-in-out infinite;
         }
 
         .cell {
@@ -54,7 +131,7 @@
             position: absolute;
             width: 120px;
             height: 120px;
-            background: #5B2D8E;
+            background: var(--c5);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -68,7 +145,7 @@
         }
 
         .letter-block span {
-            font-family: 'Press Start 2P', cursive;
+            font-family: var(--pixel);
             font-size: 58px;
             color: #fff;
             text-shadow: 3px 3px 0px rgba(0,0,0,0.5);
@@ -78,72 +155,42 @@
         .block-u1 { left: 198px; top: 200px; }
         .block-b { left: 326px; top: 200px; }
         .block-u2 { left: 454px; top: 200px; }
+        .c1bg { background: var(--c1); }
+        .c2bg { background: var(--c2); }
+        .c3bg { background: var(--c3); }
+        .c4bg { background: var(--c4); }
 
-        .c1 { background: #7B3FBF; }
-        .c2 { background: #9668C2; }
-        .c3 { background: #C49EEF; }
-        .c4 { background: #4A1F7A; }
-
-        /* Bridge between W and U1 */
         .bw1 { left: 160px; top: 200px; } .bw2 { left: 160px; top: 230px; }
         .bw3 { left: 190px; top: 200px; } .bw4 { left: 190px; top: 230px; }
-
-        /* Bridge between U1 and B */
         .bb1 { left: 288px; top: 260px; } .bb2 { left: 288px; top: 290px; }
         .bb3 { left: 318px; top: 260px; } .bb4 { left: 318px; top: 290px; }
-
-        /* Bridge between B and U2 */
         .bc1 { left: 416px; top: 200px; } .bc2 { left: 416px; top: 230px; }
         .bc3 { left: 446px; top: 200px; } .bc4 { left: 446px; top: 230px; }
-
-        /* T-piece on W */
         .tw1 { left: 70px; top: 170px; } .tw2 { left: 100px; top: 170px; }
         .tw3 { left: 130px; top: 170px; } .tw4 { left: 100px; top: 140px; }
-
-        /* L-piece on U1 */
         .tu1 { left: 198px; top: 170px; } .tu2 { left: 228px; top: 170px; }
         .tu3 { left: 228px; top: 140px; } .tu4 { left: 228px; top: 110px; }
-
-        /* S-piece on B */
         .tb1 { left: 356px; top: 140px; } .tb2 { left: 386px; top: 140px; }
         .tb3 { left: 326px; top: 170px; } .tb4 { left: 356px; top: 170px; }
-
-        /* I-piece on U2 */
         .tu21 { left: 484px; top: 50px; } .tu22 { left: 484px; top: 80px; }
         .tu23 { left: 484px; top: 110px; } .tu24 { left: 484px; top: 140px; }
-
-        /* O-piece high above */
         .to1 { left: 280px; top: 50px; } .to2 { left: 310px; top: 50px; }
         .to3 { left: 280px; top: 80px; } .to4 { left: 310px; top: 80px; }
-
-        /* J-piece under W */
         .dw1 { left: 100px; top: 320px; } .dw2 { left: 100px; top: 350px; }
         .dw3 { left: 70px; top: 350px; } .dw4 { left: 130px; top: 320px; }
-
-        /* Z-piece under U1 */
         .du1 { left: 198px; top: 320px; } .du2 { left: 228px; top: 320px; }
         .du3 { left: 228px; top: 350px; } .du4 { left: 258px; top: 350px; }
-
-        /* T-piece under B */
         .db1 { left: 326px; top: 320px; } .db2 { left: 356px; top: 320px; }
         .db3 { left: 386px; top: 320px; } .db4 { left: 356px; top: 350px; }
-
-        /* L-piece under U2 */
         .du21 { left: 484px; top: 320px; } .du22 { left: 484px; top: 350px; }
         .du23 { left: 484px; top: 380px; } .du24 { left: 514px; top: 380px; }
-
-        /* Bottom connectors */
         .dc1 { left: 160px; top: 350px; } .dc2 { left: 160px; top: 380px; }
         .dc3 { left: 290px; top: 380px; } .dc4 { left: 320px; top: 380px; }
         .dc5 { left: 416px; top: 350px; } .dc6 { left: 446px; top: 350px; }
-
-        /* Side wings - left */
         .sl1 { left: 10px; top: 200px; } .sl2 { left: 40px; top: 200px; }
         .sl3 { left: 10px; top: 230px; } .sl4 { left: 40px; top: 230px; }
         .sl5 { left: 10px; top: 260px; } .sl6 { left: 40px; top: 260px; }
         .sl7 { left: 40px; top: 290px; }
-
-        /* Side wings - right */
         .sr1 { left: 574px; top: 200px; } .sr2 { left: 604px; top: 200px; }
         .sr3 { left: 574px; top: 230px; } .sr4 { left: 604px; top: 230px; }
         .sr5 { left: 574px; top: 260px; } .sr6 { left: 604px; top: 260px; }
@@ -161,135 +208,213 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Press Start 2P', cursive;
+            font-family: var(--pixel);
             font-size: 16px;
             color: #fff;
             z-index: 3;
         }
 
-        .divider {
-            width: 80%;
-            max-width: 880px;
-            height: 2px;
-            margin: 12px auto 0;
-            background: linear-gradient(90deg, transparent, rgba(123, 63, 191, 0.5), transparent);
-            border: none;
+        .hero-eyebrow {
+            display: inline-block;
+            font-family: var(--pixel);
+            font-size: 10px;
+            color: var(--warm);
+            letter-spacing: 2px;
+            margin-bottom: 14px;
+            opacity: 0.85;
+            animation: fadeUp 0.8s ease-out 0.2s both;
         }
 
-        /* === CAROUSEL === */
-        .carousel {
+        .hero-pitch {
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: 44px;
+            color: #fff;
+            line-height: 1.15;
+            margin-bottom: 18px;
+            letter-spacing: -0.5px;
+            animation: fadeUp 0.8s ease-out 0.3s both;
+        }
+        .hero-pitch em { font-style: italic; color: var(--c3); font-weight: 500; }
+
+        .hero-sub {
+            color: var(--text-soft);
+            font-size: 17px;
+            max-width: 540px;
+            margin: 0 auto 28px;
+            animation: fadeUp 0.8s ease-out 0.45s both;
+        }
+
+        .hero-cue {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--c3);
+            font-size: 12px;
+            font-family: var(--pixel);
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            padding: 10px 18px;
+            border: 1px solid var(--border-strong);
+            border-radius: 999px;
+            background: rgba(91, 45, 142, 0.18);
+            transition: background 0.2s, transform 0.15s;
+            animation: fadeUp 0.8s ease-out 0.6s both;
+        }
+        .hero-cue:hover { background: rgba(91, 45, 142, 0.35); transform: translateY(-2px); }
+        .hero-cue svg { width: 12px; height: 12px; animation: bounce 2s ease-in-out infinite; }
+
+        .section { padding: 100px 0; position: relative; z-index: 1; }
+        .section-eyebrow {
+            display: inline-block;
+            font-family: var(--pixel);
+            font-size: 10px;
+            color: var(--c2);
+            letter-spacing: 2px;
+            margin-bottom: 14px;
+        }
+        .section-title {
+            font-family: var(--serif);
+            font-size: 36px;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 14px;
+            line-height: 1.2;
+            letter-spacing: -0.3px;
+        }
+        .section-title em { font-style: italic; color: var(--c3); }
+        .section-sub {
+            color: var(--text-soft);
+            font-size: 17px;
+            max-width: 640px;
+            margin-bottom: 50px;
+            line-height: 1.65;
+        }
+
+        /* === SHOWCASE CAROUSEL === */
+        .showcase { padding: 40px 0 100px; }
+
+        .carousel-wrap {
             position: relative;
-            width: 100%;
-            max-width: 880px;
-            margin: 10px auto 40px;
-            padding: 0 20px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            border-radius: 24px;
+            overflow: hidden;
+            background: linear-gradient(180deg, rgba(74, 31, 122, 0.18), rgba(20, 10, 30, 0.4));
+            border: 1px solid var(--border-strong);
+            box-shadow: 0 30px 60px -20px rgba(91, 45, 142, 0.4), 0 0 0 1px rgba(196, 158, 239, 0.08);
         }
 
         .carousel-track {
             position: relative;
-            width: 100%;
-            min-height: 500px;
-            overflow: hidden;
-            background: transparent;
+            min-height: 540px;
         }
 
         .carousel-slide {
             position: absolute;
             inset: 0;
             opacity: 0;
-            transition: opacity 0.6s ease;
+            transition: opacity 0.9s ease;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 0;
+            pointer-events: none;
+        }
+        .carousel-slide.active { opacity: 1; pointer-events: auto; }
+
+        .slide-art {
+            position: relative;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .slide-art svg { width: 100%; height: 100%; display: block; }
+
+        .slide-art::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 70%, rgba(20, 10, 30, 0.4) 100%);
+            pointer-events: none;
+        }
+
+        .slide-info {
+            padding: 56px 48px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            background: linear-gradient(180deg, rgba(20, 10, 30, 0.4), rgba(10, 5, 18, 0.7));
+        }
+
+        .slide-pill {
+            display: inline-flex;
             align-items: center;
-            padding: 24px;
-            pointer-events: none;
-            gap: 18px;
+            gap: 8px;
+            padding: 6px 12px;
+            background: rgba(123, 63, 191, 0.22);
+            border: 1px solid rgba(150, 104, 194, 0.4);
+            border-radius: 999px;
+            font-size: 11px;
+            color: var(--c3);
+            letter-spacing: 0.8px;
+            margin-bottom: 22px;
+            width: fit-content;
+            font-weight: 500;
         }
-
-        .carousel-slide.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .slide-image {
-            width: 220px;
-            height: 220px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .slide-image svg {
-            width: 100%;
-            height: 100%;
-            display: block;
+        .slide-pill::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--c3);
+            box-shadow: 0 0 8px var(--c3);
         }
 
         .slide-title {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 18px;
-            color: #C49EEF;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 0 rgba(91, 45, 142, 0.8);
-            margin: 0;
+            font-family: var(--pixel);
+            font-size: 22px;
+            color: #fff;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            text-shadow: 3px 3px 0 var(--c5);
+            line-height: 1.3;
         }
 
-        .slide-release {
-            font-weight: bold;
-            font-size: 14px;
-            color: #9668C2;
-            letter-spacing: 1px;
-            margin: -6px 0 0;
+        .slide-platform {
+            font-size: 12px;
+            color: var(--c3);
+            letter-spacing: 1.5px;
+            margin-bottom: 22px;
+            text-transform: uppercase;
+            font-weight: 600;
         }
 
-        .slide-text {
-            color: #c4c4c4;
+        .slide-scene {
+            font-family: var(--serif);
+            font-style: italic;
             font-size: 15px;
-            text-align: center;
-            letter-spacing: 1px;
-            max-width: 640px;
+            color: var(--c3);
+            margin-bottom: 14px;
+            opacity: 0.85;
+        }
+
+        .slide-desc {
+            color: var(--text-soft);
+            font-size: 15px;
             line-height: 1.7;
+            margin-bottom: 8px;
         }
 
-        .carousel-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            padding: 10px 14px;
-            background: transparent;
-            color: #9668C2;
-            border: none;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 20px;
-            letter-spacing: -2px;
-            cursor: pointer;
-            text-shadow: 2px 2px 0 rgba(91, 45, 142, 0.8);
-            z-index: 5;
-            transition: color 0.2s, transform 0.15s;
-        }
-
-        .carousel-nav:hover {
-            color: #C49EEF;
-        }
-
-        .carousel-nav.prev { left: 4px; }
-        .carousel-nav.next { right: 4px; }
-
-        .carousel-nav.prev:hover { transform: translateY(-50%) translateX(-3px); }
-        .carousel-nav.next:hover { transform: translateY(-50%) translateX(3px); }
-
-        .carousel-dots {
+        .carousel-controls {
             display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 18px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 30px;
+            border-top: 1px solid var(--border);
+            background: rgba(10, 5, 18, 0.6);
         }
 
+        .carousel-dots { display: flex; gap: 10px; }
         .carousel-dot {
             width: 10px;
             height: 10px;
@@ -298,430 +423,1111 @@
             border: none;
             padding: 0;
             cursor: pointer;
-            transition: background 0.2s, transform 0.2s;
+            transition: background 0.3s, transform 0.3s, width 0.3s;
         }
-
-        .carousel-dot:hover {
-            background: #C49EEF;
-        }
-
+        .carousel-dot:hover { background: var(--c3); }
         .carousel-dot.active {
-            background: #9668C2;
-            transform: scale(1.2);
+            background: var(--c3);
+            width: 28px;
+            border-radius: 5px;
         }
 
-        /* === ICON NAV === */
-        .icon-nav {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin: 18px auto 0;
-        }
-
-        .icon-btn {
+        .carousel-arrows { display: flex; gap: 8px; }
+        .carousel-nav {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(123, 63, 191, 0.22);
+            border: 1px solid var(--border-strong);
+            color: var(--c3);
+            cursor: pointer;
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: rgba(74, 31, 122, 0.35);
-            border: 2px solid rgba(150, 104, 194, 0.5);
-            color: #9668C2;
-            text-decoration: none;
             transition: background 0.2s, color 0.2s, transform 0.15s;
         }
+        .carousel-nav:hover { background: var(--c5); color: #fff; }
+        .carousel-nav:active { transform: scale(0.95); }
+        .carousel-nav svg { width: 14px; height: 14px; }
 
-        .icon-btn:hover {
-            background: #5B2D8E;
-            color: #fff;
-            transform: translateY(-2px);
+        .carousel-counter {
+            font-family: var(--pixel);
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
         }
+        .carousel-counter strong { color: var(--c3); font-weight: 500; }
 
-        .icon-btn svg {
-            width: 14px;
-            height: 14px;
-            display: block;
+        /* === PLAN === */
+        .plan-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
         }
-
-        /* === TAGLINE & FOOTER === */
-        .tagline {
-            position: absolute;
-            bottom: 75px;
-            left: 50%;
-            transform: translateX(-50%);
-            white-space: nowrap;
-            text-align: center;
-            font-size: 16px;
-            color: #888;
-            letter-spacing: 1px;
+        .plan-card {
+            padding: 32px 28px;
+            background: linear-gradient(180deg, rgba(30, 14, 50, 0.5), rgba(20, 10, 30, 0.3));
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            position: relative;
+            transition: transform 0.3s, border-color 0.3s;
         }
-
-        .site-nav {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 40px;
-            padding: 18px 20px;
-            border-top: 2px solid rgba(123, 63, 191, 0.2);
-        }
-
-        .site-nav a {
-            font-size: 13px;
-            color: #9668C2;
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
-
-        .site-nav a::before {
-            content: "[ ";
-            color: #7B3FBF;
-        }
-
-        .site-nav a::after {
-            content: " ]";
-            color: #7B3FBF;
-        }
-
-        .site-nav a:hover {
-            color: #C49EEF;
-        }
-
-        .site-nav a:hover::before,
-        .site-nav a:hover::after {
-            color: #C49EEF;
-        }
-
-        .site-nav a.current {
-            color: #C49EEF;
-        }
-
-        footer {
-            margin-top: auto;
-            padding: 20px;
+        .plan-card:hover { transform: translateY(-3px); border-color: var(--border-strong); }
+        .plan-num {
+            font-family: var(--pixel);
             font-size: 14px;
-            color: #555;
-            text-align: center;
+            color: var(--c2);
+            margin-bottom: 14px;
+            letter-spacing: 2px;
+        }
+        .plan-date {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 22px;
+            color: var(--c3);
+            margin-bottom: 8px;
+        }
+        .plan-name {
+            font-size: 18px;
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .plan-platform {
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .plan-line {
+            color: var(--text-soft);
+            font-size: 14px;
+            line-height: 1.65;
         }
 
-        footer a {
-            color: #9668C2;
-            text-decoration: none;
+        /* === DESK NOTE === */
+        .desk-note {
+            padding: 80px 0 100px;
+            position: relative;
+        }
+        .desk-note-card {
+            background:
+                radial-gradient(circle at top right, rgba(255, 184, 112, 0.1), transparent 50%),
+                linear-gradient(180deg, rgba(74, 31, 122, 0.22), rgba(20, 10, 30, 0.4));
+            border: 1px solid var(--border-strong);
+            border-radius: 22px;
+            padding: 56px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        .desk-note-card::before {
+            content: '';
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 6px;
+            height: 6px;
+            background: var(--c3);
+            box-shadow: 12px 0 0 var(--c2), 24px 0 0 var(--c1);
+        }
+
+        .desk-eyebrow {
+            font-family: var(--pixel);
+            font-size: 9px;
+            color: var(--warm);
+            letter-spacing: 2px;
+            margin-bottom: 22px;
             display: block;
-            margin-top: 8px;
+        }
+        .desk-body {
+            font-family: var(--serif);
+            font-size: 22px;
+            line-height: 1.55;
+            color: var(--text);
+            margin-bottom: 18px;
+            font-weight: 400;
+        }
+        .desk-body em { color: var(--c3); font-style: italic; }
+        .desk-body p + p { margin-top: 16px; }
+        .desk-sign {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 18px;
+            color: var(--c3);
+            margin-top: 30px;
         }
 
-        footer a:hover {
-            color: #C49EEF;
-            text-decoration: underline;
+        /* === ETHOS === */
+        .ethos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+        .ethos-card {
+            padding: 30px 28px;
+            background: linear-gradient(180deg, rgba(74, 31, 122, 0.16), rgba(20, 10, 30, 0.3));
+            border: 1px solid var(--border);
+            border-radius: 18px;
+        }
+        .ethos-icon { width: 36px; height: 36px; margin-bottom: 18px; color: var(--c3); }
+        .ethos-title { font-size: 17px; color: var(--c3); margin-bottom: 10px; font-weight: 600; }
+        .ethos-text { color: var(--text-soft); font-size: 14px; line-height: 1.7; }
+
+        /* === FOOTER === */
+        .footer-quiet {
+            padding: 80px 0 60px;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+        }
+        .footer-inner {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 40px;
+        }
+        .footer-left p { color: var(--text-soft); font-size: 14px; margin-bottom: 6px; }
+        .footer-left p.muted { color: var(--text-muted); font-size: 13px; }
+        .footer-left a {
+            color: var(--c2);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-left a:hover { color: var(--c3); }
+
+        .quiet-form {
+            display: flex;
+            gap: 8px;
+            min-width: 360px;
+        }
+        .quiet-input {
+            flex: 1;
+            padding: 12px 16px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 14px;
+        }
+        .quiet-input::placeholder { color: var(--text-muted); }
+        .quiet-input:focus { outline: none; border-color: var(--c2); }
+        .quiet-btn {
+            padding: 12px 20px;
+            background: var(--c5);
+            border: 1px solid var(--c2);
+            border-radius: 10px;
+            color: #fff;
+            font-family: var(--pixel);
+            font-size: 10px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        .quiet-btn:hover { background: var(--c1); }
+
+        .quiet-status {
+            grid-column: 1 / -1;
+            color: var(--c3);
+            font-size: 13px;
+            min-height: 18px;
+            margin-top: 14px;
         }
 
-        /* === RESPONSIVE === */
-        @media (max-width: 768px) {
-            :root { --scene-scale: 0.5; }
-            .logo-container { margin-top: 0; }
-            .carousel { margin: 0 auto 30px; }
-            .carousel-track { min-height: 460px; }
-            .carousel-nav { padding: 8px 10px; font-size: 18px; }
-            .slide-image { width: 180px; height: 180px; }
-            .slide-title { font-size: 15px; }
-            .slide-text { font-size: 13px; }
-            .site-nav { gap: 24px; font-size: 12px; }
-            footer { font-size: 12px; padding: 10px; }
+        .copyright {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 12px;
+            padding: 30px 0;
+            border-top: 1px solid var(--border);
+            font-family: var(--pixel);
+            letter-spacing: 1.5px;
         }
 
-        @media (max-width: 480px) {
-            :root { --scene-scale: 0.45; }
-            .carousel-track { min-height: 440px; }
-            .slide-image { width: 150px; height: 150px; }
-            .slide-title { font-size: 13px; }
-            .slide-text { font-size: 12px; }
-            .carousel-nav { padding: 6px 8px; font-size: 16px; }
-            .site-nav { gap: 18px; font-size: 11px; }
-            footer { font-size: 11px; padding: 8px; }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: scale(var(--scene-scale)) translateY(0); }
+            50% { transform: scale(var(--scene-scale)) translateY(-6px); }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(3px); }
+        }
+        @keyframes drift {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-4px) rotate(0.5deg); }
+        }
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.7; }
         }
 
-        @media (max-width: 375px) {
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        @media (prefers-reduced-motion: reduce) {
+            .scene { animation: none; }
+            .hero-eyebrow, .hero-pitch, .hero-sub, .hero-cue { animation: none; }
+            .hero-cue svg { animation: none; }
+            .reveal { opacity: 1; transform: none; transition: none; }
+            .carousel-slide { transition: none; }
+        }
+
+        @media (max-width: 980px) {
             :root { --scene-scale: 0.4; }
-            .carousel-track { min-height: 420px; }
-            .slide-image { width: 130px; height: 130px; }
-            .icon-btn { width: 28px; height: 28px; }
-            .icon-btn svg { width: 12px; height: 12px; }
+            .container, .container-narrow { padding: 0 36px; }
+            .nav-inner { padding: 18px 36px; }
+            .hero { padding: 50px 0 20px; }
+            .hero-pitch { font-size: 32px; }
+            .section { padding: 70px 0; }
+            .section-title { font-size: 28px; }
+            .carousel-track { min-height: auto; }
+            .carousel-slide {
+                position: relative;
+                grid-template-columns: 1fr;
+                opacity: 1;
+                pointer-events: auto;
+                display: none;
+            }
+            .carousel-slide.active { display: grid; }
+            .slide-art { aspect-ratio: 16/10; }
+            .slide-info { padding: 36px 28px; }
+            .plan-grid { grid-template-columns: 1fr; }
+            .ethos-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .footer-inner { grid-template-columns: 1fr; }
+            .quiet-form { min-width: 0; }
+        }
+        @media (max-width: 480px) {
+            :root { --scene-scale: 0.36; }
+            .container, .container-narrow { padding: 0 22px; }
+            .nav-inner { padding: 14px 22px; }
+            .hero-logo { width: 240px; height: 150px; }
+            .hero-pitch { font-size: 26px; }
+            .hero-sub { font-size: 15px; }
+            .section-title { font-size: 22px; }
+            .desk-body { font-size: 17px; }
+            .desk-note-card { padding: 36px 24px; }
+            .slide-info { padding: 28px 22px; }
+            .slide-title { font-size: 16px; }
+            .carousel-controls { padding: 16px 20px; }
+            .carousel-counter { display: none; }
         }
     </style>
 </head>
 <body>
-    <div class="logo-container">
-        <div class="scene">
-            <!-- Top pieces -->
-            <div class="cell c2 tw1"></div><div class="cell c2 tw2"></div><div class="cell c2 tw3"></div><div class="cell c2 tw4"></div>
-            <div class="cell c1 tu1"></div><div class="cell c1 tu2"></div><div class="cell c1 tu3"></div><div class="cell c1 tu4"></div>
-            <div class="cell c3 tb1"></div><div class="cell c3 tb2"></div><div class="cell c3 tb3"></div><div class="cell c3 tb4"></div>
-            <div class="cell c2 tu21"></div><div class="cell c2 tu22"></div><div class="cell c2 tu23"></div><div class="cell c2 tu24"></div>
-            <div class="cell c4 to1"></div><div class="cell c4 to2"></div><div class="cell c4 to3"></div><div class="cell c4 to4"></div>
 
-            <!-- Bridge pieces -->
-            <div class="cell c4 bw1"></div><div class="cell c4 bw2"></div><div class="cell c4 bw3"></div><div class="cell c4 bw4"></div>
-            <div class="cell c1 bb1"></div><div class="cell c1 bb2"></div><div class="cell c1 bb3"></div><div class="cell c1 bb4"></div>
-            <div class="cell c4 bc1"></div><div class="cell c4 bc2"></div><div class="cell c4 bc3"></div><div class="cell c4 bc4"></div>
-
-            <!-- Side wings left -->
-            <div class="cell c1 sl1"></div><div class="cell c1 sl2"></div><div class="cell c4 sl3"></div><div class="cell c4 sl4"></div>
-            <div class="cell c1 sl5"></div><div class="cell c1 sl6"></div><div class="cell c4 sl7"></div>
-
-            <!-- Side wings right -->
-            <div class="cell c1 sr1"></div><div class="cell c1 sr2"></div><div class="cell c4 sr3"></div><div class="cell c4 sr4"></div>
-            <div class="cell c1 sr5"></div><div class="cell c1 sr6"></div><div class="cell c4 sr7"></div>
-
-            <!-- Main letter blocks -->
-            <div class="letter-block block-w"><span>W</span></div>
-            <div class="letter-block block-u1"><span>U</span></div>
-            <div class="letter-block block-b"><span>B</span></div>
-            <div class="letter-block block-u2"><span>U</span></div>
-
-            <!-- Bottom pieces -->
-            <div class="cell c3 dw1"></div><div class="cell c3 dw2"></div><div class="cell c3 dw3"></div><div class="cell c3 dw4"></div>
-            <div class="cell c4 du1"></div><div class="cell c4 du2"></div><div class="cell c4 du3"></div><div class="cell c4 du4"></div>
-            <div class="cell c2 db1"></div><div class="cell c2 db2"></div><div class="cell c2 db3"></div><div class="cell c2 db4"></div>
-            <div class="cell c1 du21"></div><div class="cell c1 du22"></div><div class="cell c1 du23"></div><div class="cell c1 du24"></div>
-
-            <!-- Bottom connectors -->
-            <div class="cell c2 dc1"></div><div class="cell c2 dc2"></div>
-            <div class="cell c3 dc3"></div><div class="cell c3 dc4"></div>
-            <div class="cell c2 dc5"></div><div class="cell c2 dc6"></div>
-
-            <div class="ai-badge">.ai</div>
+    <header class="nav">
+        <div class="nav-inner">
+            <a href="index_v3.html" class="nav-brand">WUBU.AI</a>
+            <ul class="nav-links">
+                <li><a href="#showcase">The Apps</a></li>
+                <li><a href="#plan">The Plan</a></li>
+                <li><a href="#desk">From the Desk</a></li>
+                <li><a href="who.html">Who</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
         </div>
-    </div>
+    </header>
 
-    <div class="icon-nav">
-        <a href="support.html" class="icon-btn" aria-label="Support">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="22"/><line x1="2" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="22" y2="12"/></svg>
-        </a>
-        <a href="who.html" class="icon-btn" aria-label="Who is WuBu">
-            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-        </a>
-        <a href="privacy.html" class="icon-btn" aria-label="Privacy">
-            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 10V7a4 4 0 0 1 8 0v3h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1h1zm2 0h4V7a2 2 0 1 0-4 0v3z"/><circle cx="12" cy="15" r="1.5" fill="#0a0a0a"/><rect x="11.25" y="15" width="1.5" height="3.5" fill="#0a0a0a"/></svg>
-        </a>
-    </div>
-
-    <hr class="divider">
-
-    <div class="carousel">
-        <div class="carousel-track">
-            <div class="carousel-slide active">
-                <div class="slide-image">
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="Clocktastic">
-                        <rect x="10" y="10" width="180" height="180" fill="#4A1F7A" stroke="rgba(255,255,255,0.25)" stroke-width="3"/>
-                        <rect x="25" y="25" width="150" height="150" fill="#2a0f4a"/>
-                        <rect x="96" y="34" width="8" height="16" fill="#C49EEF"/>
-                        <rect x="150" y="96" width="16" height="8" fill="#C49EEF"/>
-                        <rect x="96" y="150" width="8" height="16" fill="#C49EEF"/>
-                        <rect x="34" y="96" width="16" height="8" fill="#C49EEF"/>
-                        <rect x="55" y="55" width="8" height="8" fill="#7B3FBF"/>
-                        <rect x="137" y="55" width="8" height="8" fill="#7B3FBF"/>
-                        <rect x="137" y="137" width="8" height="8" fill="#7B3FBF"/>
-                        <rect x="55" y="137" width="8" height="8" fill="#7B3FBF"/>
-                        <rect x="96" y="60" width="8" height="44" fill="#9668C2"/>
-                        <rect x="100" y="96" width="50" height="8" fill="#C49EEF"/>
-                        <rect x="92" y="92" width="16" height="16" fill="#fff"/>
-                    </svg>
+    <section class="hero">
+        <div class="container-narrow">
+            <div class="hero-logo">
+                <div class="scene">
+                    <div class="cell c2bg tw1"></div><div class="cell c2bg tw2"></div><div class="cell c2bg tw3"></div><div class="cell c2bg tw4"></div>
+                    <div class="cell c1bg tu1"></div><div class="cell c1bg tu2"></div><div class="cell c1bg tu3"></div><div class="cell c1bg tu4"></div>
+                    <div class="cell c3bg tb1"></div><div class="cell c3bg tb2"></div><div class="cell c3bg tb3"></div><div class="cell c3bg tb4"></div>
+                    <div class="cell c2bg tu21"></div><div class="cell c2bg tu22"></div><div class="cell c2bg tu23"></div><div class="cell c2bg tu24"></div>
+                    <div class="cell c4bg to1"></div><div class="cell c4bg to2"></div><div class="cell c4bg to3"></div><div class="cell c4bg to4"></div>
+                    <div class="cell c4bg bw1"></div><div class="cell c4bg bw2"></div><div class="cell c4bg bw3"></div><div class="cell c4bg bw4"></div>
+                    <div class="cell c1bg bb1"></div><div class="cell c1bg bb2"></div><div class="cell c1bg bb3"></div><div class="cell c1bg bb4"></div>
+                    <div class="cell c4bg bc1"></div><div class="cell c4bg bc2"></div><div class="cell c4bg bc3"></div><div class="cell c4bg bc4"></div>
+                    <div class="cell c1bg sl1"></div><div class="cell c1bg sl2"></div><div class="cell c4bg sl3"></div><div class="cell c4bg sl4"></div>
+                    <div class="cell c1bg sl5"></div><div class="cell c1bg sl6"></div><div class="cell c4bg sl7"></div>
+                    <div class="cell c1bg sr1"></div><div class="cell c1bg sr2"></div><div class="cell c4bg sr3"></div><div class="cell c4bg sr4"></div>
+                    <div class="cell c1bg sr5"></div><div class="cell c1bg sr6"></div><div class="cell c4bg sr7"></div>
+                    <div class="letter-block block-w"><span>W</span></div>
+                    <div class="letter-block block-u1"><span>U</span></div>
+                    <div class="letter-block block-b"><span>B</span></div>
+                    <div class="letter-block block-u2"><span>U</span></div>
+                    <div class="cell c3bg dw1"></div><div class="cell c3bg dw2"></div><div class="cell c3bg dw3"></div><div class="cell c3bg dw4"></div>
+                    <div class="cell c4bg du1"></div><div class="cell c4bg du2"></div><div class="cell c4bg du3"></div><div class="cell c4bg du4"></div>
+                    <div class="cell c2bg db1"></div><div class="cell c2bg db2"></div><div class="cell c2bg db3"></div><div class="cell c2bg db4"></div>
+                    <div class="cell c1bg du21"></div><div class="cell c1bg du22"></div><div class="cell c1bg du23"></div><div class="cell c1bg du24"></div>
+                    <div class="cell c2bg dc1"></div><div class="cell c2bg dc2"></div>
+                    <div class="cell c3bg dc3"></div><div class="cell c3bg dc4"></div>
+                    <div class="cell c2bg dc5"></div><div class="cell c2bg dc6"></div>
+                    <div class="ai-badge">.ai</div>
                 </div>
-                <h3 class="slide-title">CLOCKTASTIC</h3>
-                <p class="slide-release">Releasing on June 20</p>
-                <p class="slide-text">Clocktastic brings the charm of a retro bedside clock straight to your Mac menu bar. Choose from a library of pixel-perfect clock faces, each one hand-crafted with nostalgic flair. Multiple time zones, alarms, and focus timers are always a single click away. Because checking the time should feel good.</p>
             </div>
-            <div class="carousel-slide">
-                <div class="slide-image">
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="LightsOut">
-                        <g fill="#C49EEF">
-                            <rect x="6" y="18" width="3" height="3"/>
-                            <rect x="188" y="24" width="3" height="3"/>
-                            <rect x="16" y="8" width="2" height="2"/>
-                            <rect x="178" y="10" width="2" height="2"/>
-                            <rect x="4" y="160" width="2" height="2"/>
-                            <rect x="192" y="164" width="2" height="2"/>
-                        </g>
-                        <rect x="24" y="148" width="6" height="26" fill="#4A1F7A"/>
-                        <rect x="170" y="148" width="6" height="26" fill="#4A1F7A"/>
-                        <rect x="10" y="40" width="180" height="110" fill="#2a0f4a" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
-                        <rect x="18" y="48" width="164" height="94" fill="#0a0a0a"/>
-                        <rect x="18" y="48" width="164" height="10" fill="rgba(255,255,255,0.06)"/>
-                        <g>
-                            <circle cx="36" cy="75" r="16" fill="#FF2020" opacity="0.35">
-                                <animate attributeName="opacity" values="0.2;0.5;0.2" dur="1.4s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="68" cy="75" r="16" fill="#FF2020" opacity="0.35">
-                                <animate attributeName="opacity" values="0.2;0.5;0.2" dur="1.4s" begin="0.2s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="100" cy="75" r="16" fill="#FF2020" opacity="0.35">
-                                <animate attributeName="opacity" values="0.2;0.5;0.2" dur="1.4s" begin="0.4s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="36" cy="115" r="16" fill="#FF2020" opacity="0.35">
-                                <animate attributeName="opacity" values="0.2;0.5;0.2" dur="1.4s" begin="0.1s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="68" cy="115" r="16" fill="#FF2020" opacity="0.35">
-                                <animate attributeName="opacity" values="0.2;0.5;0.2" dur="1.4s" begin="0.3s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="100" cy="115" r="16" fill="#FF2020" opacity="0.35">
-                                <animate attributeName="opacity" values="0.2;0.5;0.2" dur="1.4s" begin="0.5s" repeatCount="indefinite"/>
-                            </circle>
-                        </g>
-                        <g fill="#2a0000">
-                            <circle cx="36" cy="75" r="12"/>
-                            <circle cx="68" cy="75" r="12"/>
-                            <circle cx="100" cy="75" r="12"/>
-                            <circle cx="132" cy="75" r="12"/>
-                            <circle cx="164" cy="75" r="12"/>
-                            <circle cx="36" cy="115" r="12"/>
-                            <circle cx="68" cy="115" r="12"/>
-                            <circle cx="100" cy="115" r="12"/>
-                            <circle cx="132" cy="115" r="12"/>
-                            <circle cx="164" cy="115" r="12"/>
-                        </g>
-                        <g fill="#FF2020">
-                            <circle cx="36" cy="75" r="10"/>
-                            <circle cx="68" cy="75" r="10"/>
-                            <circle cx="100" cy="75" r="10"/>
-                            <circle cx="36" cy="115" r="10"/>
-                            <circle cx="68" cy="115" r="10"/>
-                            <circle cx="100" cy="115" r="10"/>
-                        </g>
-                        <g fill="#3a0c0c">
-                            <circle cx="132" cy="75" r="10"/>
-                            <circle cx="164" cy="75" r="10"/>
-                            <circle cx="132" cy="115" r="10"/>
-                            <circle cx="164" cy="115" r="10"/>
-                        </g>
-                        <g fill="rgba(255,220,220,0.85)">
-                            <circle cx="33" cy="72" r="3"/>
-                            <circle cx="65" cy="72" r="3"/>
-                            <circle cx="97" cy="72" r="3"/>
-                            <circle cx="33" cy="112" r="3"/>
-                            <circle cx="65" cy="112" r="3"/>
-                            <circle cx="97" cy="112" r="3"/>
-                        </g>
-                        <rect x="0" y="178" width="200" height="16" fill="#fff"/>
-                        <g fill="#0a0a0a">
-                            <rect x="0" y="178" width="14" height="8"/>
-                            <rect x="28" y="178" width="14" height="8"/>
-                            <rect x="56" y="178" width="14" height="8"/>
-                            <rect x="84" y="178" width="14" height="8"/>
-                            <rect x="112" y="178" width="14" height="8"/>
-                            <rect x="140" y="178" width="14" height="8"/>
-                            <rect x="168" y="178" width="14" height="8"/>
-                            <rect x="196" y="178" width="4" height="8"/>
-                            <rect x="14" y="186" width="14" height="8"/>
-                            <rect x="42" y="186" width="14" height="8"/>
-                            <rect x="70" y="186" width="14" height="8"/>
-                            <rect x="98" y="186" width="14" height="8"/>
-                            <rect x="126" y="186" width="14" height="8"/>
-                            <rect x="154" y="186" width="14" height="8"/>
-                            <rect x="182" y="186" width="14" height="8"/>
-                        </g>
-                    </svg>
+
+            <span class="hero-eyebrow">A SMALL STUDIO. BIG SUMMER.</span>
+            <h1 class="hero-pitch">Three small apps, on the way to the <em>App Store</em>.</h1>
+            <p class="hero-sub">A one-person studio shipping a Mac utility, an iPhone game and a quiet little collaboration tool. Made slowly, on purpose.</p>
+            <a href="#showcase" class="hero-cue">
+                SEE WHAT IS COMING
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <section class="showcase container reveal" id="showcase">
+        <div style="text-align: center; margin-bottom: 36px;">
+            <span class="section-eyebrow">// THE SHOWCASE</span>
+            <h2 class="section-title">Made <em>by hand</em>, one pixel at a time.</h2>
+        </div>
+
+        <div class="carousel-wrap">
+            <div class="carousel-track">
+
+                <div class="carousel-slide active">
+                    <div class="slide-art">
+                        <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-label="Clocktastic bedside scene">
+                            <defs>
+                                <linearGradient id="cl-sky" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0" stop-color="#1a0a2e"/>
+                                    <stop offset="0.6" stop-color="#2a0f4a"/>
+                                    <stop offset="1" stop-color="#0a0510"/>
+                                </linearGradient>
+                                <radialGradient id="cl-lamp" cx="0.5" cy="0.5">
+                                    <stop offset="0" stop-color="#FFD480" stop-opacity="0.9"/>
+                                    <stop offset="0.4" stop-color="#FFB870" stop-opacity="0.4"/>
+                                    <stop offset="1" stop-color="#FFA040" stop-opacity="0"/>
+                                </radialGradient>
+                                <linearGradient id="cl-wood" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0" stop-color="#5d3e25"/>
+                                    <stop offset="0.5" stop-color="#3d2817"/>
+                                    <stop offset="1" stop-color="#241509"/>
+                                </linearGradient>
+                            </defs>
+
+                            <!-- sky -->
+                            <rect x="0" y="0" width="800" height="380" fill="url(#cl-sky)"/>
+                            <!-- floor -->
+                            <rect x="0" y="380" width="800" height="120" fill="#0a0510"/>
+                            <line x1="0" y1="380" x2="800" y2="380" stroke="#5B2D8E" stroke-width="2" opacity="0.4"/>
+
+                            <!-- subtle wall pattern -->
+                            <g opacity="0.06" fill="#fff">
+                                <rect x="60" y="80" width="2" height="2"/>
+                                <rect x="240" y="40" width="2" height="2"/>
+                                <rect x="420" y="120" width="2" height="2"/>
+                                <rect x="160" y="180" width="2" height="2"/>
+                            </g>
+
+                            <!-- window frame -->
+                            <g>
+                                <rect x="540" y="40" width="200" height="200" fill="#100619" stroke="#5B2D8E" stroke-width="3"/>
+                                <line x1="640" y1="40" x2="640" y2="240" stroke="#5B2D8E" stroke-width="2"/>
+                                <line x1="540" y1="140" x2="740" y2="140" stroke="#5B2D8E" stroke-width="2"/>
+                                <!-- moon -->
+                                <circle cx="595" cy="92" r="22" fill="#C49EEF"/>
+                                <circle cx="603" cy="86" r="18" fill="#100619"/>
+                                <!-- stars -->
+                                <g fill="#fff">
+                                    <rect x="678" y="65" width="2" height="2"/>
+                                    <rect x="710" y="80" width="3" height="3"/>
+                                    <rect x="660" y="110" width="2" height="2"/>
+                                    <rect x="700" y="180" width="2" height="2"/>
+                                    <rect x="558" y="200" width="2" height="2"/>
+                                    <rect x="660" y="220" width="3" height="3"/>
+                                </g>
+                                <!-- moonlight on sill -->
+                                <rect x="540" y="240" width="200" height="6" fill="#C49EEF" opacity="0.3"/>
+                            </g>
+
+                            <!-- picture frame on wall -->
+                            <g>
+                                <rect x="60" y="80" width="100" height="120" fill="none" stroke="#5B2D8E" stroke-width="4"/>
+                                <rect x="66" y="86" width="88" height="108" fill="#1a0a2e"/>
+                                <!-- mini pixel art inside -->
+                                <rect x="86" y="106" width="12" height="12" fill="#7B3FBF"/>
+                                <rect x="98" y="118" width="12" height="12" fill="#9668C2"/>
+                                <rect x="110" y="106" width="12" height="12" fill="#C49EEF"/>
+                                <rect x="122" y="118" width="12" height="12" fill="#7B3FBF"/>
+                                <rect x="86" y="142" width="48" height="6" fill="#C49EEF"/>
+                                <rect x="86" y="156" width="36" height="6" fill="#9668C2"/>
+                            </g>
+
+                            <!-- lamp glow halo -->
+                            <circle cx="220" cy="320" r="220" fill="url(#cl-lamp)"/>
+
+                            <!-- bedside table top -->
+                            <rect x="100" y="380" width="600" height="14" fill="url(#cl-wood)"/>
+                            <rect x="100" y="380" width="600" height="3" fill="#7d5a35"/>
+                            <!-- table front -->
+                            <rect x="100" y="394" width="600" height="80" fill="url(#cl-wood)"/>
+                            <!-- drawer line -->
+                            <line x1="100" y1="430" x2="700" y2="430" stroke="#241509" stroke-width="2"/>
+                            <!-- drawer handle -->
+                            <rect x="386" y="446" width="28" height="4" fill="#9668C2" rx="2"/>
+                            <rect x="394" y="442" width="3" height="3" fill="#241509"/>
+                            <rect x="403" y="442" width="3" height="3" fill="#241509"/>
+                            <!-- legs -->
+                            <rect x="110" y="474" width="14" height="26" fill="#241509"/>
+                            <rect x="676" y="474" width="14" height="26" fill="#241509"/>
+
+                            <!-- LAMP -->
+                            <g>
+                                <!-- shade -->
+                                <path d="M 180 280 L 260 280 L 270 350 L 170 350 Z" fill="#5B2D8E" stroke="#7B3FBF" stroke-width="2"/>
+                                <path d="M 180 280 L 260 280 L 264 290 L 176 290 Z" fill="#7B3FBF"/>
+                                <!-- top knob -->
+                                <rect x="216" y="272" width="8" height="8" fill="#9668C2"/>
+                                <!-- inside glow -->
+                                <ellipse cx="220" cy="345" rx="48" ry="8" fill="#FFD480" opacity="0.6"/>
+                                <!-- stem -->
+                                <rect x="216" y="350" width="8" height="22" fill="#9668C2"/>
+                                <!-- base -->
+                                <ellipse cx="220" cy="378" rx="34" ry="6" fill="#5d3e25"/>
+                                <rect x="190" y="370" width="60" height="10" fill="#7B3FBF" rx="2"/>
+                            </g>
+
+                            <!-- BOOKS stack -->
+                            <g>
+                                <rect x="540" y="350" width="86" height="14" fill="#7B3FBF"/>
+                                <rect x="540" y="350" width="86" height="3" fill="#9668C2"/>
+                                <rect x="544" y="336" width="80" height="14" fill="#9668C2"/>
+                                <rect x="544" y="336" width="80" height="3" fill="#C49EEF"/>
+                                <rect x="538" y="364" width="90" height="16" fill="#4A1F7A"/>
+                                <rect x="538" y="364" width="90" height="3" fill="#5B2D8E"/>
+                                <!-- title lines on books -->
+                                <rect x="556" y="356" width="38" height="2" fill="#C49EEF" opacity="0.6"/>
+                                <rect x="560" y="342" width="30" height="2" fill="#fff" opacity="0.5"/>
+                                <rect x="554" y="370" width="44" height="2" fill="#9668C2" opacity="0.6"/>
+                            </g>
+
+                            <!-- MUG -->
+                            <g>
+                                <!-- steam -->
+                                <path d="M 410 320 q 4 -10 0 -20 q -4 -10 0 -20" stroke="#9668C2" stroke-width="2" fill="none" opacity="0.4">
+                                    <animate attributeName="opacity" values="0.2;0.5;0.2" dur="3s" repeatCount="indefinite"/>
+                                </path>
+                                <path d="M 426 322 q -4 -10 0 -20 q 4 -10 0 -20" stroke="#9668C2" stroke-width="2" fill="none" opacity="0.4">
+                                    <animate attributeName="opacity" values="0.5;0.2;0.5" dur="3s" repeatCount="indefinite"/>
+                                </path>
+                                <!-- mug body -->
+                                <rect x="396" y="338" width="44" height="42" fill="#C49EEF" rx="3"/>
+                                <rect x="396" y="338" width="44" height="6" fill="#fff" opacity="0.4"/>
+                                <!-- coffee -->
+                                <ellipse cx="418" cy="344" rx="18" ry="4" fill="#3d2817"/>
+                                <!-- handle -->
+                                <path d="M 440 350 q 12 4 12 14 q 0 10 -12 14" stroke="#C49EEF" stroke-width="4" fill="none"/>
+                            </g>
+
+                            <!-- CLOCK CENTERPIECE -->
+                            <g transform="translate(280, 230)">
+                                <!-- bezel -->
+                                <rect x="-10" y="-10" width="200" height="170" fill="#241509"/>
+                                <rect x="-6" y="-6" width="192" height="162" fill="#3d2817"/>
+                                <!-- screen -->
+                                <rect x="0" y="0" width="180" height="150" fill="#4A1F7A"/>
+                                <rect x="8" y="8" width="164" height="134" fill="#1a0a2e"/>
+                                <!-- pixel face frame -->
+                                <rect x="86" y="14" width="8" height="14" fill="#C49EEF"/>
+                                <rect x="86" y="120" width="8" height="14" fill="#C49EEF"/>
+                                <rect x="14" y="71" width="14" height="8" fill="#C49EEF"/>
+                                <rect x="152" y="71" width="14" height="8" fill="#C49EEF"/>
+                                <!-- corner ticks -->
+                                <rect x="34" y="34" width="6" height="6" fill="#7B3FBF"/>
+                                <rect x="140" y="34" width="6" height="6" fill="#7B3FBF"/>
+                                <rect x="140" y="110" width="6" height="6" fill="#7B3FBF"/>
+                                <rect x="34" y="110" width="6" height="6" fill="#7B3FBF"/>
+                                <!-- digital readout -->
+                                <g>
+                                    <rect x="40" y="64" width="26" height="22" fill="#C49EEF"/>
+                                    <rect x="68" y="64" width="6" height="22" fill="#C49EEF"/>
+                                    <rect x="76" y="64" width="26" height="22" fill="#C49EEF"/>
+                                    <rect x="104" y="64" width="6" height="22" fill="#C49EEF"/>
+                                    <rect x="112" y="64" width="26" height="22" fill="#C49EEF"/>
+                                    <!-- little gap to make it readable as digits -->
+                                    <rect x="44" y="68" width="18" height="4" fill="#1a0a2e"/>
+                                    <rect x="44" y="78" width="18" height="4" fill="#1a0a2e"/>
+                                    <rect x="80" y="68" width="18" height="4" fill="#1a0a2e"/>
+                                    <rect x="80" y="78" width="18" height="4" fill="#1a0a2e"/>
+                                    <rect x="116" y="68" width="18" height="4" fill="#1a0a2e"/>
+                                    <rect x="116" y="78" width="18" height="4" fill="#1a0a2e"/>
+                                </g>
+                                <!-- alarm tag -->
+                                <rect x="14" y="14" width="22" height="10" fill="#FFB870"/>
+                                <rect x="16" y="16" width="3" height="3" fill="#1a0a2e"/>
+                                <rect x="22" y="16" width="3" height="3" fill="#1a0a2e"/>
+                                <!-- bottom buttons -->
+                                <circle cx="46" cy="124" r="6" fill="#7B3FBF"/>
+                                <circle cx="68" cy="124" r="6" fill="#7B3FBF"/>
+                                <circle cx="90" cy="124" r="6" fill="#7B3FBF"/>
+                                <circle cx="112" cy="124" r="6" fill="#7B3FBF"/>
+                                <circle cx="134" cy="124" r="6" fill="#FFB870"/>
+                                <!-- table reflection -->
+                                <ellipse cx="90" cy="170" rx="100" ry="6" fill="#000" opacity="0.4"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="slide-info">
+                        <span class="slide-pill">RELEASING JUNE 20, 2026</span>
+                        <h3 class="slide-title">CLOCKTASTIC</h3>
+                        <p class="slide-platform">macOS Menu Bar Utility</p>
+                        <p class="slide-scene">"Bedside, 11:42 PM."</p>
+                        <p class="slide-desc">A retro bedside clock for your Mac menu bar. Pixel-perfect faces, time zones, alarms and focus timers always one click away. Because checking the time should feel good.</p>
+                    </div>
                 </div>
-                <h3 class="slide-title">LIGHTSOUT</h3>
-                <p class="slide-release">Releasing July 8</p>
-                <p class="slide-text">LightsOut is a minimalist puzzle game built around a single rule: tap a tile and its neighbors flip. Start with a lit grid and work your way to darkness, one clever move at a time. Hundreds of handcrafted puzzles, offline play, and zero ads getting in your way. Quick to learn, tough to master.</p>
+
+                <div class="carousel-slide">
+                    <div class="slide-art">
+                        <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-label="LightsOut puzzle scene">
+                            <defs>
+                                <radialGradient id="lo-bg" cx="0.5" cy="0.5" r="0.7">
+                                    <stop offset="0" stop-color="#3a0a18"/>
+                                    <stop offset="0.5" stop-color="#1a0510"/>
+                                    <stop offset="1" stop-color="#000"/>
+                                </radialGradient>
+                                <radialGradient id="lo-glow" cx="0.5" cy="0.5">
+                                    <stop offset="0" stop-color="#FF2040" stop-opacity="0.4"/>
+                                    <stop offset="0.5" stop-color="#FF2040" stop-opacity="0.15"/>
+                                    <stop offset="1" stop-color="#FF2040" stop-opacity="0"/>
+                                </radialGradient>
+                                <linearGradient id="lo-phone" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0" stop-color="#2a2a2a"/>
+                                    <stop offset="0.5" stop-color="#1a1a1a"/>
+                                    <stop offset="1" stop-color="#0f0f0f"/>
+                                </linearGradient>
+                                <filter id="lo-blur" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="14"/>
+                                </filter>
+                            </defs>
+
+                            <rect x="0" y="0" width="800" height="500" fill="url(#lo-bg)"/>
+
+                            <!-- bokeh -->
+                            <g filter="url(#lo-blur)" opacity="0.7">
+                                <circle cx="120" cy="100" r="60" fill="#FF2040" opacity="0.25"/>
+                                <circle cx="700" cy="80" r="80" fill="#FF4060" opacity="0.18"/>
+                                <circle cx="80" cy="430" r="100" fill="#7B3FBF" opacity="0.2"/>
+                                <circle cx="720" cy="430" r="70" fill="#FF6080" opacity="0.2"/>
+                                <circle cx="640" cy="240" r="40" fill="#FF2040" opacity="0.15"/>
+                            </g>
+
+                            <!-- table edge / floor suggestion -->
+                            <rect x="0" y="460" width="800" height="40" fill="#0a0508"/>
+                            <ellipse cx="400" cy="464" rx="320" ry="14" fill="#000" opacity="0.7"/>
+
+                            <!-- big phone glow -->
+                            <ellipse cx="400" cy="270" rx="280" ry="200" fill="url(#lo-glow)"/>
+
+                            <!-- HAND silhouette holding phone -->
+                            <g fill="#0a0510" opacity="0.85">
+                                <path d="M 240 460 Q 220 400 240 320 Q 250 280 290 280 L 510 280 Q 550 280 560 320 Q 580 400 560 460 Z"/>
+                            </g>
+
+                            <!-- PHONE -->
+                            <g transform="translate(280, 60) rotate(-3 120 200)">
+                                <!-- shadow under phone -->
+                                <rect x="6" y="8" width="240" height="400" rx="36" fill="#000" opacity="0.6"/>
+                                <!-- body -->
+                                <rect x="0" y="0" width="240" height="400" rx="36" fill="url(#lo-phone)" stroke="#3a3a3a" stroke-width="2"/>
+                                <!-- side button -->
+                                <rect x="-2" y="120" width="3" height="40" fill="#3a3a3a"/>
+                                <rect x="-2" y="180" width="3" height="60" fill="#3a3a3a"/>
+                                <!-- screen -->
+                                <rect x="10" y="44" width="220" height="320" rx="14" fill="#080404"/>
+                                <!-- notch -->
+                                <rect x="92" y="20" width="56" height="16" rx="8" fill="#000"/>
+                                <circle cx="138" cy="28" r="3" fill="#1a1a1a"/>
+                                <!-- speaker -->
+                                <rect x="106" y="26" width="22" height="3" rx="1.5" fill="#1a1a1a"/>
+
+                                <!-- PUZZLE GRID 5x4 -->
+                                <!-- glow halos for ON lights -->
+                                <g opacity="0.5">
+                                    <circle cx="50" cy="100" r="22" fill="#FF2040">
+                                        <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="120" cy="100" r="22" fill="#FF2040">
+                                        <animate attributeName="opacity" values="0.4;0.7;0.4" dur="2.2s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="190" cy="170" r="22" fill="#FF2040">
+                                        <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2.4s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="50" cy="240" r="22" fill="#FF2040">
+                                        <animate attributeName="opacity" values="0.4;0.7;0.4" dur="2.1s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="120" cy="240" r="22" fill="#FF2040">
+                                        <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2.3s" repeatCount="indefinite"/>
+                                    </circle>
+                                </g>
+
+                                <!-- light cells (off) -->
+                                <g>
+                                    <!-- row 1 -->
+                                    <circle cx="50" cy="100" r="16" fill="#1a0508"/>
+                                    <circle cx="120" cy="100" r="16" fill="#1a0508"/>
+                                    <circle cx="190" cy="100" r="16" fill="#1a0508"/>
+                                    <!-- row 2 -->
+                                    <circle cx="50" cy="170" r="16" fill="#1a0508"/>
+                                    <circle cx="120" cy="170" r="16" fill="#1a0508"/>
+                                    <circle cx="190" cy="170" r="16" fill="#1a0508"/>
+                                    <!-- row 3 -->
+                                    <circle cx="50" cy="240" r="16" fill="#1a0508"/>
+                                    <circle cx="120" cy="240" r="16" fill="#1a0508"/>
+                                    <circle cx="190" cy="240" r="16" fill="#1a0508"/>
+                                    <!-- row 4 -->
+                                    <circle cx="50" cy="310" r="16" fill="#1a0508"/>
+                                    <circle cx="120" cy="310" r="16" fill="#1a0508"/>
+                                    <circle cx="190" cy="310" r="16" fill="#1a0508"/>
+                                </g>
+
+                                <!-- ON lights -->
+                                <g>
+                                    <circle cx="50" cy="100" r="13" fill="#FF2040"/>
+                                    <circle cx="47" cy="97" r="3" fill="#FFCCD0"/>
+                                    <circle cx="120" cy="100" r="13" fill="#FF2040"/>
+                                    <circle cx="117" cy="97" r="3" fill="#FFCCD0"/>
+                                    <circle cx="190" cy="170" r="13" fill="#FF2040"/>
+                                    <circle cx="187" cy="167" r="3" fill="#FFCCD0"/>
+                                    <circle cx="50" cy="240" r="13" fill="#FF2040"/>
+                                    <circle cx="47" cy="237" r="3" fill="#FFCCD0"/>
+                                    <circle cx="120" cy="240" r="13" fill="#FF2040"/>
+                                    <circle cx="117" cy="237" r="3" fill="#FFCCD0"/>
+                                </g>
+
+                                <!-- score / status text suggestion -->
+                                <rect x="40" y="48" width="50" height="6" fill="#FF2040" opacity="0.5"/>
+                                <rect x="160" y="48" width="40" height="6" fill="#fff" opacity="0.3"/>
+
+                                <!-- finger pointer -->
+                                <g transform="translate(170, 270)">
+                                    <circle cx="0" cy="0" r="20" fill="#fff" opacity="0.15"/>
+                                    <circle cx="0" cy="0" r="12" fill="#fff" opacity="0.25"/>
+                                    <circle cx="0" cy="0" r="6" fill="#fff" opacity="0.5"/>
+                                </g>
+
+                                <!-- home indicator bar -->
+                                <rect x="80" y="380" width="80" height="4" rx="2" fill="#fff" opacity="0.3"/>
+                            </g>
+
+                            <!-- particles -->
+                            <g fill="#FF6080" opacity="0.6">
+                                <rect x="80" y="220" width="2" height="2"/>
+                                <rect x="730" y="180" width="3" height="3"/>
+                                <rect x="650" y="380" width="2" height="2"/>
+                                <rect x="160" y="380" width="2" height="2"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="slide-info">
+                        <span class="slide-pill">RELEASING JULY 8, 2026</span>
+                        <h3 class="slide-title">LIGHTSOUT</h3>
+                        <p class="slide-platform">iPhone Puzzle Game</p>
+                        <p class="slide-scene">"The last tap before bed."</p>
+                        <p class="slide-desc">Tap a tile and its neighbours flip. Hundreds of hand-made puzzles, offline play, zero ads. Quick to learn, tough to master, easy to put down when you want to.</p>
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <div class="slide-art">
+                        <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-label="Shared Stickies sunset studio">
+                            <defs>
+                                <linearGradient id="ss-sky" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0" stop-color="#5B2D8E"/>
+                                    <stop offset="0.4" stop-color="#9668C2"/>
+                                    <stop offset="0.7" stop-color="#FFB870"/>
+                                    <stop offset="1" stop-color="#FF7E50"/>
+                                </linearGradient>
+                                <linearGradient id="ss-desk" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0" stop-color="#5d3e25"/>
+                                    <stop offset="1" stop-color="#241509"/>
+                                </linearGradient>
+                                <linearGradient id="ss-screen" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0" stop-color="#1a1a1a"/>
+                                    <stop offset="1" stop-color="#0a0a0a"/>
+                                </linearGradient>
+                            </defs>
+
+                            <!-- sky -->
+                            <rect x="0" y="0" width="800" height="320" fill="url(#ss-sky)"/>
+
+                            <!-- distant clouds -->
+                            <g opacity="0.35" fill="#fff">
+                                <rect x="100" y="80" width="60" height="6"/>
+                                <rect x="80" y="86" width="100" height="6"/>
+                                <rect x="100" y="92" width="60" height="6"/>
+                                <rect x="500" y="60" width="80" height="6"/>
+                                <rect x="490" y="66" width="100" height="6"/>
+                                <rect x="500" y="72" width="80" height="6"/>
+                                <rect x="640" y="160" width="50" height="5"/>
+                                <rect x="630" y="165" width="70" height="5"/>
+                            </g>
+
+                            <!-- sun -->
+                            <circle cx="400" cy="220" r="40" fill="#FFD480" opacity="0.9"/>
+                            <circle cx="400" cy="220" r="28" fill="#FFE8B0"/>
+                            <!-- sun rays subtle -->
+                            <g stroke="#FFD480" stroke-width="2" opacity="0.4">
+                                <line x1="400" y1="160" x2="400" y2="170"/>
+                                <line x1="340" y1="220" x2="350" y2="220"/>
+                                <line x1="450" y1="220" x2="460" y2="220"/>
+                                <line x1="358" y1="178" x2="365" y2="185"/>
+                                <line x1="442" y1="178" x2="435" y2="185"/>
+                            </g>
+
+                            <!-- distant city silhouette -->
+                            <g fill="#3a1f5a" opacity="0.8">
+                                <rect x="0" y="270" width="40" height="50"/>
+                                <rect x="40" y="250" width="50" height="70"/>
+                                <rect x="90" y="280" width="30" height="40"/>
+                                <rect x="120" y="240" width="60" height="80"/>
+                                <rect x="180" y="270" width="40" height="50"/>
+                                <rect x="220" y="260" width="35" height="60"/>
+                                <rect x="540" y="265" width="40" height="55"/>
+                                <rect x="580" y="245" width="60" height="75"/>
+                                <rect x="640" y="270" width="35" height="50"/>
+                                <rect x="675" y="260" width="50" height="60"/>
+                                <rect x="725" y="275" width="40" height="45"/>
+                                <rect x="765" y="265" width="35" height="55"/>
+                                <!-- windows -->
+                                <g fill="#FFD480" opacity="0.5">
+                                    <rect x="50" y="270" width="3" height="3"/>
+                                    <rect x="60" y="280" width="3" height="3"/>
+                                    <rect x="130" y="260" width="3" height="3"/>
+                                    <rect x="150" y="280" width="3" height="3"/>
+                                    <rect x="160" y="270" width="3" height="3"/>
+                                    <rect x="600" y="260" width="3" height="3"/>
+                                    <rect x="615" y="270" width="3" height="3"/>
+                                    <rect x="690" y="280" width="3" height="3"/>
+                                    <rect x="700" y="270" width="3" height="3"/>
+                                </g>
+                            </g>
+
+                            <!-- desk surface -->
+                            <rect x="0" y="320" width="800" height="180" fill="url(#ss-desk)"/>
+                            <rect x="0" y="320" width="800" height="3" fill="#7d5a35"/>
+
+                            <!-- LEFT iMac -->
+                            <g transform="translate(60, 200)">
+                                <!-- screen back shadow -->
+                                <rect x="2" y="2" width="240" height="146" rx="8" fill="#000" opacity="0.5"/>
+                                <!-- screen frame -->
+                                <rect x="0" y="0" width="240" height="146" rx="8" fill="#5B2D8E"/>
+                                <rect x="6" y="6" width="228" height="124" fill="url(#ss-screen)"/>
+                                <!-- chin -->
+                                <rect x="0" y="130" width="240" height="16" fill="#3d1d63"/>
+                                <!-- apple-ish dot -->
+                                <circle cx="120" cy="138" r="3" fill="#9668C2"/>
+                                <!-- screen content: stickies -->
+                                <g transform="translate(20, 22)">
+                                    <rect x="10" y="0" width="58" height="58" fill="#7B3FBF" transform="rotate(-4 38 30)"/>
+                                    <rect x="60" y="14" width="58" height="58" fill="#9668C2" transform="rotate(3 90 44)"/>
+                                    <rect x="120" y="6" width="58" height="58" fill="#C49EEF" transform="rotate(-2 150 36)"/>
+                                    <!-- sticky lines -->
+                                    <g stroke="#fff" stroke-width="1.2" opacity="0.6">
+                                        <line x1="22" y1="14" x2="50" y2="14" transform="rotate(-4 38 30)"/>
+                                        <line x1="22" y1="22" x2="44" y2="22" transform="rotate(-4 38 30)"/>
+                                        <line x1="22" y1="30" x2="50" y2="30" transform="rotate(-4 38 30)"/>
+                                        <line x1="72" y1="28" x2="100" y2="28" transform="rotate(3 90 44)"/>
+                                        <line x1="72" y1="36" x2="92" y2="36" transform="rotate(3 90 44)"/>
+                                        <line x1="72" y1="44" x2="100" y2="44" transform="rotate(3 90 44)"/>
+                                    </g>
+                                    <g stroke="#4A1F7A" stroke-width="1.2" opacity="0.7">
+                                        <line x1="132" y1="20" x2="160" y2="20" transform="rotate(-2 150 36)"/>
+                                        <line x1="132" y1="28" x2="152" y2="28" transform="rotate(-2 150 36)"/>
+                                        <line x1="132" y1="36" x2="160" y2="36" transform="rotate(-2 150 36)"/>
+                                    </g>
+                                </g>
+                                <!-- stand -->
+                                <path d="M 100 146 L 140 146 L 145 168 L 95 168 Z" fill="#5B2D8E"/>
+                                <rect x="80" y="168" width="80" height="6" rx="3" fill="#7B3FBF"/>
+                            </g>
+
+                            <!-- floating stickies between -->
+                            <g>
+                                <rect x="320" y="220" width="40" height="40" fill="#C49EEF" transform="rotate(-12 340 240)" opacity="0.95">
+                                    <animate attributeName="y" values="220;215;220" dur="4s" repeatCount="indefinite"/>
+                                </rect>
+                                <line x1="290" y1="270" x2="320" y2="240" stroke="#C49EEF" stroke-width="2" stroke-dasharray="4 4" opacity="0.6"/>
+
+                                <rect x="380" y="180" width="44" height="44" fill="#9668C2" transform="rotate(8 402 202)" opacity="0.95">
+                                    <animate attributeName="y" values="180;174;180" dur="3.6s" repeatCount="indefinite"/>
+                                </rect>
+                                <line x1="360" y1="240" x2="390" y2="210" stroke="#9668C2" stroke-width="2" stroke-dasharray="4 4" opacity="0.6"/>
+
+                                <rect x="450" y="220" width="40" height="40" fill="#7B3FBF" transform="rotate(-6 470 240)" opacity="0.95">
+                                    <animate attributeName="y" values="220;215;220" dur="4.2s" repeatCount="indefinite"/>
+                                </rect>
+                                <line x1="500" y1="240" x2="530" y2="270" stroke="#7B3FBF" stroke-width="2" stroke-dasharray="4 4" opacity="0.6"/>
+
+                                <!-- sticky lines on floating ones -->
+                                <g stroke="#fff" stroke-width="1.2" opacity="0.6">
+                                    <line x1="328" y1="234" x2="350" y2="234" transform="rotate(-12 340 240)"/>
+                                    <line x1="328" y1="244" x2="346" y2="244" transform="rotate(-12 340 240)"/>
+                                    <line x1="388" y1="194" x2="414" y2="194" transform="rotate(8 402 202)"/>
+                                    <line x1="388" y1="204" x2="410" y2="204" transform="rotate(8 402 202)"/>
+                                    <line x1="388" y1="214" x2="414" y2="214" transform="rotate(8 402 202)"/>
+                                </g>
+                            </g>
+
+                            <!-- RIGHT iMac -->
+                            <g transform="translate(500, 200)">
+                                <rect x="2" y="2" width="240" height="146" rx="8" fill="#000" opacity="0.5"/>
+                                <rect x="0" y="0" width="240" height="146" rx="8" fill="#5B2D8E"/>
+                                <rect x="6" y="6" width="228" height="124" fill="url(#ss-screen)"/>
+                                <rect x="0" y="130" width="240" height="16" fill="#3d1d63"/>
+                                <circle cx="120" cy="138" r="3" fill="#9668C2"/>
+                                <!-- screen content with stickies + cursor -->
+                                <g transform="translate(20, 22)">
+                                    <rect x="14" y="6" width="60" height="60" fill="#9668C2" transform="rotate(2 44 36)"/>
+                                    <rect x="78" y="20" width="58" height="58" fill="#C49EEF" transform="rotate(-3 107 49)"/>
+                                    <rect x="142" y="0" width="58" height="58" fill="#7B3FBF" transform="rotate(5 171 29)"/>
+                                    <g stroke="#fff" stroke-width="1.2" opacity="0.6">
+                                        <line x1="24" y1="20" x2="58" y2="20" transform="rotate(2 44 36)"/>
+                                        <line x1="24" y1="30" x2="48" y2="30" transform="rotate(2 44 36)"/>
+                                        <line x1="24" y1="40" x2="58" y2="40" transform="rotate(2 44 36)"/>
+                                        <line x1="154" y1="14" x2="186" y2="14" transform="rotate(5 171 29)"/>
+                                        <line x1="154" y1="22" x2="180" y2="22" transform="rotate(5 171 29)"/>
+                                    </g>
+                                    <g stroke="#4A1F7A" stroke-width="1.2" opacity="0.7">
+                                        <line x1="90" y1="34" x2="124" y2="34" transform="rotate(-3 107 49)"/>
+                                        <line x1="90" y1="42" x2="120" y2="42" transform="rotate(-3 107 49)"/>
+                                    </g>
+                                    <!-- cursor -->
+                                    <path d="M 100 80 L 110 90 L 104 92 L 108 100 L 104 102 L 100 94 L 95 99 Z" fill="#fff" opacity="0.9"/>
+                                </g>
+                                <path d="M 100 146 L 140 146 L 145 168 L 95 168 Z" fill="#5B2D8E"/>
+                                <rect x="80" y="168" width="80" height="6" rx="3" fill="#7B3FBF"/>
+                            </g>
+
+                            <!-- plant on left desk -->
+                            <g transform="translate(360, 360)">
+                                <rect x="-18" y="0" width="36" height="30" fill="#5B2D8E"/>
+                                <rect x="-18" y="0" width="36" height="6" fill="#7B3FBF"/>
+                                <!-- leaves -->
+                                <g fill="#7B3FBF">
+                                    <ellipse cx="-8" cy="-8" rx="10" ry="14"/>
+                                    <ellipse cx="6" cy="-12" rx="9" ry="16"/>
+                                    <ellipse cx="0" cy="-22" rx="7" ry="12"/>
+                                </g>
+                                <g fill="#9668C2">
+                                    <ellipse cx="-4" cy="-10" rx="5" ry="8"/>
+                                    <ellipse cx="4" cy="-18" rx="4" ry="6"/>
+                                </g>
+                            </g>
+
+                            <!-- mug on right desk -->
+                            <g transform="translate(440, 380)">
+                                <path d="M 410 320 q 4 -10 0 -20 q -4 -10 0 -20" stroke="#9668C2" stroke-width="2" fill="none" opacity="0.4"/>
+                                <rect x="-22" y="-30" width="44" height="38" fill="#FFB870" rx="3"/>
+                                <rect x="-22" y="-30" width="44" height="6" fill="#fff" opacity="0.4"/>
+                                <ellipse cx="0" cy="-26" rx="18" ry="3" fill="#3d2817"/>
+                                <path d="M 22 -22 q 12 4 12 14 q 0 10 -12 14" stroke="#FFB870" stroke-width="4" fill="none"/>
+                            </g>
+
+                            <!-- tetris piece on desk (easter egg) -->
+                            <g transform="translate(160, 380)">
+                                <rect x="0" y="0" width="14" height="14" fill="#7B3FBF"/>
+                                <rect x="14" y="0" width="14" height="14" fill="#7B3FBF"/>
+                                <rect x="14" y="14" width="14" height="14" fill="#7B3FBF"/>
+                                <rect x="28" y="14" width="14" height="14" fill="#7B3FBF"/>
+                            </g>
+
+                            <!-- a few dust particles in the sun rays -->
+                            <g fill="#FFE8B0" opacity="0.5">
+                                <rect x="380" y="280" width="2" height="2"/>
+                                <rect x="420" y="290" width="2" height="2"/>
+                                <rect x="350" y="270" width="2" height="2"/>
+                                <rect x="450" y="260" width="2" height="2"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="slide-info">
+                        <span class="slide-pill">RELEASING JULY 24, 2026</span>
+                        <h3 class="slide-title">SHARED STICKIES</h3>
+                        <p class="slide-platform">macOS Collaboration</p>
+                        <p class="slide-scene">"A note across the studio."</p>
+                        <p class="slide-desc">Drop a sticky on your Mac and your team sees it. Rich text, colour tags and simple permissions. The note app that gets out of the way.</p>
+                    </div>
+                </div>
+
             </div>
-            <div class="carousel-slide">
-                <div class="slide-image">
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="Shared Stickies">
-                        <g transform="rotate(-8 100 100)">
-                            <rect x="38" y="40" width="100" height="100" fill="#7B3FBF" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
-                            <rect x="52" y="60" width="72" height="4" fill="rgba(255,255,255,0.3)"/>
-                            <rect x="52" y="78" width="60" height="4" fill="rgba(255,255,255,0.3)"/>
-                            <rect x="52" y="96" width="68" height="4" fill="rgba(255,255,255,0.3)"/>
-                        </g>
-                        <g transform="rotate(6 100 100)">
-                            <rect x="56" y="52" width="100" height="100" fill="#9668C2" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
-                            <rect x="70" y="72" width="72" height="4" fill="rgba(255,255,255,0.35)"/>
-                            <rect x="70" y="90" width="56" height="4" fill="rgba(255,255,255,0.35)"/>
-                            <rect x="70" y="108" width="68" height="4" fill="rgba(255,255,255,0.35)"/>
-                        </g>
-                        <g transform="rotate(-2 100 100)">
-                            <rect x="46" y="64" width="100" height="100" fill="#C49EEF" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
-                            <rect x="60" y="84" width="72" height="4" fill="rgba(74,31,122,0.55)"/>
-                            <rect x="60" y="102" width="56" height="4" fill="rgba(74,31,122,0.55)"/>
-                            <rect x="60" y="120" width="68" height="4" fill="rgba(74,31,122,0.55)"/>
-                        </g>
-                        <g>
-                            <line x1="154" y1="48" x2="170" y2="26" stroke="#fff" stroke-width="3"/>
-                            <line x1="154" y1="48" x2="170" y2="70" stroke="#fff" stroke-width="3"/>
-                            <circle cx="172" cy="24" r="9" fill="#7B3FBF" stroke="#fff" stroke-width="2.5"/>
-                            <circle cx="152" cy="48" r="9" fill="#7B3FBF" stroke="#fff" stroke-width="2.5"/>
-                            <circle cx="172" cy="72" r="9" fill="#7B3FBF" stroke="#fff" stroke-width="2.5"/>
-                        </g>
-                    </svg>
+
+            <div class="carousel-controls">
+                <div class="carousel-counter"><strong id="cur">01</strong> / 03</div>
+                <div class="carousel-dots">
+                    <button class="carousel-dot active" type="button" aria-label="Clocktastic"></button>
+                    <button class="carousel-dot" type="button" aria-label="LightsOut"></button>
+                    <button class="carousel-dot" type="button" aria-label="Shared Stickies"></button>
                 </div>
-                <h3 class="slide-title">SHARED STICKIES</h3>
-                <p class="slide-release">Releasing July 24</p>
-                <p class="slide-text">Shared Stickies is a collaborative take on the humble desktop sticky note. Drop a note on your Mac and it shows up instantly on everyone you've shared it with. Rich text, color tags, and simple permissions keep teams aligned without yet another chat tool. The easiest way to leave a note for someone across the room or across the world.</p>
+                <div class="carousel-arrows">
+                    <button class="carousel-nav" type="button" aria-label="Previous">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                    </button>
+                    <button class="carousel-nav" type="button" aria-label="Next">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
+                </div>
             </div>
         </div>
-        <button class="carousel-nav prev" type="button" aria-label="Previous slide">&lt;&lt;</button>
-        <button class="carousel-nav next" type="button" aria-label="Next slide">&gt;&gt;</button>
-        <div class="carousel-dots">
-            <button class="carousel-dot active" type="button" aria-label="Clocktastic"></button>
-            <button class="carousel-dot" type="button" aria-label="LightsOut"></button>
-            <button class="carousel-dot" type="button" aria-label="Shared Stickies"></button>
+    </section>
+
+    <section class="section container reveal" id="plan">
+        <span class="section-eyebrow">// THE PLAN</span>
+        <h2 class="section-title">Three releases. <em>One quiet summer.</em></h2>
+        <p class="section-sub">Built one at a time. Shipped when ready, not when scheduled.</p>
+
+        <div class="plan-grid">
+            <article class="plan-card">
+                <div class="plan-num">01</div>
+                <p class="plan-date">June 20, 2026</p>
+                <h3 class="plan-name">Clocktastic</h3>
+                <p class="plan-platform">Mac App Store</p>
+                <p class="plan-line">A retro clock for the Mac menu bar. The first one I ship.</p>
+            </article>
+            <article class="plan-card">
+                <div class="plan-num">02</div>
+                <p class="plan-date">July 8, 2026</p>
+                <h3 class="plan-name">LightsOut</h3>
+                <p class="plan-platform">App Store iPhone</p>
+                <p class="plan-line">A little pocket puzzle. The first game with the WuBu name on it.</p>
+            </article>
+            <article class="plan-card">
+                <div class="plan-num">03</div>
+                <p class="plan-date">July 24, 2026</p>
+                <h3 class="plan-name">Shared Stickies</h3>
+                <p class="plan-platform">Mac App Store</p>
+                <p class="plan-line">A small collaboration tool I have wanted for years.</p>
+            </article>
         </div>
-    </div>
+    </section>
+
+    <section class="desk-note" id="desk">
+        <div class="container-narrow reveal">
+            <div class="desk-note-card">
+                <span class="desk-eyebrow">// FROM THE DESK</span>
+                <div class="desk-body">
+                    <p>Putting a small thing into the App Store has been a quiet dream of mine for a long time. Not for downloads or charts. For the simple feeling of <em>here, I made this</em>.</p>
+                    <p>WuBu is one person, working slowly, building three apps that fit into the corners of life. A clock. A puzzle. A note that travels.</p>
+                    <p>If any of these end up on your Mac or in your pocket, that is the whole win.</p>
+                </div>
+                <p class="desk-sign">— from the WuBu desk</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section container reveal">
+        <span class="section-eyebrow">// HOW WE WORK</span>
+        <h2 class="section-title">A few <em>quiet rules</em>.</h2>
+        <p class="section-sub">The things WuBu does not bend on.</p>
+
+        <div class="ethos-grid">
+            <article class="ethos-card">
+                <svg class="ethos-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15 8.5 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 9 8.5 12 2"/>
+                </svg>
+                <h3 class="ethos-title">Polished over fast</h3>
+                <p class="ethos-text">We ship slowly and deliberately. Polish before features. Done before deadlines we made up.</p>
+            </article>
+            <article class="ethos-card">
+                <svg class="ethos-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L4 6v6c0 5 3.5 9.7 8 11 4.5-1.3 8-6 8-11V6l-8-4z"/>
+                </svg>
+                <h3 class="ethos-title">Pricing over patterns</h3>
+                <p class="ethos-text">Clear prices. No data harvesting. No ads. No dark patterns. The product pays for itself.</p>
+            </article>
+            <article class="ethos-card">
+                <svg class="ethos-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                </svg>
+                <h3 class="ethos-title">Tools, not traps</h3>
+                <p class="ethos-text">Apps that get out of your way. Games that respect your time. If something feels off, we pull it before you do.</p>
+            </article>
+        </div>
+    </section>
+
+    <footer class="footer-quiet">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-left">
+                    <p>If you want a quiet ping when the apps land on the App Store:</p>
+                    <p class="muted">No fluff. No spam. One short note per release.</p>
+                </div>
+                <form class="quiet-form" onsubmit="handleSubscribe(event)">
+                    <input type="email" class="quiet-input" placeholder="you@yourdomain.com" required aria-label="Email">
+                    <button type="submit" class="quiet-btn">SUBSCRIBE</button>
+                </form>
+                <p id="quiet-status" class="quiet-status" aria-live="polite"></p>
+            </div>
+        </div>
+        <div class="copyright">&copy; 2026 WUBU, LLC &middot; <a href="who.html" style="color: var(--c2); text-decoration: none;">WHO</a> &middot; <a href="support.html" style="color: var(--c2); text-decoration: none;">SUPPORT</a> &middot; <a href="privacy.html" style="color: var(--c2); text-decoration: none;">PRIVACY</a></div>
+    </footer>
 
     <script>
         (function () {
+            const reveals = document.querySelectorAll('.reveal');
+            if ('IntersectionObserver' in window) {
+                const obs = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+                reveals.forEach(function (el) { obs.observe(el); });
+            } else {
+                reveals.forEach(function (el) { el.classList.add('visible'); });
+            }
+
             const slides = document.querySelectorAll('.carousel-slide');
             const dots = document.querySelectorAll('.carousel-dot');
+            const prev = document.querySelector('.carousel-arrows .carousel-nav:first-child');
+            const next = document.querySelector('.carousel-arrows .carousel-nav:last-child');
+            const counter = document.getElementById('cur');
             let current = 0;
             let timer;
+            const wrap = document.querySelector('.carousel-wrap');
 
-            function show(index) {
-                slides.forEach((s, i) => s.classList.toggle('active', i === index));
-                dots.forEach((d, i) => d.classList.toggle('active', i === index));
-                current = index;
+            function show(i) {
+                slides.forEach(function (s, idx) { s.classList.toggle('active', idx === i); });
+                dots.forEach(function (d, idx) { d.classList.toggle('active', idx === i); });
+                if (counter) counter.textContent = String(i + 1).padStart(2, '0');
+                current = i;
             }
-
-            function next() {
-                show((current + 1) % slides.length);
-            }
-
-            function start() {
-                timer = setInterval(next, 6000);
-            }
-
-            dots.forEach((dot, i) => {
-                dot.addEventListener('click', () => {
-                    clearInterval(timer);
-                    show(i);
-                    start();
-                });
-            });
-
-            const prevBtn = document.querySelector('.carousel-nav.prev');
-            const nextBtn = document.querySelector('.carousel-nav.next');
-
-            function jump(delta) {
-                clearInterval(timer);
+            function go(delta) {
                 show((current + delta + slides.length) % slides.length);
-                start();
+                resetTimer();
             }
+            function start() { timer = setInterval(function () { go(1); }, 9000); }
+            function resetTimer() { clearInterval(timer); start(); }
 
-            if (prevBtn) prevBtn.addEventListener('click', () => jump(-1));
-            if (nextBtn) nextBtn.addEventListener('click', () => jump(1));
+            dots.forEach(function (d, idx) {
+                d.addEventListener('click', function () { show(idx); resetTimer(); });
+            });
+            if (prev) prev.addEventListener('click', function () { go(-1); });
+            if (next) next.addEventListener('click', function () { go(1); });
 
+            if (wrap) {
+                wrap.addEventListener('mouseenter', function () { clearInterval(timer); });
+                wrap.addEventListener('mouseleave', function () { start(); });
+            }
             start();
         })();
+
+        function handleSubscribe(event) {
+            event.preventDefault();
+            const form = event.target;
+            const input = form.querySelector('.quiet-input');
+            const status = document.getElementById('quiet-status');
+            if (status) status.textContent = 'Thanks. Hook this form up to Buttondown or Beehiiv to start collecting.';
+            input.value = '';
+        }
     </script>
-
-    <nav class="site-nav">
-        <a href="index.html" class="current">Home</a>
-        <a href="who.html">Who is WuBu</a>
-        <a href="support.html">Support</a>
-        <a href="privacy.html">Privacy</a>
-    </nav>
-
-    <footer>&copy; 2026 WuBu, LLC. All rights reserved.</footer>
 </body>
 </html>

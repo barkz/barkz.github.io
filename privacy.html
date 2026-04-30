@@ -3,288 +3,387 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - WuBu, LLC</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Privacy -- WuBu, LLC</title>
+    <meta name="description" content="WuBu privacy policy. We collect as little information as possible.">
+    <meta name="theme-color" content="#0a0a0a">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: #0a0a0a;
+            --bg-soft: #14091e;
+            --card: #16091f;
+            --border: rgba(150, 104, 194, 0.18);
+            --border-strong: rgba(196, 158, 239, 0.4);
+            --c1: #7B3FBF;
+            --c2: #9668C2;
+            --c3: #C49EEF;
+            --c4: #4A1F7A;
+            --c5: #5B2D8E;
+            --warm: #FFB870;
+            --text: #e6def0;
+            --text-soft: #b8b8b8;
+            --text-muted: #888;
+            --pixel: 'Press Start 2P', cursive;
+            --serif: 'Fraunces', Georgia, serif;
+            --sans: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            line-height: 1.6;
+            overflow-x: hidden;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            background: #0a0a0a;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #c4c4c4;
-            overflow-x: hidden;
         }
 
-        .header {
-            padding: 30px 20px 20px;
-            text-align: center;
-            border-bottom: 2px solid rgba(123, 63, 191, 0.3);
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(at 20% 0%, rgba(123, 63, 191, 0.18), transparent 50%),
+                radial-gradient(at 80% 100%, rgba(91, 45, 142, 0.12), transparent 50%);
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .header h1 {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 28px;
-            color: #fff;
-            text-shadow: 3px 3px 0px rgba(91, 45, 142, 0.8);
-            letter-spacing: 2px;
-            margin-bottom: 10px;
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
         }
-
-        .header .subtitle {
-            font-size: 14px;
-            color: #888;
-            letter-spacing: 1px;
-        }
-
-        .header-nav {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 15px;
-        }
-
-        .icon-btn {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(74, 31, 122, 0.3);
-            border: 2px solid rgba(150, 104, 194, 0.5);
-            color: #9668C2;
-            text-decoration: none;
-            transition: background 0.2s, color 0.2s, transform 0.15s;
-        }
-
-        .icon-btn:hover {
-            background: #5B2D8E;
-            color: #fff;
-            transform: translateY(-1px);
-        }
-
-        .icon-btn.current {
-            background: #5B2D8E;
-            color: #C49EEF;
-            border-color: rgba(196, 158, 239, 0.6);
-        }
-
-        .icon-btn svg {
-            width: 18px;
-            height: 18px;
-            display: block;
-        }
-
-        .content {
-            max-width: 800px;
+        .nav-inner {
+            max-width: 1180px;
             margin: 0 auto;
-            padding: 40px 30px;
-            flex: 1;
+            padding: 18px 56px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-
-        .content h2 {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 16px;
-            color: #C49EEF;
-            margin: 30px 0 15px;
-            padding-left: 12px;
-            border-left: 4px solid #7B3FBF;
-            letter-spacing: 1px;
-        }
-
-        .content h2:first-child {
-            margin-top: 0;
-        }
-
-        .content p {
-            font-size: 15px;
-            line-height: 1.7;
-            margin-bottom: 15px;
-            color: #b8b8b8;
-        }
-
-        .content ul {
-            margin: 10px 0 20px 20px;
-        }
-
-        .content li {
-            font-size: 15px;
-            line-height: 1.7;
-            color: #b8b8b8;
-            margin-bottom: 8px;
-        }
-
-        .content a {
-            color: #9668C2;
+        .nav-brand {
+            font-family: var(--pixel);
+            font-size: 12px;
+            color: var(--c3);
+            letter-spacing: 2px;
             text-decoration: none;
+            text-shadow: 2px 2px 0 var(--c5);
         }
+        .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+        .nav-links a {
+            color: var(--text-soft);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.current { color: var(--c3); }
 
-        .content a:hover {
-            color: #C49EEF;
-            text-decoration: underline;
+        .container-narrow { max-width: 780px; margin: 0 auto; padding: 0 56px; position: relative; z-index: 1; flex: 1; }
+
+        .page-hero { padding: 80px 0 50px; }
+        .page-eyebrow {
+            display: inline-block;
+            font-family: var(--pixel);
+            font-size: 10px;
+            color: var(--warm);
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+            opacity: 0.85;
+            animation: fadeUp 0.8s ease-out 0.2s both;
+        }
+        .page-title {
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: 52px;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 18px;
+            letter-spacing: -0.5px;
+            animation: fadeUp 0.8s ease-out 0.3s both;
+        }
+        .page-title em { font-style: italic; color: var(--c3); }
+        .page-subtitle {
+            color: var(--text-soft);
+            font-size: 18px;
+            max-width: 580px;
+            line-height: 1.6;
+            animation: fadeUp 0.8s ease-out 0.45s both;
         }
 
         .effective-date {
             display: inline-block;
-            background: rgba(91, 45, 142, 0.25);
-            border: 2px solid rgba(150, 104, 194, 0.3);
-            border-top-color: rgba(255, 255, 255, 0.15);
+            font-family: var(--pixel);
+            font-size: 9px;
+            color: var(--c2);
+            letter-spacing: 1.5px;
+            background: rgba(123, 63, 191, 0.18);
+            border: 1px solid var(--border);
             padding: 8px 14px;
-            font-size: 13px;
-            color: #C49EEF;
-            margin-bottom: 25px;
-            font-family: 'Press Start 2P', cursive;
+            border-radius: 999px;
+            margin: 24px 0 8px;
+        }
+
+        .content { padding: 30px 0 100px; }
+        .content h2 {
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: 28px;
+            color: #fff;
+            line-height: 1.2;
+            margin: 56px 0 18px;
+            letter-spacing: -0.2px;
+        }
+        .content h2:first-child { margin-top: 20px; }
+        .content h2 em { font-style: italic; color: var(--c3); }
+        .content h2::before {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 2px;
+            background: var(--c2);
+            vertical-align: middle;
+            margin-right: 14px;
+            margin-bottom: 6px;
+        }
+
+        .content p {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 18px;
+            color: var(--text-soft);
+        }
+        .content p strong { color: var(--text); font-weight: 600; }
+        .content p em { color: var(--c3); font-family: var(--serif); font-style: italic; font-size: 1.05em; }
+
+        .content ul {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0 24px;
+        }
+        .content li {
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--text-soft);
+            margin-bottom: 12px;
+            padding-left: 28px;
+            position: relative;
+        }
+        .content li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 8px;
+            height: 8px;
+            background: var(--c2);
+            border-radius: 1px;
+            transform: rotate(45deg);
+        }
+        .content li strong { color: var(--text); font-weight: 600; }
+
+        .content a {
+            color: var(--c3);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(196, 158, 239, 0.3);
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .content a:hover { color: #fff; border-color: var(--c3); }
+
+        .footer-quiet {
+            padding: 60px 0 40px;
+            border-top: 1px solid var(--border);
+            margin-top: auto;
+            position: relative;
+            z-index: 1;
+        }
+        .footer-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 56px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 30px;
+        }
+        .footer-left p { color: var(--text-soft); font-size: 14px; margin-bottom: 6px; }
+        .footer-left p.muted { color: var(--text-muted); font-size: 13px; }
+
+        .quiet-form { display: flex; gap: 8px; min-width: 360px; }
+        .quiet-input {
+            flex: 1;
+            padding: 12px 16px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 14px;
+        }
+        .quiet-input::placeholder { color: var(--text-muted); }
+        .quiet-input:focus { outline: none; border-color: var(--c2); }
+        .quiet-btn {
+            padding: 12px 20px;
+            background: var(--c5);
+            border: 1px solid var(--c2);
+            border-radius: 10px;
+            color: #fff;
+            font-family: var(--pixel);
             font-size: 10px;
             letter-spacing: 1px;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
         }
-
-        .site-nav {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 40px;
-            padding: 18px 20px;
-            border-top: 2px solid rgba(123, 63, 191, 0.2);
-        }
-
-        .site-nav a {
+        .quiet-btn:hover { background: var(--c1); }
+        .quiet-status {
+            grid-column: 1 / -1;
+            color: var(--c3);
             font-size: 13px;
-            color: #9668C2;
-            text-decoration: none;
-            letter-spacing: 1px;
+            min-height: 18px;
+            margin-top: 14px;
         }
 
-        .site-nav a::before {
-            content: "[ ";
-            color: #7B3FBF;
-        }
-
-        .site-nav a::after {
-            content: " ]";
-            color: #7B3FBF;
-        }
-
-        .site-nav a:hover {
-            color: #C49EEF;
-        }
-
-        .site-nav a:hover::before,
-        .site-nav a:hover::after {
-            color: #C49EEF;
-        }
-
-        .site-nav a.current {
-            color: #C49EEF;
-        }
-
-        footer {
-            margin-top: auto;
-            padding: 20px;
-            font-size: 14px;
-            color: #555;
+        .copyright {
             text-align: center;
+            color: var(--text-muted);
+            font-size: 12px;
+            padding: 26px 0;
+            border-top: 1px solid var(--border);
+            font-family: var(--pixel);
+            letter-spacing: 1.5px;
         }
+        .copyright a { color: var(--c2); text-decoration: none; transition: color 0.2s; }
+        .copyright a:hover { color: var(--c3); }
 
-        footer a {
-            color: #9668C2;
-            text-decoration: none;
-            margin-left: 12px;
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        footer a:hover {
-            color: #C49EEF;
-            text-decoration: underline;
+        @media (prefers-reduced-motion: reduce) {
+            .page-eyebrow, .page-title, .page-subtitle { animation: none; }
         }
-
-        @media (max-width: 768px) {
-            .header h1 { font-size: 20px; }
-            .header .subtitle { font-size: 12px; }
-            .content { padding: 25px 20px; }
-            .content h2 { font-size: 13px; }
-            .content p, .content li { font-size: 14px; }
-            .site-nav { gap: 24px; font-size: 12px; }
-            footer { font-size: 12px; padding: 15px; }
+        @media (max-width: 980px) {
+            .nav-inner { padding: 18px 36px; }
+            .footer-inner { padding: 0 36px; grid-template-columns: 1fr; }
+            .container-narrow { padding: 0 36px; }
+            .page-title { font-size: 38px; }
+            .quiet-form { min-width: 0; }
         }
-
         @media (max-width: 480px) {
-            .header h1 { font-size: 16px; }
-            .content h2 { font-size: 12px; }
-            .content p, .content li { font-size: 13px; }
+            .nav-inner { padding: 14px 22px; }
+            .footer-inner { padding: 0 22px; }
+            .container-narrow { padding: 0 22px; }
+            .page-hero { padding: 50px 0 30px; }
+            .page-title { font-size: 28px; }
+            .page-subtitle { font-size: 16px; }
+            .content h2 { font-size: 22px; margin: 40px 0 14px; }
+            .content p, .content li { font-size: 16px; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>PRIVACY POLICY</h1>
-        <div class="subtitle">WuBu, LLC</div>
-        <div class="header-nav">
-            <a href="index.html" class="icon-btn" aria-label="Home">
-                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg>
-            </a>
-            <a href="support.html" class="icon-btn" aria-label="Support">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="22"/><line x1="2" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="22" y2="12"/></svg>
-            </a>
-            <a href="who.html" class="icon-btn" aria-label="Who is WuBu">
-                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-            </a>
-            <a href="privacy.html" class="icon-btn current" aria-label="Privacy" aria-current="page">
-                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 10V7a4 4 0 0 1 8 0v3h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1h1zm2 0h4V7a2 2 0 1 0-4 0v3z"/><circle cx="12" cy="15" r="1.5" fill="#0a0a0a"/><rect x="11.25" y="15" width="1.5" height="3.5" fill="#0a0a0a"/></svg>
-            </a>
+
+    <header class="nav">
+        <div class="nav-inner">
+            <a href="index_v3.html" class="nav-brand">WUBU.AI</a>
+            <ul class="nav-links">
+                <li><a href="index_v3.html#showcase">The Apps</a></li>
+                <li><a href="index_v3.html#plan">The Plan</a></li>
+                <li><a href="who.html">Who</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><a href="privacy.html" class="current">Privacy</a></li>
+            </ul>
         </div>
+    </header>
+
+    <div class="container-narrow">
+
+        <section class="page-hero">
+            <span class="page-eyebrow">// PRIVACY</span>
+            <h1 class="page-title">We collect as <em>little</em> as possible.</h1>
+            <p class="page-subtitle">No tracking cookies. No third-party analytics. No selling your data. Ever.</p>
+            <p class="effective-date">EFFECTIVE: APRIL 17, 2026</p>
+        </section>
+
+        <section class="content">
+
+            <h2><em>Overview</em></h2>
+            <p>WuBu, LLC ("we", "us" or "our") builds macOS utilities and iPhone games. We respect your privacy and are committed to being transparent about what information is collected and how it is used. This policy explains our practices for our website and applications.</p>
+
+            <h2>Information we <em>collect</em></h2>
+            <p>We aim to collect as little information as possible. Depending on the product or interaction, we may collect:</p>
+            <ul>
+                <li><strong>Contact information</strong> you choose to share with us, such as an email address when you reach out for support.</li>
+                <li><strong>Device and diagnostic data</strong> that our apps may report to identify crashes or performance issues. This data is anonymized where possible.</li>
+                <li><strong>Gameplay or usage data</strong> stored locally on your device so that our apps function correctly.</li>
+            </ul>
+            <p>Our website does not use tracking cookies or third-party analytics that identify individual visitors.</p>
+
+            <h2>How we <em>use it</em></h2>
+            <p>Any information we receive is used solely to:</p>
+            <ul>
+                <li>Operate, maintain and improve our apps and services.</li>
+                <li>Respond to support requests or feedback you send us.</li>
+                <li>Diagnose and fix bugs, crashes and performance issues.</li>
+            </ul>
+
+            <h2>Information <em>sharing</em></h2>
+            <p>We do not sell, rent or trade your personal information. We do not share your information with third parties for advertising purposes. Information may only be disclosed when required by law or to protect our rights.</p>
+
+            <h2>Data <em>storage</em></h2>
+            <p>Game progress, preferences and app settings are generally stored on your device. Where applicable, Apple's iCloud services may be used to sync data across your own devices, governed by Apple's privacy policy.</p>
+
+            <h2>Children's <em>privacy</em></h2>
+            <p>Our apps are not intended to collect personal information from children. If you believe a child has provided us with personal data, please contact us and we will promptly remove it.</p>
+
+            <h2>Your <em>rights</em></h2>
+            <p>You may request that we provide, correct or delete any personal information we hold about you. To exercise these rights, please contact us using the details below.</p>
+
+            <h2>Changes to <em>this policy</em></h2>
+            <p>We may update this privacy policy from time to time. Updates will be posted on this page with a revised effective date. Continued use of our products after changes indicates acceptance of the updated policy.</p>
+
+            <h2><em>Contact</em></h2>
+            <p>If you have questions about this privacy policy or our practices, please reach out to <a href="mailto:us@wubu.ai">us@wubu.ai</a>.</p>
+
+        </section>
+
     </div>
 
-    <div class="content">
-        <div class="effective-date">Effective: April 17, 2026</div>
+    <footer class="footer-quiet">
+        <div class="footer-inner">
+            <div class="footer-left">
+                <p>If you want a quiet ping when the apps land on the App Store:</p>
+                <p class="muted">No fluff. No spam. One short note per release.</p>
+            </div>
+            <form class="quiet-form" onsubmit="handleSubscribe(event)">
+                <input type="email" class="quiet-input" placeholder="you@yourdomain.com" required aria-label="Email">
+                <button type="submit" class="quiet-btn">SUBSCRIBE</button>
+            </form>
+            <p id="quiet-status" class="quiet-status" aria-live="polite"></p>
+        </div>
+        <div class="copyright" style="margin-top: 36px;">&copy; 2026 WUBU, LLC &middot; <a href="who.html">WHO</a> &middot; <a href="support.html">SUPPORT</a> &middot; <a href="privacy.html">PRIVACY</a></div>
+    </footer>
 
-        <h2>Overview</h2>
-        <p>WuBu, LLC ("we", "us", or "our") builds macOS utilities and iPhone games. We respect your privacy and are committed to being transparent about what information is collected and how it is used. This policy explains our practices for our website and applications.</p>
-
-        <h2>Information We Collect</h2>
-        <p>We aim to collect as little information as possible. Depending on the product or interaction, we may collect:</p>
-        <ul>
-            <li><strong>Contact information</strong> you choose to share with us (such as an email address when you reach out for support).</li>
-            <li><strong>Device and diagnostic data</strong> that our apps may report to identify crashes or performance issues. This data is anonymized where possible.</li>
-            <li><strong>Gameplay or usage data</strong> stored locally on your device so that our apps can function correctly.</li>
-        </ul>
-        <p>Our website does not use tracking cookies or third-party analytics that identify individual visitors.</p>
-
-        <h2>How We Use Information</h2>
-        <p>Any information we receive is used solely to:</p>
-        <ul>
-            <li>Operate, maintain, and improve our apps and services.</li>
-            <li>Respond to support requests or feedback you send us.</li>
-            <li>Diagnose and fix bugs, crashes, and performance issues.</li>
-        </ul>
-
-        <h2>Information Sharing</h2>
-        <p>We do not sell, rent, or trade your personal information. We do not share your information with third parties for advertising purposes. Information may only be disclosed when required by law or to protect our rights.</p>
-
-        <h2>Data Storage</h2>
-        <p>Game progress, preferences, and app settings are generally stored on your device. Where applicable, Apple's iCloud services may be used to sync data across your own devices, governed by Apple's privacy policy.</p>
-
-        <h2>Children's Privacy</h2>
-        <p>Our apps are not intended to collect personal information from children. If you believe a child has provided us with personal data, please contact us and we will promptly remove it.</p>
-
-        <h2>Your Rights</h2>
-        <p>You may request that we provide, correct, or delete any personal information we hold about you. To exercise these rights, please contact us using the details below.</p>
-
-        <h2>Changes to This Policy</h2>
-        <p>We may update this privacy policy from time to time. Updates will be posted on this page with a revised effective date. Continued use of our products after changes indicates acceptance of the updated policy.</p>
-
-        <h2>Contact</h2>
-        <p>If you have questions about this privacy policy or our practices, please reach out to <a href="mailto:us@wubu.ai">us@wubu.ai</a>.</p>
-    </div>
-
-    <nav class="site-nav">
-        <a href="index.html">Home</a>
-        <a href="who.html">Who is WuBu</a>
-        <a href="support.html">Support</a>
-        <a href="privacy.html" class="current">Privacy</a>
-    </nav>
-
-    <footer>&copy; 2026 WuBu, LLC. All rights reserved.</footer>
+    <script>
+        function handleSubscribe(event) {
+            event.preventDefault();
+            const form = event.target;
+            const input = form.querySelector('.quiet-input');
+            const status = document.getElementById('quiet-status');
+            if (status) status.textContent = 'Thanks. Hook this form up to Buttondown or Beehiiv to start collecting.';
+            input.value = '';
+        }
+    </script>
 </body>
 </html>

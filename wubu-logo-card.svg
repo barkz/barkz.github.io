@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 172 100" width="172" height="100" aria-label="WuBu">
+  <defs>
+    <style>
+      .blk { stroke: rgba(255,255,255,0.25); stroke-width: 1.5; }
+      .ltr-lg { font-family: 'Press Start 2P', 'Courier New', monospace; font-size: 38px; fill: #fff; }
+      .ltr-sm { font-family: 'Press Start 2P', 'Courier New', monospace; font-size: 24px; fill: #fff; }
+    </style>
+  </defs>
+
+  <!-- u (small, low) overlapping W-right and B-left -->
+  <rect class="blk" x="44"  y="48" width="44" height="44" fill="#3A1860"/>
+  <text class="ltr-sm" x="66" y="79" text-anchor="middle">u</text>
+
+  <!-- u (small, low) overlapping B-right -->
+  <rect class="blk" x="124" y="48" width="44" height="44" fill="#3A1860"/>
+  <text class="ltr-sm" x="146" y="79" text-anchor="middle">u</text>
+
+  <!-- W (big, high) — drawn on top -->
+  <rect class="blk" x="4"   y="8" width="64" height="64" fill="#5B2D8E"/>
+  <text class="ltr-lg" x="36" y="53" text-anchor="middle">W</text>
+
+  <!-- B (big, high) — drawn on top -->
+  <rect class="blk" x="84"  y="8" width="64" height="64" fill="#5B2D8E"/>
+  <text class="ltr-lg" x="116" y="53" text-anchor="middle">B</text>
+</svg>
