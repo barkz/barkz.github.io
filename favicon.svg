@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" aria-label="WuBu">
+  <!-- brand block tile -->
+  <rect x="0.5" y="0.5" width="15" height="15" rx="3" fill="#5B2D8E"
+        stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+
+  <!-- pixel W (white) -->
+  <g fill="#fff">
+    <!-- row 0 -->
+    <rect x="3" y="3" width="2" height="2"/><rect x="11" y="3" width="2" height="2"/>
+    <!-- row 1 -->
+    <rect x="3" y="5" width="2" height="2"/><rect x="11" y="5" width="2" height="2"/>
+    <!-- row 2 -->
+    <rect x="3" y="7" width="2" height="2"/><rect x="7" y="7" width="2" height="2"/><rect x="11" y="7" width="2" height="2"/>
+    <!-- row 3 -->
+    <rect x="3" y="9" width="2" height="2"/><rect x="5" y="9" width="2" height="2"/><rect x="9" y="9" width="2" height="2"/><rect x="11" y="9" width="2" height="2"/>
+    <!-- row 4 -->
+    <rect x="3" y="11" width="2" height="2"/><rect x="11" y="11" width="2" height="2"/>
+  </g>
+</svg>
