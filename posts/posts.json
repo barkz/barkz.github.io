@@ -1,0 +1,20 @@
+{
+  "posts": [
+    {
+      "slug": "hello-world-2026-08-30",
+      "file": "hello-world-2026-08-30.md",
+      "date": "2026-08-30",
+      "title": "Hello, world",
+      "excerpt": "This is the first note from the WuBu desk. There is no schedule and no content calendar. When something is worth writing down — a decision we argued about, a bug that taught us something, a...",
+      "minutes": 1
+    },
+    {
+      "slug": "why-a-floating-clock-2026-07-12",
+      "file": "why-a-floating-clock-2026-07-12.md",
+      "date": "2026-07-12",
+      "title": "Why a floating clock",
+      "excerpt": "Clocktastic started as a complaint. The menu bar clock is too small to read from across the room, and every full-screen app hides it entirely. That is the whole origin story.",
+      "minutes": 1
+    }
+  ]
+}

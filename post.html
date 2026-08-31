@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post -- WuBu, LLC</title>
+    <meta name="description" content="Notes from a small Apple software studio.">
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="studio.css">
+</head>
+<body>
+
+<canvas id="amb"></canvas>
+<div class="grain"></div>
+
+<header class="nav" id="nav">
+    <div class="nav-inner">
+        <a class="brand" href="index.html"><span class="mark"><i></i><i></i><i></i><i></i></span><b>WUBU.AI</b></a>
+        <ul>
+            <li><a href="index.html#work">The Apps</a></li>
+            <li><a href="blog.html" class="current">Blog</a></li>
+            <li><a href="who.html">Who</a></li>
+            <li><a href="support.html">Support</a></li>
+        </ul>
+    </div>
+</header>
+
+<main>
+
+    <section class="page-hero" id="post-head">
+        <div class="kicker"><span class="ln"></span>// LOADING</div>
+    </section>
+
+    <article class="prose" id="post-body"></article>
+
+    <nav class="post-nav" id="post-nav"></nav>
+
+    <p class="back"><a href="blog.html">&larr; ALL POSTS</a></p>
+
+</main>
+
+<footer class="foot">
+    <div class="foot-inner">
+        <div class="foot-left">
+            <p>If you want a quiet ping when the apps land on the App Store:</p>
+            <p class="muted">No fluff. No spam. One short note per release.</p>
+        </div>
+        <form class="quiet-form" onsubmit="handleSubscribe(event)">
+            <input type="email" name="email" class="quiet-input" placeholder="you@yourdomain.com" required aria-label="Email">
+            <input type="text" name="website" tabindex="-1" autocomplete="off" hidden aria-hidden="true">
+            <button type="submit" class="quiet-btn">SUBSCRIBE</button>
+        </form>
+        <p id="quiet-status" class="quiet-status" aria-live="polite"></p>
+    </div>
+    <div class="copyright">&copy; 2026 WUBU, LLC &middot; <a href="blog.html">BLOG</a> &middot; <a href="who.html">WHO</a> &middot; <a href="support.html">SUPPORT</a> &middot; <a href="privacy.html">PRIVACY</a></div>
+</footer>
+
+<script src="studio.js"></script>
+<script src="blog.js"></script>
+<script>renderPost();</script>
+</body>
+</html>

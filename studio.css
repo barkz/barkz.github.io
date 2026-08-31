@@ -325,3 +325,139 @@ h2 em { font-style: italic; color: var(--c3); }
     .rev { opacity: 1 !important; transform: none !important; }
     .page-hero .lede { opacity: 1 !important; transform: none !important; }
 }
+
+/* ==========================================================================
+   BLOG
+   ========================================================================== */
+
+.post-list { max-width: 900px; margin: 0 auto; padding: 30px 44px 120px; }
+.post-list .empty { color: var(--text-muted); font-size: 16px; padding-top: 30px; }
+.post-list .empty code { font-family: ui-monospace, Menlo, monospace; color: var(--c3); font-size: 13px; }
+
+.post-row {
+    display: block;
+    text-decoration: none;
+    border-top: 1px solid var(--border);
+    padding: 40px 0 44px;
+    transition: border-color .3s;
+}
+.post-row:hover { border-top-color: var(--border-strong); }
+.post-row .when { font-family: var(--pixel); font-size: 8px; letter-spacing: 1.8px; color: var(--warm); }
+.post-row h2 {
+    font-size: clamp(25px, 3.2vw, 38px);
+    letter-spacing: -1px;
+    margin: 14px 0 10px;
+    transition: color .3s;
+}
+.post-row:hover h2 { color: var(--c3); }
+.post-row p { color: var(--text-soft); font-size: 16.5px; max-width: 660px; }
+.post-row .more {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-top: 20px;
+    font-family: var(--pixel);
+    font-size: 8px;
+    letter-spacing: 1.8px;
+    color: var(--c3);
+}
+.post-row .more em { color: var(--text-muted); font-style: normal; }
+
+.kicker .dot { margin: 0 10px; color: var(--text-muted); }
+
+/* --- rendered markdown --- */
+.prose h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(21px, 2.4vw, 27px);
+    color: #fff;
+    letter-spacing: -.4px;
+    margin: 36px 0 12px;
+}
+.prose h4 { font-size: 17px; color: var(--c3); margin: 30px 0 10px; font-weight: 600; }
+.prose h2 + p, .prose h3 + p { margin-top: 0; }
+.prose blockquote {
+    margin: 26px 0;
+    padding: 4px 0 4px 26px;
+    border-left: 1px solid var(--border-strong);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(19px, 2.2vw, 24px);
+    line-height: 1.5;
+    color: var(--text);
+    max-width: 640px;
+}
+.prose code {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 13.5px;
+    color: var(--c3);
+    background: rgba(91, 45, 142, .28);
+    padding: 2px 6px;
+    border-radius: 5px;
+}
+.prose pre {
+    margin: 26px 0;
+    padding: 20px 22px;
+    background: rgba(12, 6, 20, .8);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow-x: auto;
+}
+.prose pre code { background: none; padding: 0; color: var(--text-soft); font-size: 13px; line-height: 1.7; }
+.prose img { max-width: 100%; border-radius: 12px; margin: 26px 0; border: 1px solid var(--border); }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 44px 0; }
+.prose ol { margin: 20px 0 0 20px; max-width: 660px; color: var(--text-soft); font-size: 17px; }
+.prose ol li { padding-left: 6px; }
+.prose ol li::before { content: none; }
+.prose ol li + li { margin-top: 12px; }
+
+.post-nav {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 44px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+.post-nav a {
+    display: block;
+    text-decoration: none;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    color: var(--text-soft);
+    font-family: var(--serif);
+    font-size: 19px;
+    transition: color .3s, border-color .3s;
+}
+.post-nav a:hover { color: #fff; border-top-color: var(--border-strong); }
+.post-nav a span {
+    display: block;
+    font-family: var(--pixel);
+    font-size: 8px;
+    letter-spacing: 1.8px;
+    color: var(--warm);
+    margin-bottom: 12px;
+}
+.post-nav .older { grid-column: 2; text-align: right; }
+
+.back {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 44px 110px;
+}
+.back a {
+    font-family: var(--pixel);
+    font-size: 9px;
+    letter-spacing: 1.8px;
+    color: var(--c2);
+    text-decoration: none;
+}
+.back a:hover { color: var(--c3); }
+
+@media (max-width: 820px) {
+    .post-list { padding: 20px 22px 90px; }
+    .post-row { padding: 32px 0 34px; }
+    .post-nav { grid-template-columns: 1fr; padding: 0 22px 30px; }
+    .post-nav .older { grid-column: 1; text-align: left; }
+    .back { padding: 0 22px 80px; }
+}
