@@ -2,6 +2,9 @@
    WuBu — shared styles
    Single column, numbered nav, particle river flowing from a live orb clock
    around each page's headline, label/value rows. Purple studio palette.
+   Pages link this file and the scripts with ?v=N. After changing site.css,
+   site.js, home.js or blog.js, bump N in every page so browsers never pair
+   a new page with a cached old file (GitHub Pages caches for 10 minutes).
    ========================================================================== */
 :root {
   --bg: #0a0a0a;
@@ -219,7 +222,7 @@ blockquote.note::after { content: "\201D"; color: var(--accent); }
 /* Blog */
 .posts { display: grid; }
 .post-row { display: grid; gap: 6px; padding-block: 28px; border-bottom: 1px solid var(--line); text-decoration: none; }
-.post-row:first-child { border-top: 1px solid var(--line); }
+.post-row:first-child { padding-top: 0; }
 .post-row .when { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; color: var(--accent); }
 .post-row h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 3.6vw, 34px); margin: 0; transition: color .2s; }
 .post-row p { margin: 0; color: var(--muted); max-width: 62ch; }
