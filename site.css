@@ -37,6 +37,15 @@ header.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; 
 .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px 16px; flex-wrap: wrap; }
 .mark { font-family: var(--mono); font-weight: 500; font-size: 14px; letter-spacing: .14em; text-decoration: none; }
 .mark span { color: var(--accent); }
+/* the four blinking squares, carried over from the original WuBu mark */
+.mark { display: inline-flex; align-items: center; gap: 11px; }
+.mark b { font-weight: inherit; }
+.squares { display: grid; grid-template-columns: repeat(2, 7px); gap: 2px; }
+.squares i { width: 7px; height: 7px; background: var(--accent); animation: squarePulse 3.2s ease-in-out infinite; }
+.squares i:nth-child(2) { background: var(--deep); animation-delay: .3s; }
+.squares i:nth-child(3) { background: #5b2d8e; animation-delay: .6s; }
+.squares i:nth-child(4) { background: var(--warm); animation-delay: .9s; }
+@keyframes squarePulse { 0%, 100% { opacity: .45; } 50% { opacity: 1; } }
 .nav ul { display: flex; gap: 8px 22px; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
 .nav a.link { text-decoration: none; font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: inline-flex; gap: 6px; align-items: baseline; transition: color .2s; }
 .nav a.link sup { font-size: 10px; color: var(--accent); }
