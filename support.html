@@ -1,83 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support -- WuBu, LLC</title>
-    <meta name="description" content="Help and support for WuBu apps. We read every message.">
-    <meta name="theme-color" content="#0a0a0a">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="studio.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Support · WuBu</title>
+<meta name="description" content="Get help with WuBu apps. A small studio with small inboxes; we read every message.">
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:title" content="Support · WuBu">
+<meta property="og:description" content="Get help with WuBu apps. A small studio with small inboxes; we read every message.">
+<meta property="og:url" content="https://wubu.ai/support.html">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500&family=Space+Mono:wght@700&display=swap">
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
+<canvas id="river" aria-hidden="true"></canvas>
 
-<canvas id="amb"></canvas>
-<div class="grain"></div>
-
-<header class="nav" id="nav">
-    <div class="nav-inner">
-        <a class="brand" href="index.html"><span class="mark"><i></i><i></i><i></i><i></i></span><b>WUBU.AI</b></a>
-        <ul>
-            <li><a href="index.html#work">The Apps</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="who.html">Who</a></li>
-            <li><a href="support.html" class="current">Support</a></li>
-        </ul>
-    </div>
+<div class="page">
+<header class="nav">
+  <div class="wrap">
+    <a class="mark" href="index.html"><i class="squares" aria-hidden="true"><i></i><i></i><i></i><i></i></i><b>WUBU<span>.</span>AI</b></a>
+    <ul>
+      <li><a class="link" href="index.html#releases"><sup>01</sup>The apps</a></li>
+      <li><a class="link" href="blog.html"><sup>02</sup>Blog</a></li>
+      <li><a class="link" href="who.html"><sup>03</sup>Who</a></li>
+      <li><a class="link" href="support.html" aria-current="page"><sup>04</sup>Support</a></li>
+      <li><a class="link" href="fun-things.html"><sup>05</sup>Fun things</a></li>
+    </ul>
+  </div>
 </header>
 
-<main>
+<main class="wrap">
+  <section class="sub">
+    <div class="sub-head">
+      <div class="orbit orbit-1" aria-hidden="true"></div>
+      <div class="orbit orbit-2" aria-hidden="true"></div>
+      <div class="orbit orbit-3" aria-hidden="true"></div>
+      <button class="orb" id="orb" type="button" aria-label="Live clock. Click to release a burst of sparks">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><g id="oticks"></g><circle class="trk" cx="60" cy="60" r="46"/><circle class="prg" id="oprg" cx="60" cy="60" r="46" pathLength="100" stroke-dasharray="0 100"/></svg>
+        <i class="orb-led" aria-hidden="true"></i>
+        <span class="orb-face" aria-hidden="true"><span class="orb-time"><span class="dg" id="ohh">10</span><span class="colon">:</span><span class="dg" id="omm">24</span></span><span class="orb-sec"><span id="oss">00</span> <span id="oap">AM</span></span></span>
+      </button>
+      <p class="eyebrow">// Support</p>
+      <h1 id="heroName">We read every <em>message</em>.</h1>
+      <p>A small studio means small inboxes. Drop us a note and we will get back to you.</p>
+    </div>
+    <div class="prose">
+      <h2>Need help?</h2>
+      <p>If something is not working, you are stuck on a level or you have an idea you want us to consider, we want to hear about it.</p>
+      <div class="mail"><span class="addr">support@wubu.ai</span><button class="copy" type="button" data-copy="support@wubu.ai">Copy email</button></div>
+      <h2>Before you reach out</h2>
+      <p>To help us help you faster, please include:</p>
+      <ul>
+        <li>The name and version of the app you are using.</li>
+        <li>Your device and OS version (e.g. MacBook Air M2 on macOS 15.2, or iPhone 15 on iOS 18).</li>
+        <li>A short description of what happened and what you expected.</li>
+        <li>A screenshot or screen recording if it is a visual issue.</li>
+      </ul>
+      <h2>Response times</h2>
+      <p>We aim to reply within two business days. Complex bugs may take longer to diagnose, but we always acknowledge your message and keep you posted as we investigate.</p>
+      <h2>Feature requests</h2>
+      <p>We love hearing what you want to see next. Every request is read, though not every idea makes it into a build. If your idea lines up with where an app is headed, we will tell you.</p>
+      <div class="mail"><span class="addr">features@wubu.ai</span><button class="copy" type="button" data-copy="features@wubu.ai">Copy email</button></div>
+      <h2>Refunds &amp; purchases</h2>
+      <p>Purchases made through the App Store are handled by Apple. To request a refund, visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a> and sign in with the Apple ID used to buy the app.</p>
+    </div>
+  </section>
 
-    <section class="page-hero">
-        <div class="kicker"><span class="ln"></span>// SUPPORT</div>
-        <h1>
-            <span class="ln-mask"><span>We read <em>every</em></span></span>
-            <span class="ln-mask"><span>message.</span></span>
-        </h1>
-        <p class="lede">A small studio means small inboxes. Drop us a note and we will get back to you.</p>
-
-    </section>
-
-    <article class="prose">
-        <section class="rev">
-            <h2>Need <em>help?</em></h2>
-            <p>If something is not working, you are stuck on a level or you have an idea you want us to consider, we want to hear about it.</p>
-            <a class="contact-card" href="mailto:support@wubu.ai">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                SUPPORT@WUBU.AI
-            </a>
-        </section>
-        <section class="rev">
-            <h2>Before you <em>reach out</em></h2>
-            <p>To help us help you faster, please include:</p>
-            <ul>
-                <li>The <strong>name and version</strong> of the app you are using.</li>
-                <li>Your <strong>device and OS version</strong> (e.g. MacBook Air M2 on macOS 15.2, or iPhone 15 on iOS 18).</li>
-                <li>A short <strong>description</strong> of what happened and what you expected.</li>
-                <li>A <strong>screenshot or screen recording</strong> if it is a visual issue.</li>
-            </ul>
-        </section>
-        <section class="rev">
-            <h2>Response <em>times</em></h2>
-            <p>We aim to reply within two business days. Complex bugs may take longer to diagnose, but we always acknowledge your message and keep you posted as we investigate.</p>
-        </section>
-        <section class="rev">
-            <h2>Feature <em>requests</em></h2>
-            <p>We love hearing what you want to see next. Every request is read, though not every idea makes it into a build. If your idea lines up with where an app is headed, we will tell you. Send your ideas to <a href="mailto:features@wubu.ai">features@wubu.ai</a>.</p>
-        </section>
-        <section class="rev">
-            <h2>Refunds &amp; <em>purchases</em></h2>
-            <p>Purchases made through the App Store are handled by Apple. To request a refund, visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a> and sign in with the Apple ID used to buy the app.</p>
-        </section>
-    </article>
-
+  <footer><span>© 2026 WUBU, LLC</span><nav aria-label="Footer"><a href="blog.html">BLOG</a><a href="who.html">WHO</a><a href="support.html">SUPPORT</a><a href="fun-things.html">FUN THINGS</a><a href="privacy.html">PRIVACY</a></nav></footer>
 </main>
+</div>
 
-<footer class="foot">
-    <div class="copyright">&copy; 2026 WUBU, LLC &middot; <a href="blog.html">BLOG</a> &middot; <a href="who.html">WHO</a> &middot; <a href="support.html">SUPPORT</a> &middot; <a href="privacy.html">PRIVACY</a></div>
-</footer>
-
-<script src="studio.js"></script>
+<script src="site.js"></script>
 </body>
 </html>

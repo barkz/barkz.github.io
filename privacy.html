@@ -1,101 +1,92 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy -- WuBu, LLC</title>
-    <meta name="description" content="WuBu privacy policy. We collect as little information as possible.">
-    <meta name="theme-color" content="#0a0a0a">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="studio.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy · WuBu</title>
+<meta name="description" content="WuBu, LLC privacy policy. No tracking cookies, no third-party analytics, no selling your data.">
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:title" content="Privacy · WuBu">
+<meta property="og:description" content="WuBu, LLC privacy policy. No tracking cookies, no third-party analytics, no selling your data.">
+<meta property="og:url" content="https://wubu.ai/privacy.html">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500&family=Space+Mono:wght@700&display=swap">
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
+<canvas id="river" aria-hidden="true"></canvas>
 
-<canvas id="amb"></canvas>
-<div class="grain"></div>
-
-<header class="nav" id="nav">
-    <div class="nav-inner">
-        <a class="brand" href="index.html"><span class="mark"><i></i><i></i><i></i><i></i></span><b>WUBU.AI</b></a>
-        <ul>
-            <li><a href="index.html#work">The Apps</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li class="opt"><a href="privacy.html" class="current">Privacy</a></li>
-            <li><a href="who.html">Who</a></li>
-            <li><a href="support.html">Support</a></li>
-        </ul>
-    </div>
+<div class="page">
+<header class="nav">
+  <div class="wrap">
+    <a class="mark" href="index.html"><i class="squares" aria-hidden="true"><i></i><i></i><i></i><i></i></i><b>WUBU<span>.</span>AI</b></a>
+    <ul>
+      <li><a class="link" href="index.html#releases"><sup>01</sup>The apps</a></li>
+      <li><a class="link" href="blog.html"><sup>02</sup>Blog</a></li>
+      <li><a class="link" href="who.html"><sup>03</sup>Who</a></li>
+      <li><a class="link" href="support.html"><sup>04</sup>Support</a></li>
+      <li><a class="link" href="fun-things.html"><sup>05</sup>Fun things</a></li>
+    </ul>
+  </div>
 </header>
 
-<main>
+<main class="wrap">
+  <section class="sub">
+    <div class="sub-head">
+      <div class="orbit orbit-1" aria-hidden="true"></div>
+      <div class="orbit orbit-2" aria-hidden="true"></div>
+      <div class="orbit orbit-3" aria-hidden="true"></div>
+      <button class="orb" id="orb" type="button" aria-label="Live clock. Click to release a burst of sparks">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><g id="oticks"></g><circle class="trk" cx="60" cy="60" r="46"/><circle class="prg" id="oprg" cx="60" cy="60" r="46" pathLength="100" stroke-dasharray="0 100"/></svg>
+        <i class="orb-led" aria-hidden="true"></i>
+        <span class="orb-face" aria-hidden="true"><span class="orb-time"><span class="dg" id="ohh">10</span><span class="colon">:</span><span class="dg" id="omm">24</span></span><span class="orb-sec"><span id="oss">00</span> <span id="oap">AM</span></span></span>
+      </button>
+      <p class="eyebrow">// Privacy</p>
+      <h1 id="heroName">We collect as little <em>as possible</em>.</h1>
+      <p>No tracking cookies. No third-party analytics. No selling your data. Ever.</p>
+      <p class="stamp">EFFECTIVE: APRIL 17, 2026</p>
+    </div>
+    <div class="prose">
+      <h2>Overview</h2>
+      <p>WuBu, LLC ("we", "us" or "our") builds macOS utilities and iPhone games. We respect your privacy and are committed to being transparent about what information is collected and how it is used. This policy explains our practices for our website and applications.</p>
+      <h2>Information we collect</h2>
+      <p>We aim to collect as little information as possible. Depending on the product or interaction, we may collect:</p>
+      <ul>
+        <li>Contact information you choose to share with us, such as an email address when you reach out for support.</li>
+        <li>Device and diagnostic data that our apps may report to identify crashes or performance issues. This data is anonymized where possible.</li>
+        <li>Gameplay or usage data stored locally on your device so that our apps function correctly.</li>
+      </ul>
+      <p>Our website does not use tracking cookies or third-party analytics that identify individual visitors.</p>
+      <h2>How we use it</h2>
+      <p>Any information we receive is used solely to:</p>
+      <ul>
+        <li>Operate, maintain and improve our apps and services.</li>
+        <li>Respond to support requests or feedback you send us.</li>
+        <li>Diagnose and fix bugs, crashes and performance issues.</li>
+      </ul>
+      <h2>Information sharing</h2>
+      <p>We do not sell, rent or trade your personal information. We do not share your information with third parties for advertising purposes. Information may only be disclosed when required by law or to protect our rights.</p>
+      <h2>Data storage</h2>
+      <p>Game progress, preferences and app settings are generally stored on your device. Where applicable, Apple's iCloud services may be used to sync data across your own devices, governed by Apple's privacy policy.</p>
+      <h2>Children's privacy</h2>
+      <p>Our apps are not intended to collect personal information from children. If you believe a child has provided us with personal data, please contact us and we will promptly remove it.</p>
+      <h2>Your rights</h2>
+      <p>You may request that we provide, correct or delete any personal information we hold about you. To exercise these rights, please contact us using the details below.</p>
+      <h2>Changes to this policy</h2>
+      <p>We may update this privacy policy from time to time. Updates will be posted on this page with a revised effective date. Continued use of our products after changes indicates acceptance of the updated policy.</p>
+      <h2>Contact</h2>
+      <p>If you have questions about this privacy policy or our practices, please reach out to us.</p>
+      <div class="mail"><span class="addr">askus@wubu.ai</span><button class="copy" type="button" data-copy="askus@wubu.ai">Copy email</button></div>
+    </div>
+  </section>
 
-    <section class="page-hero">
-        <div class="kicker"><span class="ln"></span>// PRIVACY</div>
-        <h1>
-            <span class="ln-mask"><span>We collect as</span></span>
-            <span class="ln-mask"><span><em>little</em> as possible.</span></span>
-        </h1>
-        <p class="lede">No tracking cookies. No third-party analytics. No selling your data. Ever.</p>
-        <p class="stamp">EFFECTIVE: APRIL 17, 2026</p>
-    </section>
-
-    <article class="prose">
-        <section class="rev">
-            <h2><em>Overview</em></h2>
-            <p>WuBu, LLC ("we", "us" or "our") builds macOS utilities and iPhone games. We respect your privacy and are committed to being transparent about what information is collected and how it is used. This policy explains our practices for our website and applications.</p>
-        </section>
-        <section class="rev">
-            <h2>Information we <em>collect</em></h2>
-            <p>We aim to collect as little information as possible. Depending on the product or interaction, we may collect:</p>
-            <ul>
-                <li><strong>Contact information</strong> you choose to share with us, such as an email address when you reach out for support.</li>
-                <li><strong>Device and diagnostic data</strong> that our apps may report to identify crashes or performance issues. This data is anonymized where possible.</li>
-                <li><strong>Gameplay or usage data</strong> stored locally on your device so that our apps function correctly.</li>
-            </ul>
-            <p>Our website does not use tracking cookies or third-party analytics that identify individual visitors.</p>
-        </section>
-        <section class="rev">
-            <h2>How we <em>use it</em></h2>
-            <p>Any information we receive is used solely to:</p>
-            <ul>
-                <li>Operate, maintain and improve our apps and services.</li>
-                <li>Respond to support requests or feedback you send us.</li>
-                <li>Diagnose and fix bugs, crashes and performance issues.</li>
-            </ul>
-        </section>
-        <section class="rev">
-            <h2>Information <em>sharing</em></h2>
-            <p>We do not sell, rent or trade your personal information. We do not share your information with third parties for advertising purposes. Information may only be disclosed when required by law or to protect our rights.</p>
-        </section>
-        <section class="rev">
-            <h2>Data <em>storage</em></h2>
-            <p>Game progress, preferences and app settings are generally stored on your device. Where applicable, Apple's iCloud services may be used to sync data across your own devices, governed by Apple's privacy policy.</p>
-        </section>
-        <section class="rev">
-            <h2>Children's <em>privacy</em></h2>
-            <p>Our apps are not intended to collect personal information from children. If you believe a child has provided us with personal data, please contact us and we will promptly remove it.</p>
-        </section>
-        <section class="rev">
-            <h2>Your <em>rights</em></h2>
-            <p>You may request that we provide, correct or delete any personal information we hold about you. To exercise these rights, please contact us using the details below.</p>
-        </section>
-        <section class="rev">
-            <h2>Changes to <em>this policy</em></h2>
-            <p>We may update this privacy policy from time to time. Updates will be posted on this page with a revised effective date. Continued use of our products after changes indicates acceptance of the updated policy.</p>
-        </section>
-        <section class="rev">
-            <h2><em>Contact</em></h2>
-            <p>If you have questions about this privacy policy or our practices, please reach out to <a href="mailto:us@wubu.ai">us@wubu.ai</a>.</p>
-        </section>
-    </article>
-
+  <footer><span>© 2026 WUBU, LLC</span><nav aria-label="Footer"><a href="blog.html">BLOG</a><a href="who.html">WHO</a><a href="support.html">SUPPORT</a><a href="fun-things.html">FUN THINGS</a><a href="privacy.html">PRIVACY</a></nav></footer>
 </main>
+</div>
 
-<footer class="foot">
-    <div class="copyright">&copy; 2026 WUBU, LLC &middot; <a href="blog.html">BLOG</a> &middot; <a href="who.html">WHO</a> &middot; <a href="support.html">SUPPORT</a> &middot; <a href="privacy.html">PRIVACY</a></div>
-</footer>
-
-<script src="studio.js"></script>
+<script src="site.js"></script>
 </body>
 </html>

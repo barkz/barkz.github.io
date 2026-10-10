@@ -1,527 +1,136 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WuBu, LLC -- Indie Mac apps and iPhone games</title>
-    <meta name="description" content="A human building Mac and iPhone apps &amp; games.">
-    <meta name="theme-color" content="#0a0a0a">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="studio.css">
-    <style>
-        /* ---- home only ---- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 150px 44px 90px;
-        }
-        .hero h1 { font-size: clamp(40px, 8vw, 118px); letter-spacing: -3px; max-width: 15ch; }
-        .hero-foot {
-            margin-top: 52px;
-            display: flex;
-            gap: 56px;
-            flex-wrap: wrap;
-            align-items: flex-end;
-            justify-content: space-between;
-        }
-        .hero-foot p {
-            max-width: 440px;
-            color: var(--text-soft);
-            font-size: 17px;
-            opacity: 0;
-            transform: translateY(18px);
-            transition: opacity 1s .5s, transform 1s .5s;
-        }
-        .ready .hero-foot p { opacity: 1; transform: none; }
-        .miniclock {
-            font-family: var(--pixel);
-            font-size: 11px;
-            color: var(--c3);
-            letter-spacing: 2px;
-            text-align: right;
-            opacity: 0;
-            transition: opacity 1s .7s;
-        }
-        .ready .miniclock { opacity: 1; }
-        .miniclock small {
-            display: block;
-            font-family: var(--sans);
-            font-size: 10px;
-            letter-spacing: 2.6px;
-            color: var(--text-muted);
-            margin-top: 9px;
-        }
-
-        /* === CINEMATIC: FRAME EXPANDS TO FULL BLEED === */
-        .expand { height: 340vh; position: relative; }
-        .expand-pin { position: sticky; top: 0; height: 100vh; display: grid; place-items: center; overflow: hidden; }
-        .frame {
-            position: relative;
-            overflow: hidden;
-            width: min(560px, 62vw);
-            aspect-ratio: 16 / 9;
-            border-radius: 18px;
-            will-change: transform, width, height;
-            border: 1px solid var(--border-strong);
-            box-shadow: 0 50px 100px -40px rgba(0, 0, 0, .9);
-        }
-        .frame .kb {
-            position: absolute;
-            inset: -8%;
-            background:
-                radial-gradient(60% 60% at 30% 30%, rgba(123, 63, 191, .55), transparent 60%),
-                radial-gradient(70% 70% at 75% 70%, rgba(255, 126, 80, .28), transparent 60%),
-                linear-gradient(150deg, #2a1046, #0a0510);
-            will-change: transform;
-        }
-        .frame .scan {
-            position: absolute;
-            inset: 0;
-            background: repeating-linear-gradient(180deg, rgba(255, 255, 255, .02) 0 2px, transparent 2px 5px);
-        }
-
-        /* the app shot is authored at 1280x720 and scaled with the frame */
-        .stage {
-            position: absolute;
-            top: 50%; left: 50%;
-            width: 1280px; height: 720px;
-            transform: translate(-50%, -50%) scale(.4375);
-            transform-origin: center center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 34px;
-        }
-        .win {
-            width: 900px;
-            border-radius: 16px;
-            overflow: hidden;
-            background: linear-gradient(180deg, rgba(20, 10, 40, .92), rgba(40, 20, 80, .92));
-            border: 1px solid rgba(196, 158, 239, .4);
-            box-shadow: 0 40px 90px -30px rgba(0, 0, 0, .85);
-        }
-        .win-bar {
-            height: 46px;
-            display: flex;
-            align-items: center;
-            padding: 0 18px;
-            background: rgba(91, 45, 142, .5);
-            position: relative;
-        }
-        .lights { display: flex; gap: 9px; }
-        .lights i { width: 12px; height: 12px; border-radius: 50%; background: #FF6058; }
-        .lights i:nth-child(2) { background: #FFBD2E; }
-        .lights i:nth-child(3) { background: #27C93F; }
-        .win-bar .name {
-            position: absolute;
-            left: 0; right: 0;
-            text-align: center;
-            font-size: 15px;
-            color: var(--c3);
-            font-weight: 500;
-        }
-        .win-bar .pin {
-            margin-left: auto;
-            width: 22px; height: 22px;
-            border-radius: 50%;
-            background: rgba(196, 158, 239, .2);
-            border: 1px solid var(--c3);
-            display: grid;
-            place-items: center;
-            font-size: 11px;
-            z-index: 1;
-        }
-        .win-body { padding: 46px 0 30px; text-align: center; }
-        .bigtime {
-            font-family: var(--pixel);
-            font-size: 96px;
-            color: var(--c3);
-            letter-spacing: 8px;
-            line-height: 1;
-            display: inline-block;
-            position: relative;
-        }
-        .bigtime .mer {
-            position: absolute;
-            top: -6px; right: -46px;
-            font-size: 15px;
-            color: var(--warm);
-            letter-spacing: 2px;
-        }
-        .datestrip {
-            margin-top: 30px;
-            font-size: 15px;
-            letter-spacing: 4px;
-            color: var(--c2);
-            font-weight: 500;
-        }
-        .win-foot {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 24px;
-            padding: 18px 26px 22px;
-            border-top: 1px solid rgba(196, 158, 239, .15);
-        }
-        .zones { display: flex; gap: 10px; }
-        .zones span {
-            font-size: 12px;
-            color: var(--c2);
-            padding: 6px 14px;
-            border-radius: 12px;
-            background: rgba(91, 45, 142, .25);
-            white-space: nowrap;
-        }
-        .zones span.on { color: var(--c3); background: rgba(91, 45, 142, .45); border: 1px solid rgba(196, 158, 239, .4); }
-        .opacity { display: flex; align-items: center; gap: 12px; }
-        .opacity b { font-size: 11px; letter-spacing: 1.4px; color: var(--c2); font-weight: 500; }
-        .opacity .track { width: 90px; height: 7px; border-radius: 4px; background: rgba(91, 45, 142, .35); position: relative; }
-        .opacity .track i { position: absolute; inset: 0 36% 0 0; border-radius: 4px; background: var(--c3); }
-        .opacity .track u { position: absolute; left: 64%; top: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: #fff; }
-        .stage .cap-in {
-            font-family: var(--serif);
-            font-style: italic;
-            font-size: 26px;
-            color: var(--c3);
-        }
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 20px;
-            border-radius: 20px;
-            background: rgba(20, 10, 40, .85);
-            border: 1px solid rgba(196, 158, 239, .4);
-            font-family: var(--pixel);
-            font-size: 10px;
-            letter-spacing: 1.6px;
-            color: var(--warm);
-        }
-        .badge i { width: 7px; height: 7px; border-radius: 50%; background: var(--c3); animation: blink-soft 1.1s steps(2) infinite; }
-        @keyframes blink-soft { 50% { opacity: .3 } }
-
-        .expand-cap {
-            position: absolute;
-            left: 0; right: 0; bottom: 7vh;
-            text-align: center;
-            font-family: var(--pixel);
-            font-size: 8px;
-            letter-spacing: 2.4px;
-            color: var(--text-muted);
-            transition: opacity .4s;
-        }
-
-        /* === SCRUBBED TIMELINE === */
-        .tl { margin-top: 74px; position: relative; padding-left: 38px; }
-        .tl::before { content: ''; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 1px; background: rgba(196, 158, 239, .16); }
-        .tl i.fill {
-            position: absolute;
-            left: 5px; top: 6px;
-            width: 1px; height: 0;
-            background: linear-gradient(180deg, var(--c3), var(--warm));
-            box-shadow: 0 0 14px var(--c3);
-        }
-        .row { position: relative; padding: 0 0 62px; opacity: .32; transition: opacity .5s; }
-        .row.on { opacity: 1; }
-        .row::before {
-            content: '';
-            position: absolute;
-            left: -38px; top: 9px;
-            width: 11px; height: 11px;
-            border-radius: 50%;
-            background: #0a0a0a;
-            border: 1px solid var(--border-strong);
-            transition: background .45s, box-shadow .45s;
-        }
-        .row.on::before { background: var(--c3); box-shadow: 0 0 0 5px rgba(196, 158, 239, .14), 0 0 18px var(--c3); }
-        .row .when { font-family: var(--pixel); font-size: 8px; letter-spacing: 1.8px; color: var(--warm); }
-        .row h3 {
-            font-family: var(--serif);
-            font-size: clamp(22px, 2.7vw, 34px);
-            font-weight: 400;
-            color: #fff;
-            margin: 11px 0 7px;
-            letter-spacing: -.5px;
-        }
-        .row .plat { font-size: 11.5px; letter-spacing: 2.2px; text-transform: uppercase; color: var(--c3); font-weight: 600; }
-        .row p { margin-top: 13px; color: var(--text-soft); max-width: 560px; font-size: 15.5px; }
-
-        /* === QUIET QUOTE === */
-        .quote { max-width: 940px; margin: 0 auto; padding: 40px 44px 60px; text-align: center; }
-        .quote blockquote {
-            font-family: var(--serif);
-            font-style: italic;
-            font-size: clamp(22px, 3.2vw, 38px);
-            line-height: 1.42;
-            color: #fff;
-            letter-spacing: -.6px;
-        }
-        .quote blockquote em { color: var(--c3); font-style: italic; }
-        .quote .after {
-            margin: 34px auto 0;
-            max-width: 560px;
-            color: var(--text-soft);
-            font-size: 16px;
-        }
-        .quote .after p + p { margin-top: 12px; }
-        .quote cite {
-            display: block;
-            margin-top: 30px;
-            font-family: var(--pixel);
-            font-size: 8px;
-            letter-spacing: 2.4px;
-            color: var(--text-muted);
-            font-style: normal;
-        }
-
-        /* === RULES === */
-        .rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px; margin-top: 70px; }
-        .rule { border-top: 1px solid var(--border); padding-top: 26px; }
-        .rule svg { width: 26px; height: 26px; color: var(--c3); margin-bottom: 18px; }
-        .rule h3 { font-family: var(--serif); font-weight: 400; font-size: 24px; color: #fff; letter-spacing: -.4px; margin-bottom: 10px; }
-        .rule p { color: var(--text-soft); font-size: 15px; }
-
-        @media (max-width: 1080px) {
-            .rules { grid-template-columns: 1fr; gap: 34px; }
-        }
-        @media (max-width: 820px) {
-            .hero { padding: 130px 22px 70px; }
-            .hero h1 { max-width: none; }
-            .hero-foot { gap: 28px; }
-            .miniclock { text-align: left; }
-            .quote { padding: 20px 22px 40px; }
-            .expand { height: 300vh; }
-            .frame { width: min(560px, 86vw); }
-        }
-        @media (max-width: 480px) {
-            .row p { font-size: 15px; }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WuBu, LLC · Clocktastic</title>
+<meta name="description" content="WuBu is a small Apple software studio. Meet Clocktastic, a floating desktop clock for macOS, launching December 15, 2026.">
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:title" content="WuBu, LLC · Clocktastic">
+<meta property="og:description" content="A floating desktop clock for macOS. Free, no ads, no notifications.">
+<meta property="og:url" content="https://wubu.ai/">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500&family=Space+Mono:wght@700&display=swap">
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
+<canvas id="river" aria-hidden="true"></canvas>
 
-<canvas id="amb"></canvas>
-<div class="grain"></div>
-
-<header class="nav" id="nav">
-    <div class="nav-inner">
-        <a class="brand" href="index.html"><span class="mark"><i></i><i></i><i></i><i></i></span><b>WUBU.AI</b></a>
-        <ul>
-            <li><a href="#work">The Apps</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="who.html">Who</a></li>
-            <li><a href="support.html">Support</a></li>
-        </ul>
-    </div>
+<div class="page">
+<header class="nav">
+  <div class="wrap">
+    <a class="mark" href="index.html"><i class="squares" aria-hidden="true"><i></i><i></i><i></i><i></i></i><b>WUBU<span>.</span>AI</b></a>
+    <ul>
+      <li><a class="link" href="#releases"><sup>01</sup>The apps</a></li>
+      <li><a class="link" href="blog.html"><sup>02</sup>Blog</a></li>
+      <li><a class="link" href="who.html"><sup>03</sup>Who</a></li>
+      <li><a class="link" href="support.html"><sup>04</sup>Support</a></li>
+      <li><a class="link" href="fun-things.html"><sup>05</sup>Fun things</a></li>
+    </ul>
+  </div>
 </header>
 
-<main>
+<main class="wrap">
+  <section class="hero" id="top">
+    <div class="orbit orbit-1" aria-hidden="true"></div>
+    <div class="orbit orbit-2" aria-hidden="true"></div>
+    <div class="orbit orbit-3" aria-hidden="true"></div>
+    <button class="orb" id="orb" type="button" aria-label="Live clock. Click to release a burst of sparks">
+      <svg viewBox="0 0 120 120" aria-hidden="true"><g id="oticks"></g><circle class="trk" cx="60" cy="60" r="46"/><circle class="prg" id="oprg" cx="60" cy="60" r="46" pathLength="100" stroke-dasharray="0 100"/></svg>
+      <i class="orb-led" aria-hidden="true"></i>
+      <span class="orb-face" aria-hidden="true"><span class="orb-time"><span class="dg" id="ohh">10</span><span class="colon">:</span><span class="dg" id="omm">24</span></span><span class="orb-sec"><span id="oss">00</span> <span id="oap">AM</span></span></span>
+    </button>
+    <p class="greeting">A small studio. Big ideas.</p>
+    <h1 id="heroName"><span class="line">Clock</span><span class="line">tastic</span></h1>
+    <div class="role-line">
+      <span class="role-tag" id="roleTag">macOS desktop clock</span>
+      <span class="role-sub">&amp; focus timer</span>
+    </div>
+    <p class="bio">Pin the time to your desktop. Clocktastic floats as a transparent clock above your work, tracks focus time and shows the weather at a glance.</p>
+    <a class="scroll-arrow" href="#preview" aria-label="Skip to the live preview">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </a>
+  </section>
 
-    <section class="hero" id="hero">
-        <div class="kicker"><span class="ln"></span>A SMALL STUDIO. BIG IDEAS.</div>
-        <h1>
-            <span class="ln-mask"><span>Here we go!</span></span>
-            <span class="ln-mask"><span>on the way to the</span></span>
-            <span class="ln-mask"><span><em>App Store</em>.</span></span>
-        </h1>
-        <div class="hero-foot">
-            <p>Mac utilities and iPhone games, made slowly and deliberately. Two people, having fun, building the kinds of apps we want to use ourselves.</p>
-            <div class="miniclock"><span id="mc">10:24 AM</span><small>CLOCKTASTIC &middot; LIVE</small></div>
+  <div class="stage" id="preview" aria-label="Live preview of Clocktastic on a Mac desktop">
+    <span class="badge"><i></i>Coming soon · Mac App Store · Dec 15, 2026</span>
+    <div class="desk">
+      <div class="menubar"><div><b>Finder</b><span>File</span><span>Edit</span><span>View</span></div><div id="menuTime">Sat 10:24 AM</div></div>
+      <div class="win" aria-hidden="true"></div>
+      <div class="clock" id="clock">
+        <span class="sweep" aria-hidden="true"></span>
+        <div class="ck-top"><i class="led"></i><span>Clocktastic 📌 Live</span><span class="sp" id="tzo">UTC</span></div>
+        <div class="ck-core">
+          <div class="ring" aria-hidden="true">
+            <svg viewBox="0 0 120 120"><g id="rticks"></g><circle class="trk" cx="60" cy="60" r="46"/><circle class="prg" id="prg" cx="60" cy="60" r="46" pathLength="100" stroke-dasharray="0 100"/></svg>
+            <div class="sec-num"><b class="dg" id="ss">00</b><small>SEC</small></div>
+          </div>
+          <div class="readout">
+            <div class="ck-time"><span class="dg" id="hh">10</span><span class="colon">:</span><span class="dg" id="mm">24</span><small id="ap">AM</small></div>
+            <div class="ck-date" id="d">SATURDAY · OCTOBER 10 · 2026</div>
+          </div>
         </div>
-    </section>
+        <div class="meter"><span>DAY</span><span class="bar"><i id="dayBar"></i></span><span id="dayPct">00.0%</span></div>
+        <div class="zones" id="zones"></div>
+        <div class="chips"><span class="chip focus"><span id="focus">Focus 25:00</span><span class="bar"><i id="focusBar"></i></span></span><span class="chip">Clear · 21°</span></div>
+      </div>
+    </div>
+    <div class="controls">
+      <label for="op">Opacity <input id="op" type="range" min="15" max="95" value="55"><output id="opv">55%</output></label>
+      <span class="caption">“Pin time to your desktop.” · Floating · Always on top</span>
+    </div>
+  </div>
 
-    <!-- the cinematic moment: the app shot grows from a card to full bleed -->
-    <section class="expand" id="expand" aria-label="Clocktastic">
-        <div class="expand-pin">
-            <div class="frame" id="frame">
-                <div class="kb" id="kb"></div>
-                <div class="stage" id="stage">
-                    <div class="win">
-                        <div class="win-bar">
-                            <span class="lights"><i></i><i></i><i></i></span>
-                            <span class="name">Clocktastic</span>
-                            <span class="pin">&#128204;</span>
-                        </div>
-                        <div class="win-body">
-                            <div class="bigtime"><span id="bigT">10:24</span><span class="mer" id="bigMer">AM</span></div>
-                            <div class="datestrip" id="bigDate">FRIDAY &middot; MAY 1 &middot; 2026</div>
-                        </div>
-                        <div class="win-foot">
-                            <div class="zones">
-                                <span class="on" id="z0">SF &middot; 10:24</span>
-                                <span id="z1">NYC &middot; 13:24</span>
-                                <span id="z2">LON &middot; 18:24</span>
-                                <span id="z3">TYO &middot; 02:24</span>
-                            </div>
-                            <div class="opacity"><b>OPACITY</b><span class="track"><i></i><u></u></span></div>
-                        </div>
-                    </div>
-                    <div class="cap-in">&ldquo;Pin time to your desktop.&rdquo;</div>
-                    <div class="badge"><i></i>FLOATING &middot; ALWAYS ON TOP</div>
-                </div>
-                <div class="scan"></div>
-            </div>
-            <div class="expand-cap" id="cap">CLOCKTASTIC &middot; MACOS &middot; DECEMBER 15, 2026</div>
-        </div>
-    </section>
+  <section class="block" id="features">
+    <p class="eyebrow">// Clocktastic</p>
+    <h2>Time where you <em>see it</em>.</h2>
+    <p class="intro">An easy-to-use macOS desktop clock that floats on your desktop as a transparent clock. Set focus time with a countdown and reminder, check the weather at a glance and customize the look to suit you.</p>
+    <div>
+      <div class="row"><h3>Floating clock</h3><p>A transparent clock sits above every window. No more digging for the menu bar.</p></div>
+      <div class="row"><h3>World times</h3><p>See San Francisco, New York, London and Tokyo side by side. Plan calls across time zones without math.</p></div>
+      <div class="row"><h3>Focus countdown</h3><p>Set a focus block. Clocktastic counts down and sends a reminder when time is up.</p></div>
+      <div class="row"><h3>Weather at a glance</h3><p>Current conditions live on the clock face. One look covers time and weather.</p></div>
+      <div class="row"><h3>Your look</h3><p>Adjust opacity, size and style until the clock fits your desktop and your colour scheme.</p></div>
+    </div>
+  </section>
 
-    <section class="sec" id="work">
-        <span class="tag rev">// THE RELEASES</span>
-        <h2 class="rev">Shipped when it is <em>actually done</em>.</h2>
-        <p class="lede rev">Not when a quarter ends. Built thoughtfully, one at a time, and released when we love them &mdash; not just when they are publishable.</p>
+  <section class="block" id="releases">
+    <p class="eyebrow">// The releases</p>
+    <h2>If we don't use and <em>love it</em>, we don't release it.</h2>
+    <p class="intro">Our tools and games are all free. No ads. No notifications.</p>
+    <div class="releases">
+      <article class="rel now"><span class="when">DECEMBER 15, 2026</span><h3>Clocktastic</h3><span class="plat">Mac App Store</span><p class="tag">Pin time to your desktop.</p><p>An easy-to-use macOS clock that floats on your desktop as a transparent clock. Read the time from three metres away, even when a full-screen app hides your menu bar.</p><p>Set a focus countdown with a reminder, check the weather at a glance and track time zones around the world. Slide the opacity to match your wallpaper and customize the look to suit you. Clocktastic never steals focus from your work.</p></article>
+      <article class="rel"><span class="when">2027 · IN THE SKETCHBOOK</span><h3>React<em>0</em>r</h3><span class="plat">iPhone · App Store</span><p class="tag">Can you react as fast as a race car driver?</p><p>A reaction game built around the start lights of a car race. Red lights count down, one by one. When they go out, tap. React0r shows your reaction time in milliseconds.</p><p>Beat your best time in short bursts. No ads, no notifications begging you back.</p></article>
+    </div>
+  </section>
 
-        <div class="tl" id="tl">
-            <i class="fill" id="fill"></i>
-            <div class="row">
-                <div class="when">DECEMBER 15, 2026</div>
-                <h3>Clocktastic</h3>
-                <div class="plat">Mac App Store</div>
-                <p>An easy-to-use macOS desktop clock that floats on your desktop as a transparent clock. Set focus time with a countdown and reminder, check the weather at a glance, and customize the look to suit you.</p>
-            </div>
-            <div class="row">
-                <div class="when">2027 &middot; IN THE SKETCHBOOK</div>
-                <h3>An iPhone game</h3>
-                <div class="plat">iPhone &middot; App Store</div>
-                <p>Built to be played in short bursts. No ads, no notifications begging you back, no dark patterns anywhere near it.</p>
-            </div>
-            <div class="row">
-                <div class="when">WHENEVER IT IS READY</div>
-                <h3>The next one</h3>
-                <div class="plat">Undecided</div>
-                <p>We do not announce things we have not built. When there is something worth showing, it will appear here first.</p>
-            </div>
-        </div>
-    </section>
+  <section class="block" id="studio">
+    <p class="eyebrow">// A small studio. Big ideas.</p>
+    <h2>Here we go! On the way to the <em>App Store</em>.</h2>
+    <p class="intro">Mac utilities and iPhone games, made slowly and deliberately. Two people, having fun, building the kinds of apps we want to use ourselves.</p>
+    <blockquote class="note">Putting a small thing into the App Store has been a quiet dream of mine for a long time. Not for downloads or money. For the simple feeling of here, I made this.</blockquote>
+    <div class="about-body">
+      <p>WuBu is two people, having fun, working slowly, and building fun apps and games. We use them. If we didn't, we wouldn't release them.</p>
+      <p>If any of our apps make it to your Mac or iPhone, big smiles for us. That is the whole win.</p>
+    </div>
+    <div class="sig"><div class="mono-av" aria-hidden="true">A</div><div>Amy<span>CEO, WuBu, LLC</span></div></div>
+  </section>
 
-    <section class="quote" id="note">
-        <blockquote class="rev">Putting a small thing into the App Store has been a quiet dream of mine for a long time. Not for downloads or money. For the simple feeling of <em>here, I made this</em>.</blockquote>
-        <div class="after rev">
-            <p>WuBu is two people, having fun, working slowly, and building fun apps and games. We use them. If we didn't, we wouldn't release them.</p>
-            <p>If any of our apps make it to your Mac or iPhone, big smiles for us &mdash; that is the whole win.</p>
-        </div>
-        <cite class="rev">&mdash; AMY, CEO</cite>
-    </section>
+  <section class="block" id="contact">
+    <p class="eyebrow">// Contact</p>
+    <h2>Let's <em>talk</em>.</h2>
+    <div class="mail"><span class="addr">askus@wubu.ai</span><button class="copy" type="button" data-copy="askus@wubu.ai">Copy email</button></div>
+    <div class="links"><a href="support.html">Get support</a><a href="blog.html">Read the blog</a><a href="who.html">Who is WuBu</a></div>
+  </section>
 
-    <section class="sec">
-        <span class="tag rev">// HOW WE WORK</span>
-        <h2 class="rev">A few <em>quiet rules</em>.</h2>
-        <p class="lede rev">The things WuBu does not bend on.</p>
-
-        <div class="rules">
-            <article class="rule rev">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="12 2 15 8.5 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 9 8.5 12 2"/>
-                </svg>
-                <h3>Polished over fast</h3>
-                <p>We ship slowly and deliberately. Polish before features. Done before deadlines we made up.</p>
-            </article>
-            <article class="rule rev">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2L4 6v6c0 5 3.5 9.7 8 11 4.5-1.3 8-6 8-11V6l-8-4z"/>
-                </svg>
-                <h3>Pricing over patterns</h3>
-                <p>Clear prices. No data harvesting. No ads. No dark patterns. The product pays for itself.</p>
-            </article>
-            <article class="rule rev">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-                </svg>
-                <h3>Tools, not traps</h3>
-                <p>Apps that get out of your way. Games that respect your time. If something feels off, we pull it before you do.</p>
-            </article>
-        </div>
-    </section>
-
+  <footer><span>© 2026 WUBU, LLC</span><nav aria-label="Footer"><a href="blog.html">BLOG</a><a href="who.html">WHO</a><a href="support.html">SUPPORT</a><a href="fun-things.html">FUN THINGS</a><a href="privacy.html">PRIVACY</a></nav></footer>
 </main>
+</div>
 
-<footer class="foot">
-    <div class="copyright">&copy; 2026 WUBU, LLC &middot; <a href="blog.html">BLOG</a> &middot; <a href="who.html">WHO</a> &middot; <a href="support.html">SUPPORT</a> &middot; <a href="privacy.html">PRIVACY</a></div>
-</footer>
-
-<script src="studio.js"></script>
-<script>
-(function () {
-    /* ---- live time, in the hero and inside the app shot ---- */
-    var DAYS = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
-    var MONTHS = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'];
-    var ZONES = [['SF', 'America/Los_Angeles'], ['NYC', 'America/New_York'], ['LON', 'Europe/London'], ['TYO', 'Asia/Tokyo']];
-    function pad(n) { return String(n).padStart(2, '0'); }
-    function zoneTime(tz, d) {
-        try {
-            return new Intl.DateTimeFormat('en-GB', { timeZone: tz, hour: '2-digit', minute: '2-digit', hour12: false }).format(d);
-        } catch (e) { return null; }
-    }
-    function tick() {
-        var d = new Date(), h12 = d.getHours() % 12 || 12, mm = pad(d.getMinutes());
-        var mer = d.getHours() >= 12 ? 'PM' : 'AM';
-        document.getElementById('mc').textContent = h12 + ':' + mm + ' ' + mer;
-        document.getElementById('bigT').textContent = h12 + ':' + mm;
-        document.getElementById('bigMer').textContent = mer;
-        document.getElementById('bigDate').innerHTML = DAYS[d.getDay()] + ' &middot; ' + MONTHS[d.getMonth()] + ' ' + d.getDate() + ' &middot; ' + d.getFullYear();
-        ZONES.forEach(function (z, i) {
-            var el = document.getElementById('z' + i), t = zoneTime(z[1], d);
-            if (el && t) el.innerHTML = z[0] + ' &middot; ' + t;
-        });
-    }
-    tick();
-    setInterval(tick, 1000);
-
-    /* ---- scroll choreography ---- */
-    var exp = document.getElementById('expand'),
-        frame = document.getElementById('frame'),
-        kb = document.getElementById('kb'),
-        stage = document.getElementById('stage'),
-        cap = document.getElementById('cap'),
-        tl = document.getElementById('tl'),
-        fill = document.getElementById('fill'),
-        rows = [].slice.call(document.querySelectorAll('.row'));
-    var queued = false;
-    function clamp(v, a, b) { return Math.min(b, Math.max(a, v)); }
-    function ease(x) { return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
-
-    function draw() {
-        queued = false;
-
-        /* the frame grows from a small 16:9 card to full bleed, then holds */
-        var r = exp.getBoundingClientRect();
-        if (r.top < innerHeight && r.bottom > 0) {
-            var total = exp.offsetHeight - innerHeight;
-            var p = clamp(-r.top / total, 0, 1);
-            var g = ease(clamp(p / .62, 0, 1));               /* growth finishes at 62% */
-            var narrow = innerWidth < 820;
-            var wMin = Math.min(560, innerWidth * (narrow ? .86 : .62));
-            var w = wMin + (innerWidth - wMin) * g;
-            var hMin = wMin * 9 / 16;
-            var h = hMin + (innerHeight - hMin) * g;   /* ends flush with the viewport */
-            frame.style.width = w + 'px';
-            frame.style.height = h + 'px';
-            frame.style.borderRadius = (18 - 18 * g) + 'px';
-            frame.style.transform = 'scale(' + (1 + g * .02) + ')';
-            stage.style.transform = 'translate(-50%,-50%) scale(' + (w / (narrow ? 980 : 1280)) + ')';
-            /* the art behind keeps panning the whole time (Ken Burns) */
-            kb.style.transform = 'scale(' + (1.14 - g * .1) + ') translate(' + ((p - .5) * -4) + '%,' + ((p - .5) * -3) + '%)';
-            cap.style.opacity = String(1 - g);
-        }
-
-        /* timeline scrub */
-        var tr = tl.getBoundingClientRect();
-        var pt = clamp((innerHeight * .72 - tr.top) / tr.height, 0, 1);
-        fill.style.height = (pt * tr.height) + 'px';
-        rows.forEach(function (row) {
-            var rr = row.getBoundingClientRect();
-            row.classList.toggle('on', rr.top < innerHeight * .72 && rr.bottom > 120);
-        });
-    }
-    addEventListener('scroll', function () { if (!queued) { queued = true; requestAnimationFrame(draw); } }, { passive: true });
-    addEventListener('resize', draw);
-    draw();
-})();
-</script>
+<script src="site.js"></script>
+<script src="home.js"></script>
 </body>
 </html>

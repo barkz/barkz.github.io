@@ -1,76 +1,75 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Who is WuBu -- WuBu, LLC</title>
-    <meta name="description" content="WuBu is a one-person Apple software studio. macOS utilities and iPhone games made slowly, on purpose.">
-    <meta name="theme-color" content="#0a0a0a">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="studio.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Who is WuBu · WuBu</title>
+<meta name="description" content="WuBu is a small Apple software studio. Two people making macOS utilities and iPhone games, slowly and on purpose.">
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:title" content="Who is WuBu · WuBu">
+<meta property="og:description" content="WuBu is a small Apple software studio. Two people making macOS utilities and iPhone games, slowly and on purpose.">
+<meta property="og:url" content="https://wubu.ai/who.html">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500&family=Space+Mono:wght@700&display=swap">
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
+<canvas id="river" aria-hidden="true"></canvas>
 
-<canvas id="amb"></canvas>
-<div class="grain"></div>
-
-<header class="nav" id="nav">
-    <div class="nav-inner">
-        <a class="brand" href="index.html"><span class="mark"><i></i><i></i><i></i><i></i></span><b>WUBU.AI</b></a>
-        <ul>
-            <li><a href="index.html#work">The Apps</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="who.html" class="current">Who</a></li>
-            <li><a href="support.html">Support</a></li>
-        </ul>
-    </div>
+<div class="page">
+<header class="nav">
+  <div class="wrap">
+    <a class="mark" href="index.html"><i class="squares" aria-hidden="true"><i></i><i></i><i></i><i></i></i><b>WUBU<span>.</span>AI</b></a>
+    <ul>
+      <li><a class="link" href="index.html#releases"><sup>01</sup>The apps</a></li>
+      <li><a class="link" href="blog.html"><sup>02</sup>Blog</a></li>
+      <li><a class="link" href="who.html" aria-current="page"><sup>03</sup>Who</a></li>
+      <li><a class="link" href="support.html"><sup>04</sup>Support</a></li>
+      <li><a class="link" href="fun-things.html"><sup>05</sup>Fun things</a></li>
+    </ul>
+  </div>
 </header>
 
-<main>
+<main class="wrap">
+  <section class="sub">
+    <div class="sub-head">
+      <div class="orbit orbit-1" aria-hidden="true"></div>
+      <div class="orbit orbit-2" aria-hidden="true"></div>
+      <div class="orbit orbit-3" aria-hidden="true"></div>
+      <button class="orb" id="orb" type="button" aria-label="Live clock. Click to release a burst of sparks">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><g id="oticks"></g><circle class="trk" cx="60" cy="60" r="46"/><circle class="prg" id="oprg" cx="60" cy="60" r="46" pathLength="100" stroke-dasharray="0 100"/></svg>
+        <i class="orb-led" aria-hidden="true"></i>
+        <span class="orb-face" aria-hidden="true"><span class="orb-time"><span class="dg" id="ohh">10</span><span class="colon">:</span><span class="dg" id="omm">24</span></span><span class="orb-sec"><span id="oss">00</span> <span id="oap">AM</span></span></span>
+      </button>
+      <p class="eyebrow">// Who is WuBu</p>
+      <h1 id="heroName">A small studio. <em>Two people.</em></h1>
+      <p>Thoughtful, useful and occasionally playful software for Apple platforms. The kind of apps you actually want to keep.</p>
+    </div>
+    <div class="prose">
+      <h2>The <em>story</em></h2>
+      <p>WuBu, LLC is a small independent software studio focused on thoughtful, useful and occasionally playful software for Apple platforms. We build the kinds of apps we want to use ourselves, tools that get out of your way and games that respect your time.</p>
+      <h2>What we <em>make</em></h2>
+      <p>The work falls into two simple buckets:</p>
+      <ul>
+        <li><strong>macOS utilities</strong> that sharpen everyday workflows for power users and makers.</li>
+        <li><strong>iPhone games</strong> built with care, playable in short bursts, without ads or dark patterns.</li>
+      </ul>
+      <h2>How we <em>work</em></h2>
+      <p>We ship slowly and deliberately. Polish before features. <em>Done before deadlines we made up.</em></p>
+      <p>We prefer polished releases over feature creep, and clear pricing over data collection. If something feels off, we pull it before you do.</p>
+      <h2>Get in <em>touch</em></h2>
+      <p>Questions, feedback or an idea you want to see built? Every message is read.</p>
+      <div class="mail"><span class="addr">askus@wubu.ai</span><button class="copy" type="button" data-copy="askus@wubu.ai">Copy email</button></div>
+    </div>
+  </section>
 
-    <section class="page-hero">
-        <div class="kicker"><span class="ln"></span>// WHO IS WUBU</div>
-        <h1>
-            <span class="ln-mask"><span>A small studio.</span></span>
-            <span class="ln-mask"><span><em>One person.</em></span></span>
-        </h1>
-        <p class="lede">Thoughtful, useful and occasionally playful software for Apple platforms. The kind of apps you actually want to keep.</p>
-
-    </section>
-
-    <article class="prose">
-        <section class="rev">
-            <h2>The <em>story</em></h2>
-            <p>WuBu, LLC is a small independent software studio focused on thoughtful, useful and occasionally playful software for Apple platforms. We build the kinds of apps we want to use ourselves, tools that get out of your way and games that respect your time.</p>
-        </section>
-        <section class="rev">
-            <h2>What we <em>make</em></h2>
-            <p>The work falls into two simple buckets:</p>
-            <ul>
-                <li><strong>macOS utilities</strong> that sharpen everyday workflows for power users and makers.</li>
-                <li><strong>iPhone games</strong> built with care, playable in short bursts, without ads or dark patterns.</li>
-            </ul>
-        </section>
-        <section class="rev">
-            <h2>How we <em>work</em></h2>
-            <div class="accent-card">
-                <p>We ship slowly and deliberately. Polish before features. <em>Done before deadlines we made up.</em></p>
-            </div>
-            <p>We prefer polished releases over feature creep, and clear pricing over data collection. If something feels off, we pull it before you do.</p>
-        </section>
-        <section class="rev">
-            <h2>Get in <em>touch</em></h2>
-            <p>Questions, feedback or an idea you want to see built? Reach out to <a href="mailto:us@wubu.ai">us@wubu.ai</a>. Every message is read.</p>
-        </section>
-    </article>
-
+  <footer><span>© 2026 WUBU, LLC</span><nav aria-label="Footer"><a href="blog.html">BLOG</a><a href="who.html">WHO</a><a href="support.html">SUPPORT</a><a href="fun-things.html">FUN THINGS</a><a href="privacy.html">PRIVACY</a></nav></footer>
 </main>
+</div>
 
-<footer class="foot">
-    <div class="copyright">&copy; 2026 WUBU, LLC &middot; <a href="blog.html">BLOG</a> &middot; <a href="who.html">WHO</a> &middot; <a href="support.html">SUPPORT</a> &middot; <a href="privacy.html">PRIVACY</a></div>
-</footer>
-
-<script src="studio.js"></script>
+<script src="site.js"></script>
 </body>
 </html>

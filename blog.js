@@ -121,15 +121,14 @@ function renderBlogIndex(mount) {
                 return;
             }
             mount.innerHTML = posts.map(function (p) {
-                return '<a class="post-row rev" href="post.html?p=' + encodeURIComponent(p.slug) + '">' +
-                    '<div class="when">' + esc(longDate(p.date)) + '</div>' +
+                return '<a class="post-row" href="post.html?p=' + encodeURIComponent(p.slug) + '">' +
+                    '<span class="when">' + esc(longDate(p.date)) + '</span>' +
                     '<h2>' + esc(p.title) + '</h2>' +
                     (p.excerpt ? '<p>' + esc(p.excerpt) + '</p>' : '') +
                     '<span class="more">READ &rarr;' +
-                    (p.minutes ? '<em>' + p.minutes + ' MIN</em>' : '') + '</span>' +
+                    (p.minutes ? '<i>' + p.minutes + ' MIN</i>' : '') + '</span>' +
                     '</a>';
             }).join('');
-            studioReveal(mount);
         })
         .catch(function () {
             mount.innerHTML = '<p class="empty">The post index could not be loaded. ' +
@@ -140,14 +139,24 @@ function renderBlogIndex(mount) {
 /* ---------- a single post ------------------------------------------------ */
 function renderPost() {
     var slug = new URLSearchParams(location.search).get('p') || '';
-    var head = document.getElementById('post-head');
+    var when = document.getElementById('post-when');
+    var title = document.getElementById('heroName');
     var body = document.getElementById('post-body');
 
+    /* the headline is hidden until it holds the real title; replay its reveal
+       and re-route the particle river around the new text */
+    function show(eyebrow, heading) {
+        when.textContent = eyebrow;
+        title.textContent = heading;
+        title.classList.remove('pending');
+        title.style.animation = 'none'; void title.offsetWidth; title.style.animation = '';
+        if (window.river) window.river.refresh();
+    }
+
     function fail(msg) {
-        head.innerHTML = '<div class="kicker"><span class="ln"></span>// NOT FOUND</div>' +
-            '<h1><span class="ln-mask"><span>That post is not here.</span></span></h1>';
+        document.title = 'Post not found · WuBu';
+        show('// Not found', 'That post is not here.');
         body.innerHTML = '<p>' + msg + ' <a href="blog.html">Back to all posts</a>.</p>';
-        document.body.classList.add('ready');
     }
 
     if (!/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(slug) || slug.indexOf('..') !== -1) {
@@ -159,17 +168,11 @@ function renderPost() {
         .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
         .then(function (text) {
             var parts = splitTitle(text, slug);
-            var when = longDate(splitSlug(slug).date);
+            var date = longDate(splitSlug(slug).date);
 
-            document.title = parts.title + ' -- WuBu, LLC';
-            head.innerHTML =
-                '<div class="kicker"><span class="ln"></span>' +
-                (when ? esc(when) : '// FROM THE DESK') +
-                '<span class="dot">&middot;</span>' + readingTime(parts.body) + ' MIN' +
-                '</div>' +
-                '<h1><span class="ln-mask"><span>' + esc(parts.title) + '</span></span></h1>';
+            document.title = parts.title + ' · WuBu';
             body.innerHTML = renderMarkdown(parts.body);
-            document.body.classList.add('ready');
+            show((date || '// From the desk') + ' · ' + readingTime(parts.body) + ' MIN', parts.title);
             neighbours(slug);
         })
         .catch(function () { fail('We could not find <code>posts/' + esc(slug) + '.md</code>.'); });
