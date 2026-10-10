@@ -15,10 +15,16 @@ blog index and the page's description in link previews.
 ## Adding a post
 
 1. Write `posts/your-topic-2026-09-14.md`.
-2. Run `python3 tools/build-site.py`. It writes `blog/your-topic.html` and
-   updates the list on `blog.html`. **A post that has not been built will
-   not appear.**
-3. Commit and push the markdown, the new page in `blog/` and `blog.html`.
+2. Commit and push it to `main`.
+3. The **Build site** action (`.github/workflows/build-site.yml`) runs
+   `tools/build-site.py`, commits the new `blog/your-topic.html` and the
+   updated `blog.html` as github-actions[bot], and deploys. It takes a
+   minute or two; watch it in the repo's Actions tab.
+4. `git pull`, so your copy has the bot's commit before you push again.
+
+To see a post before publishing, run `python3 tools/build-site.py` and open
+`blog/your-topic.html`. Committing the built pages yourself is fine too; the
+action then finds nothing to do.
 
 Renaming or deleting a post's markdown removes its old page on the next
 build. Two posts cannot share a topic, since they would share a page.
