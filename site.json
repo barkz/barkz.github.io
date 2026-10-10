@@ -1,0 +1,47 @@
+{
+  "version": 4,
+  "domain": "https://wubu.ai/",
+  "year": 2026,
+  "launch": {
+    "long": "December 15, 2026",
+    "short": "Dec 15, 2026",
+    "upper": "DECEMBER 15, 2026"
+  },
+  "email": {
+    "askus": "askus@wubu.ai",
+    "support": "support@wubu.ai",
+    "features": "features@wubu.ai"
+  },
+  "pages": {
+    "index.html": {
+      "title": "WuBu, LLC · Clocktastic",
+      "description": "WuBu is a small Apple software studio. Meet Clocktastic, a floating desktop clock for macOS, launching {{launch.long}}.",
+      "og_description": "A floating desktop clock for macOS. Free, no ads, no notifications.",
+      "scripts": ["home.js"]
+    },
+    "blog.html": {
+      "title": "Blog · WuBu",
+      "description": "Notes from a small Apple software studio. Build logs, decisions and the occasional detour.",
+      "nav": "blog"
+    },
+    "who.html": {
+      "title": "Who is WuBu · WuBu",
+      "description": "WuBu is a small Apple software studio. Two people making macOS utilities and iPhone games, slowly and on purpose.",
+      "nav": "who"
+    },
+    "support.html": {
+      "title": "Support · WuBu",
+      "description": "Get help with WuBu apps. A small studio with small inboxes; we read every message.",
+      "nav": "support"
+    },
+    "privacy.html": {
+      "title": "Privacy · WuBu",
+      "description": "WuBu, LLC privacy policy. No tracking cookies, no third-party analytics, no selling your data."
+    },
+    "fun-things.html": {
+      "title": "Fun things · WuBu",
+      "description": "Fun things from WuBu, a small Apple software studio.",
+      "nav": "fun"
+    }
+  }
+}

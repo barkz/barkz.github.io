@@ -5,23 +5,35 @@ One markdown file per post, named `topic-YYYY-MM-DD.md`:
     posts/why-a-floating-clock-2026-07-12.md
           └─ topic ──────────┘ └─ date ──┘
 
-The date drives the ordering and the byline. The first `# Heading` in the
-file is the title (without one, the topic part of the filename is used,
-with hyphens turned into spaces). The first paragraph becomes the excerpt
-on the blog index.
+Each post becomes its own page at `blog/topic.html`
+(`wubu.ai/blog/why-a-floating-clock.html`), and `blog.html` lists every
+post, newest first. The date drives the ordering and the byline. The first
+`# Heading` in the file is the title (without one, the topic is used, with
+hyphens turned into spaces). The first paragraph becomes the excerpt on the
+blog index and the page's description in link previews.
 
 ## Adding a post
 
 1. Write `posts/your-topic-2026-09-14.md`.
-2. Run `python3 tools/build-blog-index.py` — this rewrites `posts.json`,
-   which is the index the blog page reads. **A post that is not in
-   posts.json will not appear.**
-3. Commit and push both the post and `posts.json`.
+2. Run `python3 tools/build-site.py`. It writes `blog/your-topic.html` and
+   updates the list on `blog.html`. **A post that has not been built will
+   not appear.**
+3. Commit and push the markdown, the new page in `blog/` and `blog.html`.
+
+Renaming or deleting a post's markdown removes its old page on the next
+build. Two posts cannot share a topic, since they would share a page.
+Generated pages say so at the top: edit the markdown, not the HTML.
 
 ## What renders
 
-Headings, **bold**, *italic*, `inline code`, fenced code blocks, links,
-images, bullet and numbered lists, blockquotes and horizontal rules.
+- `# Title` on the first line is the post title.
+- `##` starts a section (`#` in the body does too), `###` a subsection,
+  `####` a minor heading. Every heading gets an anchor, so long posts can
+  link to a section: `[see below](#the-rule-we-set-first)`.
+- **Bold**, *italic*, `inline code` and fenced code blocks.
+- Links and images. Write relative paths from the site root, such as
+  `[support](support.html)` or `![screenshot](images/clock.png)`. They are
+  adjusted for the `blog/` folder.
+- Bullet and numbered lists (one level), blockquotes and horizontal rules.
 
-Raw HTML is escaped rather than rendered, on purpose — posts are shown on
-the same origin as the rest of the site.
+Raw HTML is escaped rather than rendered, on purpose.
