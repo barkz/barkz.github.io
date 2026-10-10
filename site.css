@@ -153,7 +153,7 @@ header.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; 
 .caption { margin-left: auto; }
 
 /* Home sections */
-section.block { position: relative; background: var(--bg); padding-block: 64px; border-top: 1px solid var(--line); scroll-margin-top: 70px; }
+section.block { position: relative; padding-block: 64px; border-top: 1px solid var(--line); scroll-margin-top: 70px; }
 .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; }
 h2 { font-family: var(--sans); font-weight: 600; font-size: clamp(30px, 4.6vw, 44px); letter-spacing: -.025em; line-height: 1.08; margin: 0 0 18px; text-wrap: balance; }
 .intro { color: var(--muted); max-width: 58ch; margin: 0 0 36px; }
