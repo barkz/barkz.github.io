@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<!-- build:head -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>WuBu, LLC · Clocktastic</title>
@@ -14,12 +15,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500&family=Space+Mono:wght@700&display=swap">
-<link rel="stylesheet" href="site.css?v=3">
+<link rel="stylesheet" href="site.css?v=4">
+<!-- /build -->
 </head>
 <body>
 <canvas id="river" aria-hidden="true"></canvas>
 
 <div class="page">
+<!-- build:nav -->
 <header class="nav">
   <div class="wrap">
     <a class="mark" href="index.html"><i class="squares" aria-hidden="true"><i></i><i></i><i></i><i></i></i><b>WUBU<span>.</span>AI</b></a>
@@ -32,9 +35,11 @@
     </ul>
   </div>
 </header>
+<!-- /build -->
 
 <main class="wrap">
   <section class="hero" id="top">
+    <!-- build:orb -->
     <div class="orbit orbit-1" aria-hidden="true"></div>
     <div class="orbit orbit-2" aria-hidden="true"></div>
     <div class="orbit orbit-3" aria-hidden="true"></div>
@@ -43,6 +48,7 @@
       <i class="orb-led" aria-hidden="true"></i>
       <span class="orb-face" aria-hidden="true"><span class="orb-time"><span class="dg" id="ohh">10</span><span class="colon">:</span><span class="dg" id="omm">24</span></span><span class="orb-sec"><span id="oss">00</span> <span id="oap">AM</span></span></span>
     </button>
+    <!-- /build -->
     <p class="greeting">A small studio. Big ideas.</p>
     <h1 id="heroName"><span class="line">Clock</span><span class="line">tastic</span></h1>
     <div class="role-line">
@@ -56,7 +62,7 @@
   </section>
 
   <div class="stage" id="preview" aria-label="Live preview of Clocktastic on a Mac desktop">
-    <span class="badge"><i></i>Coming soon · Mac App Store · Dec 15, 2026</span>
+    <span class="badge"><i></i>Coming soon · Mac App Store · <!-- build:text launch.short -->Dec 15, 2026<!-- /build --></span>
     <div class="desk">
       <div class="menubar"><div><b>Finder</b><span>File</span><span>Edit</span><span>View</span></div><div id="menuTime">Sat 10:24 AM</div></div>
       <div class="win" aria-hidden="true"></div>
@@ -102,7 +108,7 @@
     <h2>If we don't use and <em>love it</em>, we don't release it.</h2>
     <p class="intro">Our tools and games are all free. No ads. No notifications.</p>
     <div class="releases">
-      <article class="rel now"><span class="when">DECEMBER 15, 2026</span><h3>Clocktastic</h3><span class="plat">Mac App Store</span><p class="tag">Pin time to your desktop.</p><p>An easy-to-use macOS clock that floats on your desktop as a transparent clock. Read the time from three metres away, even when a full-screen app hides your menu bar.</p><p>Set a focus countdown with a reminder, check the weather at a glance and track time zones around the world. Slide the opacity to match your wallpaper and customize the look to suit you. Clocktastic never steals focus from your work.</p></article>
+      <article class="rel now"><span class="when"><!-- build:text launch.upper -->DECEMBER 15, 2026<!-- /build --></span><h3>Clocktastic</h3><span class="plat">Mac App Store</span><p class="tag">Pin time to your desktop.</p><p>An easy-to-use macOS clock that floats on your desktop as a transparent clock. Read the time from three metres away, even when a full-screen app hides your menu bar.</p><p>Set a focus countdown with a reminder, check the weather at a glance and track time zones around the world. Slide the opacity to match your wallpaper and customize the look to suit you. Clocktastic never steals focus from your work.</p></article>
       <article class="rel"><span class="when">2027 · IN THE SKETCHBOOK</span><h3>React<em>0</em>r</h3><span class="plat">iPhone · App Store</span><p class="tag">Can you react as fast as a race car driver?</p><p>A reaction game built around the start lights of a car race. Red lights count down, one by one. When they go out, tap. React0r shows your reaction time in milliseconds.</p><p>Beat your best time in short bursts. No ads, no notifications begging you back.</p></article>
     </div>
   </section>
@@ -122,15 +128,19 @@
   <section class="block" id="contact">
     <p class="eyebrow">// Contact</p>
     <h2>Let's <em>talk</em>.</h2>
-    <div class="mail"><span class="addr">askus@wubu.ai</span><button class="copy" type="button" data-copy="askus@wubu.ai">Copy email</button></div>
+    <!-- build:mail askus --><div class="mail"><span class="addr">askus@wubu.ai</span><button class="copy" type="button" data-copy="askus@wubu.ai">Copy email</button></div><!-- /build -->
     <div class="links"><a href="support.html">Get support</a><a href="blog.html">Read the blog</a><a href="who.html">Who is WuBu</a></div>
   </section>
 
+  <!-- build:footer -->
   <footer><span>© 2026 WUBU, LLC</span><nav aria-label="Footer"><a href="blog.html">BLOG</a><a href="who.html">WHO</a><a href="support.html">SUPPORT</a><a href="fun-things.html">FUN THINGS</a><a href="privacy.html">PRIVACY</a></nav></footer>
+  <!-- /build -->
 </main>
 </div>
 
-<script src="site.js?v=3"></script>
-<script src="home.js?v=3"></script>
+<!-- build:scripts -->
+<script src="site.js?v=4"></script>
+<script src="home.js?v=4"></script>
+<!-- /build -->
 </body>
 </html>

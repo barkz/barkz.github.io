@@ -4,7 +4,7 @@
    headline and down the full page, and the copy-email buttons.
    Each page provides: <canvas id="river">, a .orb#orb with the orb clock
    markup, and a headline #heroName. The home-page desktop mockup lives in
-   home.js; blog rendering lives in blog.js.
+   home.js.
    ========================================================================== */
 
 /* ---------- Orb mini clock ---------- */
@@ -234,16 +234,8 @@
     render();
     start();
   }
-  // Pages that change their headline after load (a blog post) call this to re-route the river
-  window.river = {
-    refresh: function () {
-      if (!booted) { boot(); return; }
-      if (!layout()) return;
-      fillTail();
-      grains.forEach(function (g) { if (g.d >= 0) g.place(); }); render();
-    },
-    burst: burst
-  };
+  // home.js bursts sparks from the role tag
+  window.river = { burst: burst };
 
   addEventListener("pointermove", function (e) { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
   document.addEventListener("pointerleave", function () { mouse.x = mouse.y = -9999; });
