@@ -130,7 +130,8 @@ function renderBlogIndex(mount) {
                     '</a>';
             }).join('');
         })
-        .catch(function () {
+        .catch(function (err) {
+            console.error(err);
             mount.innerHTML = '<p class="empty">The post index could not be loaded. ' +
                 'If you just added a post, run <code>python3 tools/build-blog-index.py</code>.</p>';
         });
@@ -175,7 +176,7 @@ function renderPost() {
             show((date || '// From the desk') + ' · ' + readingTime(parts.body) + ' MIN', parts.title);
             neighbours(slug);
         })
-        .catch(function () { fail('We could not find <code>posts/' + esc(slug) + '.md</code>.'); });
+        .catch(function (err) { console.error(err); fail('We could not find <code>posts/' + esc(slug) + '.md</code>.'); });
 }
 
 /* previous / next, in date order */
