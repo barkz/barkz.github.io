@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500&family=Space+Mono:wght@700&display=swap">
-<link rel="stylesheet" href="site.css?v=5">
+<link rel="stylesheet" href="site.css?v=6">
 <!-- /build -->
 </head>
 <body>
@@ -69,7 +69,7 @@
     <div class="desk">
       <div class="menubar"><div><b>Finder</b><span>File</span><span>Edit</span><span>View</span></div><div id="menuTime">Sat 10:24 AM</div></div>
       <div class="win" aria-hidden="true"></div>
-      <div class="clock" id="clock">
+      <div class="clock" id="clock" tabindex="0" aria-label="Clocktastic preview. Drag, or use the arrow keys, to move it around the desktop">
         <span class="sweep" aria-hidden="true"></span>
         <div class="ck-top"><i class="led"></i><span>Clocktastic 📌 Live</span><span class="sp" id="tzo">UTC</span></div>
         <div class="ck-core">
@@ -89,7 +89,7 @@
     </div>
     <div class="controls">
       <label for="op">Opacity <input id="op" type="range" min="15" max="95" value="55"><output id="opv">55%</output></label>
-      <span class="caption">“Pin time to your desktop.” · Floating · Always on top</span>
+      <span class="caption">“Pin time to your desktop.” · Drag it anywhere · Always on top</span>
     </div>
   </div>
 
@@ -142,8 +142,8 @@
 </div>
 
 <!-- build:scripts -->
-<script src="site.js?v=5"></script>
-<script src="home.js?v=5"></script>
+<script src="site.js?v=6"></script>
+<script src="home.js?v=6"></script>
 <!-- /build -->
 </body>
 </html>
