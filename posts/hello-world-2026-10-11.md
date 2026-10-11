@@ -2,7 +2,7 @@
 
 This is the first note from the WuBu desk of the CEO.
 A long time goal has been to publish an application to
-the Apple Store. We are finally pursuing our goal.
+the App Store. We are finally pursuing our goal.
 
 ## What's in a name?
 
