@@ -56,5 +56,30 @@
   function setOp() { clock.style.setProperty("--glass", op.value / 100); opv.textContent = op.value + "%"; }
   op.addEventListener("input", setOp); setOp();
 
+  // Drag the clock around the mock desktop, kept below the menu bar. The position is stored as
+  // percentages of the desk so it scales with the page; arrow keys nudge it when it has focus.
+  var desk = clock.parentElement, MENU = 26, drag = null;
+  function place(x, y) {
+    var dw = desk.clientWidth, dh = desk.clientHeight;
+    x = Math.max(0, Math.min(x, dw - clock.offsetWidth));
+    y = Math.max(MENU, Math.min(y, dh - clock.offsetHeight));
+    clock.style.left = (x / dw * 100) + "%"; clock.style.top = (y / dh * 100) + "%"; clock.style.right = "auto";
+  }
+  clock.addEventListener("pointerdown", function (e) {
+    if (e.button !== 0) return;
+    drag = { id: e.pointerId, dx: e.clientX - clock.offsetLeft, dy: e.clientY - clock.offsetTop };
+    clock.setPointerCapture(e.pointerId); clock.classList.add("dragging"); e.preventDefault();
+  });
+  clock.addEventListener("pointermove", function (e) {
+    if (drag && e.pointerId === drag.id) place(e.clientX - drag.dx, e.clientY - drag.dy);
+  });
+  function drop(e) { if (drag && e.pointerId === drag.id) { drag = null; clock.classList.remove("dragging"); } }
+  clock.addEventListener("pointerup", drop); clock.addEventListener("pointercancel", drop);
+  clock.addEventListener("keydown", function (e) {
+    var step = e.shiftKey ? 40 : 10, k = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] }[e.key];
+    if (k) { e.preventDefault(); place(clock.offsetLeft + k[0], clock.offsetTop + k[1]); }
+  });
+  addEventListener("resize", function () { if (clock.style.right === "auto") place(clock.offsetLeft, clock.offsetTop); });
+
   document.getElementById("roleTag").addEventListener("mouseenter", function (e) { window.river && window.river.burst(e.currentTarget); });
 })();
