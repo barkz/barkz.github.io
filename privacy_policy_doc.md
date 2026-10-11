@@ -1,89 +1,72 @@
-# Privacy Policy for WuBu, LLC
+# Privacy Policy
 
-**Effective date:** April 17, 2026
+**Effective date:** October 11, 2026
 
-WuBu, LLC ("WuBu," "Company") develops and publishes games and utility applications for macOS and iPhone.
+## Overview
 
-This Privacy Policy explains how WuBu handles information when users download or use WuBu applications. WuBu applications are designed so that WuBu does not collect, store, sell, rent, or otherwise use personally identifiable information (PII) from users through the apps.[1][2]
+WuBu, LLC (“WuBu”, “we”, “us” or “our”) builds apps and games for iPhone, iPad and Mac. This policy explains what information we collect through our website and apps, why we collect this information and the choices you have.
 
-## Scope
+## The short version
 
-This Privacy Policy applies to WuBu applications distributed through the Apple App Store for iPhone and macOS, as well as related support communications and product pages, unless a specific app includes a different policy.
+- Our apps don’t collect personal information.
+- Our apps contain no ads, no analytics, no tracking tools and no AI services.
+- Your app data stays on your device or in your own iCloud account.
+- We only see information you choose to send us, such as a support email.
 
-## Information Collection
+## Information we collect
 
-WuBu does **not** collect personal information from users through its apps.[2][1]
+**Information you send us.** When you email us, we receive your email address and anything you include in your message.
 
-More specifically, WuBu apps are intended to operate without collecting or storing information such as:
+**Crash reports from Apple.** If you turn on “Share with App Developers” in your device settings, Apple sends us anonymous crash reports and usage statistics. These reports don’t identify you. You control this setting in **Settings > Privacy & Security > Analytics & Improvements**.
 
-- Name
-- Email address
-- Phone number
-- Physical address
-- Account credentials
-- Device identifiers for tracking or profiling
-- Location data
-- Payment information
-- Contacts
-- Photos, videos, audio recordings, or messages
-- User-generated content transmitted to WuBu servers
+**Information we don’t collect.** Our apps don’t collect your name, location, contacts, photos, device identifiers or browsing activity.
 
-Apple requires developers to accurately disclose whether they or their third-party partners collect data from an app, and App Store Connect allows a developer to state, “No, we do not collect data from this app” when that is accurate.[1][2]
+## How we use information
 
-## On-Device Processing
+- To reply to your support requests and feedback.
+- To find and fix bugs.
 
-If a WuBu app processes information locally on a user’s device to provide app functionality, that information remains on the device and is not transmitted to WuBu in a way that would be considered “collected” by Apple’s App Store privacy framework, provided it is not retained off-device.[2]
+We never use your information for advertising.
 
-Examples may include local settings, local save data, or gameplay state stored only on the user’s device. Such local-only data is not accessed by WuBu servers.[2]
+## Services we rely on
 
-## Third-Party Services and SDKs
+- **Apple** processes all App Store and in-app purchases. We never see your payment details.
+- **Apple iCloud** syncs app data across your own devices if you use iCloud. We have no access to your iCloud data.
+- **GitHub** hosts our website. GitHub logs visitor IP addresses for security purposes under the GitHub Privacy Statement. We don’t receive or use these logs.
+- **Network Solutions** handles our support email.
 
-WuBu does not intentionally include third-party SDKs or services that collect user data for analytics, advertising, profiling, or tracking as part of the privacy posture described in this policy.
+We don’t sell, rent or trade your personal information. We share information only when the law requires us to.
 
-If a specific app later includes third-party code that changes data practices, WuBu will update this Privacy Policy and the app’s App Store Connect privacy disclosures before or when those practices change, because Apple requires disclosures to include the practices of third-party partners whose code is integrated into the app.[1][2]
+## Data retention
 
-## Tracking and Advertising
-
-WuBu does not use app data for cross-app tracking, targeted advertising, or advertising measurement.[2]
-
-WuBu apps are not intended to share user data with data brokers, advertising networks, or other third parties for marketing purposes.[2]
-
-## Data Retention
-
-Because WuBu does not collect personal information from users through its apps, WuBu does not retain personal information in company systems for app usage activities.
-
-If a user voluntarily contacts WuBu for support by email or through another channel outside the app, the information provided in that communication will be used only to respond to the request and to maintain any legally necessary business records.
-
-## Children’s Privacy
-
-WuBu apps are not designed to collect personal information from children or adults through the app experience described in this policy.
-
-If WuBu becomes aware that a specific app or workflow is collecting personal information contrary to this policy, WuBu will take appropriate steps to stop the collection and update its disclosures.
+We keep support emails for 30 days after our last conversation, then delete them. Apple manages how long crash reports stay available.
 
 ## Security
 
-Because WuBu’s stated app design does not involve collecting or storing users’ personal information on WuBu systems, the privacy risk associated with server-side storage of personal information is materially reduced.
+Only WuBu team members see support emails. We protect our accounts with two-factor authentication.
 
-WuBu will continue to review app implementations and release practices to ensure the published privacy disclosures remain accurate, as Apple requires developers to keep privacy responses current and up to date.[1][2]
+## Children
 
-## International Users
+Anyone, including children, can use our apps without sharing personal information. We don’t knowingly collect personal information from children under 13, or under 16 where local law sets a higher age. If you believe a child sent us personal information, email us and we’ll delete the information promptly.
 
-WuBu applications may be downloaded in jurisdictions outside the United States through Apple distribution channels. Regardless of user location, the privacy practices described in this policy apply unless a specific app states otherwise.
+## Your rights
 
-## Changes to This Policy
+Wherever you live, you have the right to:
 
-WuBu may update this Privacy Policy from time to time to reflect changes in its apps, legal obligations, or App Store submission requirements. Any updated version will be posted at the public URL provided for the app listing and will become effective on the date shown at the top of the policy.
+- Ask what personal information we hold about you.
+- Ask us to correct or delete this information.
+- Withdraw your consent at any time.
+
+We respond to every request within 30 days. People in Canada, the European Union, the United Kingdom and California hold more rights under PIPEDA, GDPR, UK GDPR and CCPA. You also have the right to file a complaint with your local privacy regulator.
+
+For people in the EU and UK: we handle support emails based on our legitimate interest in answering you.
+
+## Changes to this policy
+
+We post every update on this page with a new effective date. For major changes, such as adding a new service, we’ll also notify you inside our apps before the change takes effect.
 
 ## Contact
 
-WuBu, LLC<br>
-<support@wubu.ai><br>
-San Antonio, Texas, USA
-
-For privacy questions, app support, or requests related to this policy, users should contact WuBu through the support email address or support webpage listed for the applicable app.
-
-## App Store Connect notes
-
-For apps that truly do not collect data, Apple’s App Store Connect workflow allows the developer to select “No, we do not collect data from this app,” and a privacy policy URL is still required for iOS and macOS app platforms.
-
-Before using this policy for submission, confirm that each released app and every included third-party SDK actually matches these statements, because Apple requires disclosures to cover both the app and third-party partner code integrated into the app.
+WuBu, LLC\
+San Antonio, TX, United States\
+<askus@wubu.ai>
