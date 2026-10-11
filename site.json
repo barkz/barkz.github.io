@@ -14,7 +14,7 @@
   },
   "pages": {
     "index.html": {
-      "title": "WuBu, LLC · Clocktastic",
+      "title": "WuBu · Clocktastic",
       "description": "WuBu is a small Apple software studio. Meet Clocktastic, a floating desktop clock for macOS, launching {{launch.long}}.",
       "og_description": "A floating desktop clock for macOS. Free, no ads, no notifications.",
       "scripts": ["home.js"]
@@ -36,7 +36,7 @@
     },
     "privacy.html": {
       "title": "Privacy · WuBu",
-      "description": "WuBu, LLC privacy policy. No tracking cookies, no third-party analytics, no selling your data."
+      "description": "WuBu privacy policy. No tracking cookies, no third-party analytics, no selling your data."
     },
     "fun-things.html": {
       "title": "Fun things · WuBu",
