@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500&family=Space+Mono:wght@700&display=swap">
-<link rel="stylesheet" href="site.css?v=10">
+<link rel="stylesheet" href="site.css?v=11">
 <!-- /build -->
 </head>
 <body>
@@ -97,12 +97,27 @@
     <p class="eyebrow">// Clocktastic</p>
     <h2>Time where you <em>see it</em>.</h2>
     <p class="intro">An easy-to-use macOS desktop clock that floats on your desktop as a transparent clock. Set focus time with a countdown and reminder, check the weather at a glance and customize the look to suit you.</p>
-    <div>
-      <div class="row"><h3>Floating clock</h3><p>A transparent clock sits above every window. No more digging for the menu bar.</p></div>
-      <div class="row"><h3>World times</h3><p>See San Francisco, New York, London and Tokyo side by side. Plan calls across time zones without math.</p></div>
-      <div class="row"><h3>Focus countdown</h3><p>Set a focus block. Clocktastic counts down and sends a reminder when time is up.</p></div>
-      <div class="row"><h3>Weather at a glance</h3><p>Current conditions live on the clock face. One look covers time and weather.</p></div>
-      <div class="row"><h3>Your look</h3><p>Adjust opacity, size and style until the clock fits your desktop and your colour scheme.</p></div>
+    <div class="feats">
+      <article class="feat feat-wide">
+        <div class="fv fv-float" aria-hidden="true"><i class="w w1"></i><i class="w w2"></i><span class="mini" data-now>10:24</span></div>
+        <h3>Floating clock</h3><p>A transparent clock sits above every window. No more digging for the menu bar.</p>
+      </article>
+      <article class="feat">
+        <div class="fv fv-zones" aria-hidden="true"><div><span><i class="dn"></i>SF</span><b data-tz="America/Los_Angeles">--:--</b></div><div><span><i class="dn"></i>NYC</span><b data-tz="America/New_York">--:--</b></div><div><span><i class="dn"></i>LON</span><b data-tz="Europe/London">--:--</b></div><div><span><i class="dn"></i>TYO</span><b data-tz="Asia/Tokyo">--:--</b></div></div>
+        <h3>World times</h3><p>San Francisco, New York, London and Tokyo side by side. Plan calls without the math.</p>
+      </article>
+      <article class="feat">
+        <div class="fv fv-focus" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26"/><circle class="on" cx="32" cy="32" r="26" pathLength="100" stroke-dasharray="70 100"/></svg><span>17:30</span></div>
+        <h3>Focus countdown</h3><p>Set a focus block. Clocktastic counts down and reminds you when time is up.</p>
+      </article>
+      <article class="feat">
+        <div class="fv fv-wx" aria-hidden="true"><i class="sun"></i><span>Clear · 21°</span></div>
+        <h3>Weather at a glance</h3><p>Current conditions live on the clock face. One look covers time and weather.</p>
+      </article>
+      <article class="feat">
+        <div class="fv fv-look" aria-hidden="true"><span style="--a:.92" data-now>10:24</span><span style="--a:.5" data-now>10:24</span><span style="--a:.12" data-now>10:24</span></div>
+        <h3>Your look</h3><p>Adjust opacity, size and style until the clock fits your desktop.</p>
+      </article>
     </div>
   </section>
 
@@ -142,8 +157,8 @@
 </div>
 
 <!-- build:scripts -->
-<script src="site.js?v=10"></script>
-<script src="home.js?v=10"></script>
+<script src="site.js?v=11"></script>
+<script src="home.js?v=11"></script>
 <!-- /build -->
 </body>
 </html>

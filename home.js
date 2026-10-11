@@ -26,13 +26,14 @@
     setDg("hh", h); setDg("mm", m); setDg("ss", pad(now.getSeconds()));
     document.getElementById("ap").textContent = ap;
     document.getElementById("d").textContent = [fmt(now, { weekday: "long" }), fmt(now, { month: "long", day: "numeric" }), now.getFullYear()].join(" · ").toUpperCase();
+    document.querySelectorAll("[data-now]").forEach(function (el) { el.textContent = h + ":" + m; });
     document.getElementById("menuTime").textContent = fmt(now, { weekday: "short" }) + " " + h + ":" + m + " " + ap;
     var off = -now.getTimezoneOffset(), sign = off >= 0 ? "+" : "−", ao = Math.abs(off);
     document.getElementById("tzo").textContent = "UTC" + sign + pad(Math.floor(ao / 60)) + ":" + pad(ao % 60);
     var pct = (now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds()) / 864;
     document.getElementById("dayBar").style.width = pct.toFixed(2) + "%";
     document.getElementById("dayPct").textContent = pct.toFixed(1).padStart(4, "0") + "%";
-    zEl.querySelectorAll("b").forEach(function (b) {
+    document.querySelectorAll("b[data-tz]").forEach(function (b) {
       var parts = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: b.dataset.tz }).formatToParts(now), zh = 0, zm = "";
       parts.forEach(function (p) { if (p.type === "hour") zh = +p.value % 24; if (p.type === "minute") zm = p.value; });
       b.textContent = pad(zh) + ":" + zm;
