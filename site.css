@@ -88,7 +88,16 @@ header.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; 
 .hero h1 .line { display: block; animation: nameReveal 1s var(--ease) both; }
 .hero h1 .line:first-child { animation-delay: .5s; }
 .hero h1 .line:nth-child(2) { animation-delay: .65s; }
-.hero h1 .soon { position: absolute; top: 0; right: 0; transform: translate(55%, -70%) rotate(8deg); white-space: nowrap; font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .14em; line-height: 1; color: #16091f; background: var(--accent); border-radius: 999px; padding: 7px 12px; box-shadow: 0 0 0 4px rgba(196,158,239,.25), 0 0 18px rgba(196,158,239,.55); animation: soonPop .6s var(--ease) 1.2s both; }
+/* Coming-soon neon sign, hung off the headline's top-right corner; shrinks toward that corner on phones */
+.hero-title { position: relative; display: inline-block; }
+.neon { position: absolute; left: 100%; bottom: 100%; z-index: 5; display: grid; justify-items: center; padding: 12px 18px 14px; border: 2px solid #e7cdff; border-radius: 14px; background: rgba(22,9,31,.55); box-shadow: 0 0 4px var(--accent), 0 0 16px var(--deep), 0 0 34px rgba(123,63,191,.5), inset 0 0 10px rgba(123,63,191,.7); transform-origin: left bottom; transform: translate(-22%, 40%) rotate(-4deg); animation: neonOn .7s var(--ease) 1.2s both; }
+.neon b { display: block; font: italic 500 30px/1 var(--serif); letter-spacing: .02em; text-transform: uppercase; color: transparent; -webkit-text-stroke: 1.3px #f8ecff; filter: drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 6px var(--accent)) drop-shadow(0 0 14px var(--deep)); }
+.neon b + b { -webkit-text-stroke-color: #ffe3c6; filter: drop-shadow(0 0 1.5px #fff6ec) drop-shadow(0 0 6px var(--warm)) drop-shadow(0 0 14px #e0772f); animation: flicker 6s linear 2s infinite; }
+.neon::before, .neon::after { content: ""; position: absolute; width: 26px; height: 26px; border: 2px solid var(--warm); filter: drop-shadow(0 0 5px var(--warm)); }
+.neon::before { top: -10px; left: -10px; border-right: 0; border-bottom: 0; border-top-left-radius: 8px; }
+.neon::after { bottom: -10px; right: -10px; border-left: 0; border-top: 0; border-bottom-right-radius: 8px; }
+.neon i { position: absolute; top: -17px; right: 18px; display: flex; gap: 5px; }
+.neon i::before, .neon i::after, .neon i span { content: ""; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--accent); box-shadow: 0 0 6px var(--accent); }
 .role-line { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 30px; animation: slideIn .7s var(--ease) .85s both; }
 .role-tag { background: var(--fg); color: var(--bg); font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; padding: 9px 20px; cursor: default; transition: background .25s; }
 .role-tag:hover { background: var(--warm); }
@@ -96,7 +105,8 @@ header.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; 
 .bio { max-width: 40ch; color: var(--muted); font-size: 18px; line-height: 1.75; margin: 26px 0 0; animation: slideIn .7s var(--ease) 1s both; }
 .scroll-arrow { display: inline-flex; margin-top: 34px; color: var(--muted); animation: slideIn .7s var(--ease) 1.15s both; transition: color .2s; }
 .scroll-arrow:hover { color: var(--accent); }
-@keyframes soonPop { from { opacity: 0; scale: .4; } to { opacity: 1; scale: 1; } }
+@keyframes neonOn { 0% { opacity: 0; } 30% { opacity: .8; } 40% { opacity: .15; } 55%, 100% { opacity: 1; } }
+@keyframes flicker { 0%, 88%, 91%, 94%, 100% { opacity: 1; } 89%, 92.5% { opacity: .25; } }
 @keyframes nameReveal { from { opacity: 0; transform: translateY(60px) skewY(3deg); } to { opacity: 1; transform: none; } }
 @keyframes slideIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 @keyframes sweep { to { top: 100%; } }
@@ -260,7 +270,7 @@ footer a:hover { color: var(--accent); }
   .orb { width: 72px; height: 72px; top: 74px; right: 14px; }
   .orb-time { font-size: 15px; }
   .orb-sec { font-size: 7px; margin-top: 3px; }
-  .hero h1 .soon { font-size: 10px; padding: 6px 10px; transform: translate(10%, -90%) rotate(8deg); }
+  .neon { transform: translate(-12%, 62%) rotate(-4deg) scale(.72); }
   .sub { padding-top: 132px; }
   .sub-head { padding-right: 0; }
   .sub-head .orbit-1 { width: 220px; height: 220px; top: -170px; right: -70px; }
