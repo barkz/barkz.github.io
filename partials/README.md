@@ -32,3 +32,7 @@ and run the build.
 
 `python3 tools/build-site.py --check` changes nothing and exits with an
 error if any page is out of date.
+
+You don't have to run the build before pushing: the **Build site** action
+rebuilds after every push to `main` and commits whatever changed. Run
+`git pull` afterwards.

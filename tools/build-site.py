@@ -4,6 +4,10 @@
     python3 tools/build-site.py           # update pages, write blog posts
     python3 tools/build-site.py --check   # change nothing; exit 1 if out of date
 
+The Build site GitHub Action (.github/workflows/build-site.yml) runs this
+after every push to main and commits the result, so running it locally is
+only needed to preview.
+
 Pages stay plain HTML. Shared pieces live between markers and are
 rewritten in place on every run:
 
