@@ -87,6 +87,12 @@ header.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; 
 .greeting { font-family: var(--mono); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin: 0 0 18px; animation: slideIn .8s var(--ease) .3s both; }
 .hero h1 { font-family: var(--serif); font-weight: 400; text-transform: uppercase; font-size: clamp(64px, 12vw, 116px); line-height: .88; letter-spacing: -.035em; margin: 0; display: inline-block; position: relative; z-index: 4; }
 .hero h1 .line { display: block; animation: nameReveal 1s var(--ease) both; }
+/* Hero headline as a digital clock display: 14-segment LCD lettering with the unlit segments showing faintly behind */
+@font-face { font-family: "DSEG14"; src: url("fonts/DSEG14Classic-Italic.woff2") format("woff2"); font-style: normal; font-weight: 400; font-display: swap; }
+.hero h1 { font-family: "DSEG14", var(--serif); font-size: clamp(46px, 9.5vw, 92px); line-height: 1.08; letter-spacing: .02em; color: #f1e8fb; text-shadow: 0 0 6px rgba(196,158,239,.7), 0 0 24px rgba(123,63,191,.55); }
+.hero h1 .line { position: relative; isolation: isolate; }
+.hero h1 .line::before { content: attr(data-ghost); position: absolute; left: 0; top: 0; z-index: -1; color: rgba(196,158,239,.08); text-shadow: none; pointer-events: none; }
+.hero h1 .line + .line { margin-top: .12em; }
 .hero h1 .line:first-child { animation-delay: .5s; }
 .hero h1 .line:nth-child(2) { animation-delay: .65s; }
 /* Coming-soon neon sign, hung off the headline's top-right corner; shrinks toward that corner on phones */
@@ -308,7 +314,7 @@ footer a:hover { color: var(--accent); }
   .orb { width: 72px; height: 72px; top: 74px; right: 14px; }
   .orb-time { font-size: 15px; }
   .orb-sec { font-size: 7px; margin-top: 3px; }
-  .neon { transform: translate(-12%, 62%) rotate(-4deg) scale(.72); }
+  .neon { transform: translate(-4%, 60%) rotate(-4deg) scale(.62); }
   .sub { padding-top: 132px; }
   .sub-head { padding-right: 0; }
   .sub-head .orbit-1 { width: 220px; height: 220px; top: -170px; right: -70px; }
