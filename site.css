@@ -211,6 +211,7 @@ h2 { font-family: var(--sans); font-weight: 600; font-size: clamp(30px, 4.6vw, 4
 .rel.now { background: var(--surface); border-color: rgba(196,158,239,.4); }
 .rel .when { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; color: var(--accent); }
 .rel h3 { font-family: var(--serif); font-weight: 400; font-size: 26px; margin: 0; line-height: 1.15; }
+.rel h3.brand { font-family: "Monoton", var(--serif); font-size: 32px; letter-spacing: .02em; line-height: 1.1; color: #f3e6ff; text-shadow: 0 0 8px rgba(196,158,239,.55), 0 0 22px rgba(123,63,191,.45); }
 .rel .plat { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .rel p { margin: 4px 0 0; color: var(--muted); font-size: 15.5px; }
 .rel p.tag { color: var(--fg); font-weight: 500; font-size: 16.5px; }
