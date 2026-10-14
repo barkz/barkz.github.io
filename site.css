@@ -217,7 +217,8 @@ h2 { font-family: var(--sans); font-weight: 600; font-size: clamp(30px, 4.6vw, 4
 .rel.now { background: var(--surface); border-color: rgba(196,158,239,.4); }
 .rel .when { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; color: var(--accent); }
 .rel h3 { font-family: var(--serif); font-weight: 400; font-size: 26px; margin: 0; line-height: 1.15; }
-.rel h3.brand { font-family: "Monoton", var(--serif); font-size: 32px; letter-spacing: .02em; line-height: 1.1; color: #f3e6ff; text-shadow: 0 0 8px rgba(196,158,239,.55), 0 0 22px rgba(123,63,191,.45); }
+.rel h3.brand { position: relative; isolation: isolate; align-self: start; justify-self: start; font-family: "DSEG14", var(--serif); font-size: 24px; letter-spacing: .02em; line-height: 1.25; text-transform: uppercase; color: #f1e8fb; text-shadow: 0 0 5px rgba(196,158,239,.7), 0 0 16px rgba(123,63,191,.5); }
+.rel h3.brand::before { content: attr(data-ghost); position: absolute; left: 0; top: 0; z-index: -1; color: rgba(196,158,239,.08); text-shadow: none; pointer-events: none; }
 .rel h3.race { font-family: "Racing Sans One", var(--sans); font-size: 32px; letter-spacing: .03em; line-height: 1.1; color: #fff; }
 .rel h3.race .l3 { color: #ff3b30; text-shadow: 0 0 10px rgba(255,59,48,.6); }
 .rel h3.race .l2 { color: #ffd60a; text-shadow: 0 0 10px rgba(255,214,10,.5); }
