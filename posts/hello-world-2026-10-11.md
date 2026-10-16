@@ -7,8 +7,7 @@ the App Store. We are finally pursuing our goal.
 ## What's in a name?
 
 WuBu? This is a play on our names and a fun obsession with
-[Bubu and Dudu](https://getbubududu.com/faq-all-about-bubu-and-dudu/), WuBu. Our plan is to
-create useful and fun apps.
+[Bubu and Dudu](https://getbubududu.com/faq-all-about-bubu-and-dudu/). Like the cute bear and panda our apps are meant to be fun and useful.
 
 ## What's the plan with our blog?
 
